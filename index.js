@@ -9,7 +9,7 @@ const HandleMsg = require('./HandleMsg')
 const StickerMetadata = { author: 'made with luv', pack: '@thoriqazzikraa', keepScale: true }
 const errorpicture = 'https://i.ibb.co/fxY3Hbp/Whats-App-Image-2021-11-24-at-15-39-01.jpg'
 const uaOverride = process.env.UserAgent
-const botnum = '6289520360716@c.us'
+const botnum = '6288804225115@c.us'
 
 const sleep = async (ms) => {
         return new Promise(resolve => setTimeout(resolve, ms))
@@ -17,7 +17,7 @@ const sleep = async (ms) => {
 
 const start = async (urbae = new urbae()) => {
     console.log(color('------------------------------------------------------------------------', 'white'))
-    console.log(color(figlet.textSync('Urbaeexyz Bot', { font: 'Ghost', horizontalLayout: 'default' })))
+    console.log(color(figlet.textSync('Defavolia [Bot]', { font: 'Ghost', horizontalLayout: 'default' })))
     console.log(color('------------------------------------------------------------------------', 'white'))
     console.log(color('[CREATOR]', 'aqua'), color('Thoriq Azzikra', 'magenta'))
     console.log(color('[BOT]', 'aqua'), color('URBAE BOT is now Online!', 'magenta'))
@@ -131,11 +131,11 @@ const start = async (urbae = new urbae()) => {
     urbae.onIncomingCall(async (callData) => {
         // ketika seseorang menelpon nomor bot akan mengirim pesan
         await urbae.sendText(callData.peerJid, 'Maaf sedang tidak bisa menerima panggilan.\n\n-bot')
-            .then(async () => {
-		await sleep(3000)
-                // bot akan memblock nomor itu
-                await urbae.contactBlock(callData.peerJid)
-            })
+        //     .then(async () => {
+		// await sleep(3000)
+        //         // bot akan memblock nomor itu
+        //         await urbae.contactBlock(callData.peerJid)
+        //     })
     })
 }
 create(options(start))
