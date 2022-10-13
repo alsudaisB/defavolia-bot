@@ -11,6 +11,7 @@ const appstore = require('app-store-scraper')
 const thisris = require('ikyy')
 const apirizky = new thisris()
 const lolis = require('lolis.life')
+// const nHentaiAPI = require()
 const { igApi } = require('insta-fetcher')
 const insta = new igApi('csrftoken=iMB8YQcIv1mxBLKwDVzwtttaGwDHSRlc; rur="EAG\05440194017622\0541696701869:01f734f04958fcfade1f78f696ff05f3039af3836a2ba9efa2041364052e2d8156d880ca"; sessionid=40194017622%3AeeuvYD4sYYd7R5%3A22%3AAYeu1vMQ8cvmofAmp4ojW7iP0xGjSOKyf3nrcBySpg; ig_did=333B18EB-C36E-4D3A-9132-279770A8346E; ig_nrcb=1; mid=Y0BqKwALAAFzUyLDAfKxj7664vYN; ds_user_id=40194017622')
 const buffeerr = require('buffer-from')
@@ -1353,20 +1354,20 @@ module.exports = HandleMsg = async (urbae, message) => {
 					const giftub = rblow.result
 					urbae.sendStickerfromUrl(from, giftub, `RandoBlow.gif`, 'Random Blowjob!', id)
 					break
-				case prefix + 'pussy':
+				case prefix + 'holo':
 					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
 					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
 					urbae.reply(from, mess.wait, id);
-					axios.get('https://nekos.life/api/v2/img/pussy').then(res => {
+					axios.get('https://nekos.life/api/v2/img/holo').then(res => {
 						urbae.sendFileFromUrl(from, res.data.url, '', '', id)
 						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
 					});
 					break
-				case prefix + 'rhentai':
+				case prefix + 'foxGirl':
 					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
 					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
 					urbae.reply(from, mess.wait, id);
-					axios.get('https://nekos.life/api/v2/img/Random_hentai_gif').then(res => {
+					axios.get('https://nekos.life/api/v2/img/fox_girl').then(res => {
 						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
 					});
 					break
@@ -1395,43 +1396,43 @@ module.exports = HandleMsg = async (urbae, message) => {
 						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
 					})
 					break
-				case prefix + 'feetgif':
+				case prefix + 'poke':
 					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
 					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
 					urbae.reply(from, mess.wait, id)
-					axios.get('https://nekos.life/api/v2/img/feetg').then(res => {
+					axios.get('https://nekos.life/api/v2/img/poke').then(res => {
 						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
 					})
 					break
-				case prefix + 'ttgif':
+				case prefix + 'kemonomimi':
 					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
 					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
 					urbae.reply(from, mess.wait, id)
-					axios.get('https://nekos.life/api/v2/img/boobs').then(res => {
+					axios.get('https://nekos.life/api/v2/kemonomimi').then(res => {
 						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
 					})
 					break
-				case prefix + 'cumgif':
+				case prefix + 'owoify':
 					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
 					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
 					urbae.reply(from, mess.wait, id);
-					axios.get('https://nekos.life/api/v2/img/cum').then(res => {
+					axios.get('https://nekos.life/api/v2/img/owoify').then(res => {
 						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
 					});
 					break
-				case prefix + 'bjgif':
+				case prefix + 'gecg':
 					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
 					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
 					urbae.reply(from, mess.wait, id);
-					axios.get('https://nekos.life/api/v2/img/bj').then(res => {
+					axios.get('https://nekos.life/api/v2/img/gecg').then(res => {
 						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata);
 					});
 					break
-				case prefix + 'nsfwgif':
+				case prefix + 'goose':
 					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
 					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
 					urbae.reply(from, mess.wait, id);
-					axios.get('https://nekos.life/api/v2/img/nsfw_neko_gif').then(res => {
+					axios.get('https://nekos.life/api/v2/img/goose').then(res => {
 						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata);
 					});
 					break
@@ -1479,11 +1480,11 @@ module.exports = HandleMsg = async (urbae, message) => {
 						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
 					})
 					break
-				case prefix + 'lesbian':
+				case prefix + 'nekoGif':
 					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
 					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
 					urbae.reply(from, mess.wait, id)
-					axios.get('https://nekos.life/api/v2/img/les').then(res => {
+					axios.get('https://nekos.life/api/v2/img/ngif').then(res => {
 						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
 					})
 					break
