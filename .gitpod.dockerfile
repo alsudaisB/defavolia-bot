@@ -6,4 +6,3 @@ RUN useradd -l -u 33333 -G wheel -md /home/gitpod -s /bin/bash -p gitpod gitpod 
 ENV HOME=/home/gitpod
 WORKDIR $HOME
 USER gitpod
-RUN sudo chown -R root $(pwd) && sudo npm install
