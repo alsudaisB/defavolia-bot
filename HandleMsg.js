@@ -414,7 +414,9 @@ module.exports = HandleMsg = async (urbae, message) => {
 			nsfwalready: 'Fitur NSFW sudah aktif sebelumnya di grup ini',
 			nsfwoff: 'Fitur NSFW berhasil dimatikan',
 			nsfwon: 'Fitur NSFW berhasil diaktifkan',
-			prem: `Premium only`,
+			prem: `*Fitur ini hanya untuk member premium!*
+
+			_Hubungi Owner Defavolia [Bot]_ untuk mendapatkan akses premium`,
 			error: {
 				St: `[❗] Kirim gambar dengan caption *${prefix}sticker* atau tag gambar yang sudah dikirim`,
 				Ti: `[❗] Replay sticker dengan caption *${prefix}stickertoimg* atau tag sticker yang sudah dikirim`,
@@ -641,13 +643,20 @@ module.exports = HandleMsg = async (urbae, message) => {
 		const apakah = [
 			'Ya',
 			'Tidak',
-			'Coba Ulangi'
+			'Coba Ulangi',
+			'Halu',
+			'Kayaknya',
+			'Buset',
+			'Dalah males'
 		]
 
 		const bisakah = [
 			'Bisa',
 			'Tidak Bisa',
-			'Coba Ulangi'
+			'Coba Ulangi',
+			'Halu',
+			'Ngotak dikit',
+			'Stress'
 		]
 
 		const kapan = [
@@ -656,7 +665,8 @@ module.exports = HandleMsg = async (urbae, message) => {
 			'1 Tahun lagi',
 			'100 tahun lagi',
 			'gatau',
-			'2030'
+			'2030',
+			'Serah lu'
 		]
 
 		const rate = [
@@ -823,25 +833,26 @@ module.exports = HandleMsg = async (urbae, message) => {
 					await urbae.reply(from, menus, id)
 					break
 				case prefix + 'help':
-					const bots = `Hi ${pushname}, this is Urbae Bot, to find out the commands menu, type *${prefix}menu* , *${prefix}p*`
+					const bots = `Hai *${pushname}*, ini _Defavolia [Bot]_
+					 untuk melihat perintah, ketik *${prefix}menu* , *${prefix}p*`
 					await urbae.reply(from, bots, id)
 					break
-				case prefix + 'rbts':
-					urbae.reply(from, mess.wait, id)
-					urbae.sendFileFromUrl(from, `https://dapuhy-api.herokuapp.com/api/randomimage/batues?apikey=${dapuhyapi}`, 'img.jpg', 'nehh', id)
-					break
+				// case prefix + 'rbts':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	urbae.sendFileFromUrl(from, `https://dapuhy-api.herokuapp.com/api/randomimage/batues?apikey=${dapuhyapi}`, 'img.jpg', 'nehh', id)
+				// 	break
 				case prefix + 'rvidanime':
 					urbae.reply(from, mess.wait, id)
 					urbae.sendFileFromUrl(from, `https://dapuhy-api.herokuapp.com/api/anime/storyanime?apikey=${dapuhyapi}`, 'anime.mp4', '', id)
 					break
-				case prefix + 'rexo':
-					urbae.reply(from, mess.wait, id)
-					urbae.sendFileFromUrl(from, `https://dapuhy-api.herokuapp.com/api/randomimage/exontol?apikey=${dapuhyapi}`, 'img.jpg', 'nehh', id)
-					break
-				case prefix + 'rblackpink':
-					urbae.reply(from, mess.wait, id)
-					urbae.sendFileFromUrl(from, `https://dapuhy-api.herokuapp.com/api/randomimage/blekpink?apikey=${dapuhyapi}`, 'blackpink.jpg', '', id)
-					break
+				// case prefix + 'rexo':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	urbae.sendFileFromUrl(from, `https://dapuhy-api.herokuapp.com/api/randomimage/exontol?apikey=${dapuhyapi}`, 'img.jpg', 'nehh', id)
+				// 	break
+				// case prefix + 'rblackpink':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	urbae.sendFileFromUrl(from, `https://dapuhy-api.herokuapp.com/api/randomimage/blekpink?apikey=${dapuhyapi}`, 'blackpink.jpg', '', id)
+				// 	break
 				case prefix + 'rcitacita':
 					urbae.reply(from, mess.wait, id)
 					await urbae.sendFileFromUrl(from, `https://h4ck3rs404-api.herokuapp.com/api/cita-cita?apikey=${hackapi}`, 'citacita.mp3', '', id)
@@ -925,114 +936,114 @@ module.exports = HandleMsg = async (urbae, message) => {
 				case prefix + 'tod':
 					urbae.reply(from, `Sebelum bermain berjanjilah akan melaksanakan apapun perintah yang diberikan.\n\nSilahkan Pilih:\n➥ ${prefix}truth\n➥ ${prefix}dare`, id)
 					break
-				case prefix + 'rneko':
-					urbae.reply(from, mess.wait, id)
-					axios.get(`https://api.i-tech.id/anim/nsfwneko?key=6QZWVa-fzRgRY-95xAOH-fspd5y-7eJOkQ`).then(res => {
-						urbae.sendFileFromUrl(from, res.data.result, '', '', id)
-					})
-					break
-				case prefix + 'truth':
-					if (!isGroupMsg) return urbae.reply(from, 'Perintah ini hanya bisa digunakan didalam grup!', id)
-					fetch('https://raw.githubusercontent.com/AlvioAdjiJanuar/random/main/truth.txt')
-						.then(res => res.text())
-						.then(body => {
-							let truthx = body.split('\n')
-							let truthz = truthx[Math.floor(Math.random() * truthx.length)]
-							urbae.reply(from, truthz, id)
-						})
-						.catch(() => {
-							urbae.reply(from, 'Hayolohhh, ada yang error!!', id)
-						})
-					break
-				case prefix + 'dare':
-					if (!isGroupMsg) return urbae.reply(from, 'Perintah ini hanya bisa digunakan didalam grup!', id)
-					fetch('https://raw.githubusercontent.com/AlvioAdjiJanuar/random/main/dare.txt')
-						.then(res => res.text())
-						.then(body => {
-							let darex = body.split('\n')
-							let darez = darex[Math.floor(Math.random() * darex.length)]
-							urbae.reply(from, darez, id)
-						})
-						.catch(() => {
-							urbae.reply(from, 'Hayolohhh, ada yang error!!', id)
-						})
-					break
-				case prefix + 'citacita'://Piyobot
-					if (!isGroupMsg) return urbae.reply(from, menuId.textPrem())
-					fetch('https://raw.githubusercontent.com/AlvioAdjiJanuar/citacita/main/citacita.txt')
-						.then(res => res.text())
-						.then(body => {
-							let cita = body.split('\n')
-							let raya = cita[Math.floor(Math.random() * cita.length)]
-							urbae.sendFileFromUrl(from, raya, 'citacita.mp3', id)
-								.then(() => console.log('Success sending cita'))
-						})
-						.catch(() => {
-							urbae.reply(from, 'Ada yang Error!', id)
-						})
-					break
-				case prefix + 'kbbi':
-					if (args.length == 0) return urbae.reply(from, `Untuk mencari suatu kata dari Kamus Besar Bahasa Indonesia (KBBI)\nketik: ${prefix}kbbi [kata]`, id)
-					const kbbip = body.slice(6)
-					const kbbis = await rugaapi.kbbi(kbbip)
-					await urbae.reply(from, kbbis, id)
-						.catch(() => {
-							urbae.reply(from, 'ada yang error!!', id)
-						})
-					break
-				case prefix + 'marvel':
-					if (args.length == 0) return urbae.reply(from, `Kirim perintah ${prefix}marvel teks1 teks2\nContoh: ${prefix}marvel Urbaee Xyz`, id)
-					urbae.reply(from, mess.wait, id)
-					const textmar1 = args[0]
-					const textmar2 = args[1]
-					urbae.sendFileFromUrl(from, `https://zenzapi.xyz/api/textpro/marvel?text=${textmar1}&text2=${textmar2}&apikey=${zenzapi}`, '', id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'blackpink':
-					if (args.length == 0) return urbae.reply(from, `kirim perintah ${prefix}blackpink nama`, id)
-					urbae.reply(from, mess.wait, id)
-					const bpk = body.slice(11)
-					urbae.sendFileFromUrl(from, `https://zenzapi.xyz/api/textpro/blackpink?text=${bpk}&apikey=${zenzapi}`, `${bpk}.jpg`, `nehh ngab`, id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'glowtext':
-					if (args.length == 0) return urbae.reply(from, `kirim perintah ${prefix}logoff [nama]`, id)
-					urbae.reply(from, mess.wait, id)
-					const srhdah = body.slice(10)
-					urbae.sendFileFromUrl(from, `https://api.vhtear.com/glowtext?text=${srhdah}&apikey=${vhtearkey}`, `${srhdah}.jpg`, `nehh ngab`, id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'logoff':
-					if (args.length == 0) return urbae.reply(from, `kirim perintah ${prefix}logoff [nama]`, id)
-					urbae.reply(from, mess.wait, id)
-					const jadiin = body.slice(8)
-					urbae.sendFileFromUrl(from, `https://api.zeks.me/api/epep?apikey=${apikeyvinz}&text=${jadiin}`, `${jadiin}.jpg`, 'nehh ngab...', id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'logoph':
-					if (args.length === 0) return urbae.reply(from, `Kirim perintah *${prefix}logoph  Teks1 Teks2 ]*,\n\n contoh : *${prefix}logoph Urbaee Xyz*`, id)
-					const lpornhub = args[0]
-					const lpornhub2 = args[1]
-					if (lpornhub > 10) return urbae.reply(from, '*Teks1 Terlalu Panjang!*\n_Maksimal 10 huruf!_', id)
-					if (lpornhub2 > 10) return urbae.reply(from, '*Teks2 Terlalu Panjang!*\n_Maksimal 10 huruf!_', id)
-					urbae.sendFileFromUrl(from, `https://zenzapi.xyz/api/textpro/pornhub?text=${lpornhub}&text2=${lpornhub2}&apikey=${zenzapi}`, '', '', id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
+				// case prefix + 'rneko':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get(`https://api.i-tech.id/anim/nsfwneko?key=6QZWVa-fzRgRY-95xAOH-fspd5y-7eJOkQ`).then(res => {
+				// 		urbae.sendFileFromUrl(from, res.data.result, '', '', id)
+				// 	})
+				// 	break
+				// case prefix + 'truth':
+				// 	if (!isGroupMsg) return urbae.reply(from, 'Perintah ini hanya bisa digunakan didalam grup!', id)
+				// 	fetch('https://raw.githubusercontent.com/AlvioAdjiJanuar/random/main/truth.txt')
+				// 		.then(res => res.text())
+				// 		.then(body => {
+				// 			let truthx = body.split('\n')
+				// 			let truthz = truthx[Math.floor(Math.random() * truthx.length)]
+				// 			urbae.reply(from, truthz, id)
+				// 		})
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Hayolohhh, ada yang error!!', id)
+				// 		})
+				// 	break
+				// case prefix + 'dare':
+				// 	if (!isGroupMsg) return urbae.reply(from, 'Perintah ini hanya bisa digunakan didalam grup!', id)
+				// 	fetch('https://raw.githubusercontent.com/AlvioAdjiJanuar/random/main/dare.txt')
+				// 		.then(res => res.text())
+				// 		.then(body => {
+				// 			let darex = body.split('\n')
+				// 			let darez = darex[Math.floor(Math.random() * darex.length)]
+				// 			urbae.reply(from, darez, id)
+				// 		})
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Hayolohhh, ada yang error!!', id)
+				// 		})
+				// 	break
+				// case prefix + 'citacita'://Piyobot
+				// 	if (!isGroupMsg) return urbae.reply(from, menuId.textPrem())
+				// 	fetch('https://raw.githubusercontent.com/AlvioAdjiJanuar/citacita/main/citacita.txt')
+				// 		.then(res => res.text())
+				// 		.then(body => {
+				// 			let cita = body.split('\n')
+				// 			let raya = cita[Math.floor(Math.random() * cita.length)]
+				// 			urbae.sendFileFromUrl(from, raya, 'citacita.mp3', id)
+				// 				.then(() => console.log('Success sending cita'))
+				// 		})
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Ada yang Error!', id)
+				// 		})
+				// 	break
+				// case prefix + 'kbbi':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk mencari suatu kata dari Kamus Besar Bahasa Indonesia (KBBI)\nketik: ${prefix}kbbi [kata]`, id)
+				// 	const kbbip = body.slice(6)
+				// 	const kbbis = await rugaapi.kbbi(kbbip)
+				// 	await urbae.reply(from, kbbis, id)
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'ada yang error!!', id)
+				// 		})
+				// 	break
+				// case prefix + 'marvel':
+				// 	if (args.length == 0) return urbae.reply(from, `Kirim perintah ${prefix}marvel teks1 teks2\nContoh: ${prefix}marvel Urbaee Xyz`, id)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const textmar1 = args[0]
+				// 	const textmar2 = args[1]
+				// 	urbae.sendFileFromUrl(from, `https://zenzapi.xyz/api/textpro/marvel?text=${textmar1}&text2=${textmar2}&apikey=${zenzapi}`, '', id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'blackpink':
+				// 	if (args.length == 0) return urbae.reply(from, `kirim perintah ${prefix}blackpink nama`, id)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const bpk = body.slice(11)
+				// 	urbae.sendFileFromUrl(from, `https://zenzapi.xyz/api/textpro/blackpink?text=${bpk}&apikey=${zenzapi}`, `${bpk}.jpg`, `nehh ngab`, id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'glowtext':
+				// 	if (args.length == 0) return urbae.reply(from, `kirim perintah ${prefix}logoff [nama]`, id)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const srhdah = body.slice(10)
+				// 	urbae.sendFileFromUrl(from, `https://api.vhtear.com/glowtext?text=${srhdah}&apikey=${vhtearkey}`, `${srhdah}.jpg`, `nehh ngab`, id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'logoff':
+				// 	if (args.length == 0) return urbae.reply(from, `kirim perintah ${prefix}logoff [nama]`, id)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const jadiin = body.slice(8)
+				// 	urbae.sendFileFromUrl(from, `https://api.zeks.me/api/epep?apikey=${apikeyvinz}&text=${jadiin}`, `${jadiin}.jpg`, 'nehh ngab...', id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'logoph':
+				// 	if (args.length === 0) return urbae.reply(from, `Kirim perintah *${prefix}logoph  Teks1 Teks2 ]*,\n\n contoh : *${prefix}logoph Urbaee Xyz*`, id)
+				// 	const lpornhub = args[0]
+				// 	const lpornhub2 = args[1]
+				// 	if (lpornhub > 10) return urbae.reply(from, '*Teks1 Terlalu Panjang!*\n_Maksimal 10 huruf!_', id)
+				// 	if (lpornhub2 > 10) return urbae.reply(from, '*Teks2 Terlalu Panjang!*\n_Maksimal 10 huruf!_', id)
+				// 	urbae.sendFileFromUrl(from, `https://zenzapi.xyz/api/textpro/pornhub?text=${lpornhub}&text2=${lpornhub2}&apikey=${zenzapi}`, '', '', id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
 				// Level [BETA] by Slavyan
 				case prefix + 'level':
 					if (!isLevelingOn) return await urbae.reply(from, 'Fitur leveling belum aktif di grup ini!', id)
@@ -1268,7 +1279,6 @@ module.exports = HandleMsg = async (urbae, message) => {
 					loliwrap.getSFWLoli()
 						.then(res => {
 							urbae.sendFileFromUrl(from, res.url, '', 'nih lolinya tuan', id)
-							urbae.sendImageAsSticker(from, res.url, StickerMetadata)
 								.catch(err => {
 									console.log(err)
 									urbae.reply(from, err.message, id)
@@ -1299,7 +1309,6 @@ module.exports = HandleMsg = async (urbae, message) => {
 						.then(nekos => {
 							if (nekos == undefined || nekos == '') return urbae.reply(from, 'error tuan', id)
 							urbae.sendFileFromUrl(from, nekos, '', 'miawww', id)
-							urbae.sendImageAsSticker(from, nekos, StickerMetadata)
 								.catch(err => {
 									console.log(err)
 									urbae.reply(from, err.message, id)
@@ -1310,29 +1319,29 @@ module.exports = HandleMsg = async (urbae, message) => {
 							urbae.reply(from, err.message, id)
 						})
 					break
-				case prefix + 'boobs':
+				// case prefix + 'boobs':
+				// 	if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	urbae.reply(from, mess.wait, id);
+				// 	getnekos.nsfw.boobs()
+				// 		.then(boobs => {
+				// 			urbae.sendFileFromUrl(from, boobs.url, '', '', id)
+				// 			urbae.sendImageAsSticker(from, boobs.url, StickerMetadata)
+				// 				.catch(err => {
+				// 					console.log(err)
+				// 					urbae.reply(from, err.message, id)
+				// 				})
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				case prefix + 'ohentai':
 					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
 					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
 					urbae.reply(from, mess.wait, id);
-					getnekos.nsfw.boobs()
-						.then(boobs => {
-							urbae.sendFileFromUrl(from, boobs.url, '', '', id)
-							urbae.sendImageAsSticker(from, boobs.url, StickerMetadata)
-								.catch(err => {
-									console.log(err)
-									urbae.reply(from, err.message, id)
-								})
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'gifhentai':
-					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					urbae.reply(from, mess.wait, id);
-					getnekos.nsfw.randomHentaiGif()
+					getnekos.nsfw.hentai()
 						.then(hentai => {
 							urbae.sendFileFromUrl(from, hentai.url, '', '', id)
 							urbae.sendImageAsSticker(from, hentai.url, StickerMetadata)
@@ -1342,18 +1351,18 @@ module.exports = HandleMsg = async (urbae, message) => {
 								})
 						})
 						.catch(err => {
-							console.log(err)
 							urbae.reply(from, err.message, id)
+							console.log(err)
 						})
 					break
-				case prefix + 'bjanime':
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					urbae.reply(from, mess.wait, id)
-					const sblow = await axios.get(`https://tobz-api.herokuapp.com/api/nsfwblowjob?&apikey=${tobzapi}`)
-					const rblow = sblow.data
-					const giftub = rblow.result
-					urbae.sendStickerfromUrl(from, giftub, `RandoBlow.gif`, 'Random Blowjob!', id)
-					break
+				// case prefix + 'bjanime':
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const sblow = await axios.get(`https://tobz-api.herokuapp.com/api/nsfwblowjob?&apikey=${tobzapi}`)
+				// 	const rblow = sblow.data
+				// 	const giftub = rblow.result
+				// 	urbae.sendStickerfromUrl(from, giftub, `RandoBlow.gif`, 'Random Blowjob!', id)
+				// 	break
 				case prefix + 'holo':
 					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
 					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
@@ -1380,22 +1389,22 @@ module.exports = HandleMsg = async (urbae, message) => {
 						urbae.sendStickerfromUrl(from, mp4, StickerMetadata)
 					});
 					break
-				case prefix + 'sologif':
-					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					urbae.reply(from, mess.wait, id)
-					axios.get('https://nekos.life/api/v2/img/solog').then(res => {
-						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
-					})
-					break
-				case prefix + 'anal':
-					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					urbae.reply(from, mess.wait, id)
-					axios.get('https://nekos.life/api/v2/img/anal').then(res => {
-						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
-					})
-					break
+				// case prefix + 'sologif':
+				// 	if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get('https://nekos.life/api/v2/img/solog').then(res => {
+				// 		urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
+				// 	})
+				// 	break
+				// case prefix + 'anal':
+				// 	if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get('https://nekos.life/api/v2/img/anal').then(res => {
+				// 		urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
+				// 	})
+				// 	break
 				case prefix + 'poke':
 					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
 					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
@@ -1442,7 +1451,6 @@ module.exports = HandleMsg = async (urbae, message) => {
 						.then(result => {
 							if (result == undefined || result == '') return urbae.reply(from, 'Error tuan', id)
 							urbae.sendFileFromUrl(from, result, '', 'ini waifunya tuan', id)
-							urbae.sendImageAsSticker(from, result, StickerMetadata)
 								.catch(err => {
 									console.log(err)
 									urbae.reply(from, err.message, id)
@@ -1472,14 +1480,14 @@ module.exports = HandleMsg = async (urbae, message) => {
 						urbae.sendFileFromUrl(from, res.data.url, 'Avatar UwU');
 					});
 					break
-				case prefix + 'nekonsfw':
-					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					urbae.reply(from, mess.wait, id);
-					axios.get('https://nekos.life/api/v2/img/nsfw_neko_gif').then(res => {
-						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
-					})
-					break
+				// case prefix + 'nekonsfw':
+				// 	if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	urbae.reply(from, mess.wait, id);
+				// 	axios.get('https://nekos.life/api/v2/img/nsfw_neko_gif').then(res => {
+				// 		urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
+				// 	})
+				// 	break
 				case prefix + 'nekoGif':
 					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
 					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
@@ -1494,25 +1502,25 @@ module.exports = HandleMsg = async (urbae, message) => {
 						urbae.sendFileFromUrl(from, res.data.url, 'Desktop Wallpaper.jpeg', 'Enjoy :>', id);
 					});
 					break
-				case prefix + 'baka':
-					urbae.reply(from, mess.wait, id);
-					axios.get('https://nekos.life/api/v2/img/baka').then(res => {
-						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
-					})
-					break
-				case prefix + 'aesthetic':
-					urbae.reply(from, mess.wait, id)
-					axios.get(`https://api.zeks.me/api/estetikpic?apikey=${apikeyvinz}`)
-						.then(async (res) => {
-							await urbae.sendFileFromUrl(from, res.data.result.result, 'img.jpg', 'nihh pict estetiknya', id)
-								.catch(() => {
-									urbae.reply(from, 'Error', id)
-								})
-						})
-						.catch((err) => {
-							urbae.reply(from, err, id)
-						})
-					break
+				// case prefix + 'baka':
+				// 	urbae.reply(from, mess.wait, id);
+				// 	axios.get('https://nekos.life/api/v2/img/hentai').then(res => {
+				// 		urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
+				// 	})
+				// 	break
+				// case prefix + 'aesthetic':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get(`https://api.zeks.me/api/estetikpic?apikey=${apikeyvinz}`)
+				// 		.then(async (res) => {
+				// 			await urbae.sendFileFromUrl(from, res.data.result.result, 'img.jpg', 'nihh pict estetiknya', id)
+				// 				.catch(() => {
+				// 					urbae.reply(from, 'Error', id)
+				// 				})
+				// 		})
+				// 		.catch((err) => {
+				// 			urbae.reply(from, err, id)
+				// 		})
+				// 	break
 				case prefix + 'viewonce':
 					if (args.length == 0) return urbae.reply(from, 'pilih enable atau disable', id)
 					if (isGroupMsg) {
@@ -2659,7 +2667,7 @@ module.exports = HandleMsg = async (urbae, message) => {
 						await urbae.reply(from, 'Maaf, command sticker giphy hanya bisa menggunakan link dari giphy.  [Giphy Only]', id)
 					}
 					break
-				case prefix + 'infobmkg':
+				case prefix + 'infogempa':
 					urbae.reply(from, mess.wait, id)
 					axios.get(`http://zekais-api.herokuapp.com/gempa?apikey=${zekais}`)
 						.then(async (res) => {
@@ -2743,13 +2751,13 @@ module.exports = HandleMsg = async (urbae, message) => {
 							urbae.reply(from, 'Maaf,wilayah yang anda cari tidak dapat ditemukan', id)
 						})
 					break
-				case prefix + 'infogempa':
-					if (!isGroupMsg) return urbae.reply(from, 'Fitur ini hanya bisa digunakan didalam Grup!', id)
-					const bmkg = await axios.get('https://urbaez.herokuapp.com/api/infogempa').then(res => {
-						const hasil = `*INFO GEMPA*\n*Lokasi* : _${res.data.lokasi}_\n*Kedalaman* : _${res.data.kedalaman}_\n*Koordinat* : _${res.data.koordinat}_\n*Magnitude* : _${res.data.magnitude}_\n*Waktu* : _${res.data.waktu}_\n${res.data.potensi}`;
-						urbae.sendFileFromUrl(from, res.data.map, 'img.jpg', hasil, id)
-					})
-					break
+				// case prefix + 'infogempa':
+				// 	if (!isGroupMsg) return urbae.reply(from, 'Fitur ini hanya bisa digunakan didalam Grup!', id)
+				// 	const bmkg = await axios.get('https://urbaez.herokuapp.com/api/infogempa').then(res => {
+				// 		const hasil = `*INFO GEMPA*\n*Lokasi* : _${res.data.lokasi}_\n*Kedalaman* : _${res.data.kedalaman}_\n*Koordinat* : _${res.data.koordinat}_\n*Magnitude* : _${res.data.magnitude}_\n*Waktu* : _${res.data.waktu}_\n${res.data.potensi}`;
+				// 		urbae.sendFileFromUrl(from, res.data.map, 'img.jpg', hasil, id)
+				// 	})
+				// 	break
 				case prefix + 'meme':
 					if ((isMedia || isQuotedImage) && args.length >= 2) {
 						const top = arg.split('|')[0]
@@ -2770,44 +2778,44 @@ module.exports = HandleMsg = async (urbae, message) => {
 						await urbae.reply(from, `Tidak ada gambar! Silahkan kirim gambar dengan caption ${prefix}meme <teks_atas> | <teks_bawah>\ncontoh: ${prefix}meme teks atas | teks bawah`, id)
 					}
 					break
-				case prefix + 'quotemaker':
-					if (args.length == 0) return urbae.reply(from, `Membuat quote maker, gunakan ${prefix}quotemaker |quotes|author|theme\nContoh: ${prefix}quotemaker terlihatlah sudah|thoriq|aesthetic`, id)
-					const qmaker = body.trim().split('|')
-					if (qmaker.length >= 3) {
-						const quotes = qmaker[1]
-						const author = qmaker[2]
-						const theme = qmaker[3]
-						urbae.reply(from, 'Proses kak..', id)
-						try {
-							const hasilqmaker = await images.quote(quotes, author, theme)
-							urbae.sendFileFromUrl(from, `${hasilqmaker}`, '', 'Ini kak..', id)
-						} catch {
-							urbae.reply('Yahh proses gagal, kakak isinya sudah benar belum?..', id)
-						}
-					} else {
-						urbae.reply(from, `Pemakaian ${prefix}quotemaker |isi quote|author|theme\n\ncontoh: ${prefix}quotemaker |aku sayang kamu|-urbae|random\n\nuntuk theme nya pakai random ya kak..`)
-					}
-					break
-				case prefix + 'foliokanan':
+				// case prefix + 'quotemaker':
+				// 	if (args.length == 0) return urbae.reply(from, `Membuat quote maker, gunakan ${prefix}quotemaker |quotes|author|theme\nContoh: ${prefix}quotemaker terlihatlah sudah|thoriq|aesthetic`, id)
+				// 	const qmaker = body.trim().split('|')
+				// 	if (qmaker.length >= 3) {
+				// 		const quotes = qmaker[1]
+				// 		const author = qmaker[2]
+				// 		const theme = qmaker[3]
+				// 		urbae.reply(from, 'Proses kak..', id)
+				// 		try {
+				// 			const hasilqmaker = await images.quote(quotes, author, theme)
+				// 			urbae.sendFileFromUrl(from, `${hasilqmaker}`, '', 'Ini kak..', id)
+				// 		} catch {
+				// 			urbae.reply('Yahh proses gagal, kakak isinya sudah benar belum?..', id)
+				// 		}
+				// 	} else {
+				// 		urbae.reply(from, `Pemakaian ${prefix}quotemaker |isi quote|author|theme\n\ncontoh: ${prefix}quotemaker |aku sayang kamu|-urbae|random\n\nuntuk theme nya pakai random ya kak..`)
+				// 	}
+				// 	break
+				case prefix + 'nuliskanan':
 					if (args.length == 0) return urbae.reply(from, `Membuat bot menulis teks yang akan dikirim menjadi gambar`, id)
 					const folkan = body.slice(12)
 					await urbae.sendFileFromUrl(from, `http://zekais-api.herokuapp.com/foliokanan?text=${folkan}&apikey=${zekais}`, '', '', id)
 					break
-				case prefix + 'foliokiri':
+				case prefix + 'nuliskiri':
 					if (args.length == 0) return urbae.reply(from, `Membuat bot menulis teks yang akan dikirim menjadi gambar!`, id)
 					const nulisfol1 = body.slice(11)
 					await urbae.sendFileFromUrl(from, `http://zekais-api.herokuapp.com/foliokiri?text=${nulisfol1}&apikey=${zekais}`, '', '', id)
 					break
-				case prefix + 'nulis':
-					if (args.length == 0) return urbae.reply(from, `Membuat bot menulis teks yang dikirim menjadi gambar\nPemakaian: ${prefix}nulis [teks]\n\ncontoh: ${prefix}nulis i love you 3000`, id)
-					const nulisq = body.slice(7)
-					const nulisp = await rugaapi.tulis(nulisq)
-					await urbae.sendImage(from, `${nulisp}`, '', 'Nih...', id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, 'Ada yang Error!', id)
-						})
-					break
+				// case prefix + 'nulis':
+				// 	if (args.length == 0) return urbae.reply(from, `Membuat bot menulis teks yang dikirim menjadi gambar\nPemakaian: ${prefix}nulis [teks]\n\ncontoh: ${prefix}nulis i love you 3000`, id)
+				// 	const nulisq = body.slice(7)
+				// 	const nulisp = await rugaapi.tulis(nulisq)
+				// 	await urbae.sendImage(from, `${nulisp}`, '', 'Nih...', id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, 'Ada yang Error!', id)
+				// 		})
+				// 	break
 
 				//Islam Command
 				case prefix + 'listsurah':
@@ -2826,136 +2834,136 @@ module.exports = HandleMsg = async (urbae, message) => {
 						urbae.reply(from, err, id)
 					}
 					break
-				case prefix + 'infosurah':
-					if (args.length == 0) return urbae.reply(from, `*_${prefix}infosurah <nama surah>_*\nMenampilkan informasi lengkap mengenai surah tertentu. Contoh penggunan: ${prefix}infosurah al-baqarah`, message.id)
-					var responseh = await axios.get('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/islam/surah.json')
-					var { data } = responseh.data
-					var idx = data.findIndex(function (post, index) {
-						if ((post.name.transliteration.id.toLowerCase() == args[0].toLowerCase()) || (post.name.transliteration.en.toLowerCase() == args[0].toLowerCase()))
-							return true;
-					});
-					var pesan = ""
-					pesan = pesan + "Nama : " + data[idx].name.transliteration.id + "\n" + "Asma : " + data[idx].name.short + "\n" + "Arti : " + data[idx].name.translation.id + "\n" + "Jumlah ayat : " + data[idx].numberOfVerses + "\n" + "Nomor surah : " + data[idx].number + "\n" + "Jenis : " + data[idx].revelation.id + "\n" + "Keterangan : " + data[idx].tafsir.id
-					urbae.reply(from, pesan, message.id)
-					break
-				case prefix + 'surah':
-					if (args.length == 0) return urbae.reply(from, `*_${prefix}surah <nama surah> <ayat>_*\nMenampilkan ayat Al-Quran tertentu beserta terjemahannya dalam bahasa Indonesia. Contoh penggunaan : ${prefix}surah al-baqarah 1\n\n*_${prefix}surah <nama surah> <ayat> en/id_*\nMenampilkan ayat Al-Quran tertentu beserta terjemahannya dalam bahasa Inggris / Indonesia. Contoh penggunaan : ${prefix}surah al-baqarah 1 id`, message.id)
-					var responseh = await axios.get('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/islam/surah.json')
-					var { data } = responseh.data
-					var idx = data.findIndex(function (post, index) {
-						if ((post.name.transliteration.id.toLowerCase() == args[0].toLowerCase()) || (post.name.transliteration.en.toLowerCase() == args[0].toLowerCase()))
-							return true;
-					});
-					nmr = data[idx].number
-					if (!isNaN(nmr)) {
-						var responseh2 = await axios.get('https://api.quran.sutanlab.id/surah/' + nmr + "/" + args[1])
-						var { data } = responseh2.data
-						var last = function last(array, n) {
-							if (array == null) return void 0;
-							if (n == null) return array[array.length - 1];
-							return array.slice(Math.max(array.length - n, 0));
-						};
-						bhs = last(args)
-						pesan = ""
-						pesan = pesan + data.text.arab + "\n\n"
-						if (bhs == "en") {
-							pesan = pesan + data.translation.en
-						} else {
-							pesan = pesan + data.translation.id
-						}
-						pesan = pesan + "\n\n(Q.S. " + data.surah.name.transliteration.id + ":" + args[1] + ")"
-						urbae.reply(from, pesan, message.id)
-					}
-					break
-				case prefix + 'tafsir':
-					if (args.length == 0) return urbae.reply(from, `*_${prefix}tafsir <nama surah> <ayat>_*\nMenampilkan ayat Al-Quran tertentu beserta terjemahan dan tafsirnya dalam bahasa Indonesia. Contoh penggunaan : ${prefix}tafsir al-baqarah 1`, message.id)
-					var responsh = await axios.get('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/islam/surah.json')
-					var { data } = responsh.data
-					var idx = data.findIndex(function (post, index) {
-						if ((post.name.transliteration.id.toLowerCase() == args[0].toLowerCase()) || (post.name.transliteration.en.toLowerCase() == args[0].toLowerCase()))
-							return true;
-					});
-					nmr = data[idx].number
-					if (!isNaN(nmr)) {
-						var responsih = await axios.get('https://api.quran.sutanlab.id/surah/' + nmr + "/" + args[1])
-						var { data } = responsih.data
-						pesan = ""
-						pesan = pesan + "Tafsir Q.S. " + data.surah.name.transliteration.id + ":" + args[1] + "\n\n"
-						pesan = pesan + data.text.arab + "\n\n"
-						pesan = pesan + "_" + data.translation.id + "_" + "\n\n" + data.tafsir.id.long
-						urbae.reply(from, pesan, message.id)
-					}
-					break
-				case prefix + 'alaudio':
-					if (args.length == 0) return urbae.reply(from, `*_${prefix}ALaudio <nama surah>_*\nMenampilkan tautan dari audio surah tertentu. Contoh penggunaan : ${prefix}ALaudio al-fatihah\n\n*_${prefix}ALaudio <nama surah> <ayat>_*\nMengirim audio surah dan ayat tertentu beserta terjemahannya dalam bahasa Indonesia. Contoh penggunaan : ${prefix}ALaudio al-fatihah 1\n\n*_${prefix}ALaudio <nama surah> <ayat> en_*\nMengirim audio surah dan ayat tertentu beserta terjemahannya dalam bahasa Inggris. Contoh penggunaan : ${prefix}ALaudio al-fatihah 1 en`, message.id)
-					ayat = "ayat"
-					bhs = ""
-					var responseh = await axios.get('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/islam/surah.json')
-					var surah = responseh.data
-					var idx = surah.data.findIndex(function (post, index) {
-						if ((post.name.transliteration.id.toLowerCase() == args[0].toLowerCase()) || (post.name.transliteration.en.toLowerCase() == args[0].toLowerCase()))
-							return true;
-					});
-					nmr = surah.data[idx].number
-					if (!isNaN(nmr)) {
-						if (args.length > 2) {
-							ayat = args[1]
-						}
-						if (args.length == 2) {
-							var last = function last(array, n) {
-								if (array == null) return void 0;
-								if (n == null) return array[array.length - 1];
-								return array.slice(Math.max(array.length - n, 0));
-							};
-							ayat = last(args)
-						}
-						pesan = ""
-						if (isNaN(ayat)) {
-							var responsih2 = await axios.get('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/islam/surah/' + nmr + '.json')
-							var { name, name_translations, number_of_ayah, number_of_surah, recitations } = responsih2.data
-							pesan = pesan + "Audio Quran Surah ke-" + number_of_surah + " " + name + " (" + name_translations.ar + ") " + "dengan jumlah " + number_of_ayah + " ayat\n"
-							pesan = pesan + "Dilantunkan oleh " + recitations[0].name + " : " + recitations[0].audio_url + "\n"
-							pesan = pesan + "Dilantunkan oleh " + recitations[1].name + " : " + recitations[1].audio_url + "\n"
-							pesan = pesan + "Dilantunkan oleh " + recitations[2].name + " : " + recitations[2].audio_url + "\n"
-							urbae.reply(from, pesan, message.id)
-						} else {
-							var responsih2 = await axios.get('https://api.quran.sutanlab.id/surah/' + nmr + "/" + ayat)
-							var { data } = responsih2.data
-							var last = function last(array, n) {
-								if (array == null) return void 0;
-								if (n == null) return array[array.length - 1];
-								return array.slice(Math.max(array.length - n, 0));
-							};
-							bhs = last(args)
-							pesan = ""
-							pesan = pesan + data.text.arab + "\n\n"
-							if (bhs == "en") {
-								pesan = pesan + data.translation.en
-							} else {
-								pesan = pesan + data.translation.id
-							}
-							pesan = pesan + "\n\n(Q.S. " + data.surah.name.transliteration.id + ":" + args[1] + ")"
-							await urbae.sendFileFromUrl(from, data.audio.secondary[0])
-							await urbae.reply(from, pesan, message.id)
-						}
-					}
-					break
-				case prefix + 'jsolat':
-					if (args.length == 0) return urbae.reply(from, `Untuk melihat jadwal solat dari setiap daerah yang ada\nketik: ${prefix}jsolat [daerah]\n\nuntuk list daerah yang ada\nketik: ${prefix}daerah`, id)
-					const solatx = body.slice(8)
-					const solatj = await rugaapi.jadwaldaerah(solatx)
-					await urbae.reply(from, solatj, id)
-						.catch(() => {
-							urbae.reply(from, 'Pastikan daerah kamu ada di list ya!', id)
-						})
-					break
-				case prefix + 'daerah':
-					const daerahq = await rugaapi.daerah()
-					await urbae.reply(from, daerahq, id)
-						.catch(() => {
-							urbae.reply(from, 'Ada yang Error!', id)
-						})
-					break
+				// case prefix + 'infosurah':
+				// 	if (args.length == 0) return urbae.reply(from, `*_${prefix}infosurah <nama surah>_*\nMenampilkan informasi lengkap mengenai surah tertentu. Contoh penggunan: ${prefix}infosurah al-baqarah`, message.id)
+				// 	var responseh = await axios.get('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/islam/surah.json')
+				// 	var { data } = responseh.data
+				// 	var idx = data.findIndex(function (post, index) {
+				// 		if ((post.name.transliteration.id.toLowerCase() == args[0].toLowerCase()) || (post.name.transliteration.en.toLowerCase() == args[0].toLowerCase()))
+				// 			return true;
+				// 	});
+				// 	var pesan = ""
+				// 	pesan = pesan + "Nama : " + data[idx].name.transliteration.id + "\n" + "Asma : " + data[idx].name.short + "\n" + "Arti : " + data[idx].name.translation.id + "\n" + "Jumlah ayat : " + data[idx].numberOfVerses + "\n" + "Nomor surah : " + data[idx].number + "\n" + "Jenis : " + data[idx].revelation.id + "\n" + "Keterangan : " + data[idx].tafsir.id
+				// 	urbae.reply(from, pesan, message.id)
+				// 	break
+				// case prefix + 'surah':
+				// 	if (args.length == 0) return urbae.reply(from, `*_${prefix}surah <nama surah> <ayat>_*\nMenampilkan ayat Al-Quran tertentu beserta terjemahannya dalam bahasa Indonesia. Contoh penggunaan : ${prefix}surah al-baqarah 1\n\n*_${prefix}surah <nama surah> <ayat> en/id_*\nMenampilkan ayat Al-Quran tertentu beserta terjemahannya dalam bahasa Inggris / Indonesia. Contoh penggunaan : ${prefix}surah al-baqarah 1 id`, message.id)
+				// 	var responseh = await axios.get('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/islam/surah.json')
+				// 	var { data } = responseh.data
+				// 	var idx = data.findIndex(function (post, index) {
+				// 		if ((post.name.transliteration.id.toLowerCase() == args[0].toLowerCase()) || (post.name.transliteration.en.toLowerCase() == args[0].toLowerCase()))
+				// 			return true;
+				// 	});
+				// 	nmr = data[idx].number
+				// 	if (!isNaN(nmr)) {
+				// 		var responseh2 = await axios.get('https://api.quran.sutanlab.id/surah/' + nmr + "/" + args[1])
+				// 		var { data } = responseh2.data
+				// 		var last = function last(array, n) {
+				// 			if (array == null) return void 0;
+				// 			if (n == null) return array[array.length - 1];
+				// 			return array.slice(Math.max(array.length - n, 0));
+				// 		};
+				// 		bhs = last(args)
+				// 		pesan = ""
+				// 		pesan = pesan + data.text.arab + "\n\n"
+				// 		if (bhs == "en") {
+				// 			pesan = pesan + data.translation.en
+				// 		} else {
+				// 			pesan = pesan + data.translation.id
+				// 		}
+				// 		pesan = pesan + "\n\n(Q.S. " + data.surah.name.transliteration.id + ":" + args[1] + ")"
+				// 		urbae.reply(from, pesan, message.id)
+				// 	}
+				// 	break
+				// case prefix + 'tafsir':
+				// 	if (args.length == 0) return urbae.reply(from, `*_${prefix}tafsir <nama surah> <ayat>_*\nMenampilkan ayat Al-Quran tertentu beserta terjemahan dan tafsirnya dalam bahasa Indonesia. Contoh penggunaan : ${prefix}tafsir al-baqarah 1`, message.id)
+				// 	var responsh = await axios.get('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/islam/surah.json')
+				// 	var { data } = responsh.data
+				// 	var idx = data.findIndex(function (post, index) {
+				// 		if ((post.name.transliteration.id.toLowerCase() == args[0].toLowerCase()) || (post.name.transliteration.en.toLowerCase() == args[0].toLowerCase()))
+				// 			return true;
+				// 	});
+				// 	nmr = data[idx].number
+				// 	if (!isNaN(nmr)) {
+				// 		var responsih = await axios.get('https://api.quran.sutanlab.id/surah/' + nmr + "/" + args[1])
+				// 		var { data } = responsih.data
+				// 		pesan = ""
+				// 		pesan = pesan + "Tafsir Q.S. " + data.surah.name.transliteration.id + ":" + args[1] + "\n\n"
+				// 		pesan = pesan + data.text.arab + "\n\n"
+				// 		pesan = pesan + "_" + data.translation.id + "_" + "\n\n" + data.tafsir.id.long
+				// 		urbae.reply(from, pesan, message.id)
+				// 	}
+				// 	break
+				// case prefix + 'alaudio':
+				// 	if (args.length == 0) return urbae.reply(from, `*_${prefix}ALaudio <nama surah>_*\nMenampilkan tautan dari audio surah tertentu. Contoh penggunaan : ${prefix}ALaudio al-fatihah\n\n*_${prefix}ALaudio <nama surah> <ayat>_*\nMengirim audio surah dan ayat tertentu beserta terjemahannya dalam bahasa Indonesia. Contoh penggunaan : ${prefix}ALaudio al-fatihah 1\n\n*_${prefix}ALaudio <nama surah> <ayat> en_*\nMengirim audio surah dan ayat tertentu beserta terjemahannya dalam bahasa Inggris. Contoh penggunaan : ${prefix}ALaudio al-fatihah 1 en`, message.id)
+				// 	ayat = "ayat"
+				// 	bhs = ""
+				// 	var responseh = await axios.get('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/islam/surah.json')
+				// 	var surah = responseh.data
+				// 	var idx = surah.data.findIndex(function (post, index) {
+				// 		if ((post.name.transliteration.id.toLowerCase() == args[0].toLowerCase()) || (post.name.transliteration.en.toLowerCase() == args[0].toLowerCase()))
+				// 			return true;
+				// 	});
+				// 	nmr = surah.data[idx].number
+				// 	if (!isNaN(nmr)) {
+				// 		if (args.length > 2) {
+				// 			ayat = args[1]
+				// 		}
+				// 		if (args.length == 2) {
+				// 			var last = function last(array, n) {
+				// 				if (array == null) return void 0;
+				// 				if (n == null) return array[array.length - 1];
+				// 				return array.slice(Math.max(array.length - n, 0));
+				// 			};
+				// 			ayat = last(args)
+				// 		}
+				// 		pesan = ""
+				// 		if (isNaN(ayat)) {
+				// 			var responsih2 = await axios.get('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/islam/surah/' + nmr + '.json')
+				// 			var { name, name_translations, number_of_ayah, number_of_surah, recitations } = responsih2.data
+				// 			pesan = pesan + "Audio Quran Surah ke-" + number_of_surah + " " + name + " (" + name_translations.ar + ") " + "dengan jumlah " + number_of_ayah + " ayat\n"
+				// 			pesan = pesan + "Dilantunkan oleh " + recitations[0].name + " : " + recitations[0].audio_url + "\n"
+				// 			pesan = pesan + "Dilantunkan oleh " + recitations[1].name + " : " + recitations[1].audio_url + "\n"
+				// 			pesan = pesan + "Dilantunkan oleh " + recitations[2].name + " : " + recitations[2].audio_url + "\n"
+				// 			urbae.reply(from, pesan, message.id)
+				// 		} else {
+				// 			var responsih2 = await axios.get('https://api.quran.sutanlab.id/surah/' + nmr + "/" + ayat)
+				// 			var { data } = responsih2.data
+				// 			var last = function last(array, n) {
+				// 				if (array == null) return void 0;
+				// 				if (n == null) return array[array.length - 1];
+				// 				return array.slice(Math.max(array.length - n, 0));
+				// 			};
+				// 			bhs = last(args)
+				// 			pesan = ""
+				// 			pesan = pesan + data.text.arab + "\n\n"
+				// 			if (bhs == "en") {
+				// 				pesan = pesan + data.translation.en
+				// 			} else {
+				// 				pesan = pesan + data.translation.id
+				// 			}
+				// 			pesan = pesan + "\n\n(Q.S. " + data.surah.name.transliteration.id + ":" + args[1] + ")"
+				// 			await urbae.sendFileFromUrl(from, data.audio.secondary[0])
+				// 			await urbae.reply(from, pesan, message.id)
+				// 		}
+				// 	}
+				// 	break
+				// case prefix + 'jsolat':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk melihat jadwal solat dari setiap daerah yang ada\nketik: ${prefix}jsolat [daerah]\n\nuntuk list daerah yang ada\nketik: ${prefix}daerah`, id)
+				// 	const solatx = body.slice(8)
+				// 	const solatj = await rugaapi.jadwaldaerah(solatx)
+				// 	await urbae.reply(from, solatj, id)
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Pastikan daerah kamu ada di list ya!', id)
+				// 		})
+				// 	break
+				// case prefix + 'daerah':
+				// 	const daerahq = await rugaapi.daerah()
+				// 	await urbae.reply(from, daerahq, id)
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Ada yang Error!', id)
+				// 		})
+				// 	break
 				//Group All User
 				case prefix + 'grouplink':
 				case prefix + 'linkgc':
@@ -2982,54 +2990,54 @@ module.exports = HandleMsg = async (urbae, message) => {
 					}
 					break;
 				//Media
-				case prefix + 'ytmp3':
-					if (args.length == 0) return urbae.reply(from, `Untuk mendownload lagu dari youtube\nketik: ${prefix}ytmp3 [link_yt]`, id)
-					//if (!isPrem) return urbae.reply(from, mess.prem, id)
-					urbae.reply(from, mess.wait, id)
-					yt.ytMp3(q)
-						.then(result => {
-							console.log(result)
-							urbae.sendFileFromUrl(from, result.thumb, 'thumb.jpg', `「 *YT MP4* 」\n\n*Title:* ${result.title}\n*Views:* ${result.views}\n*Channel:* ${result.channel}\n*Uploaded:* ${result.published}\n\n${mess.sendfileaudio}`, id)
-							scrape.youtubedown(q)
-								.then(res => {
-									//if (Number(res.size_mp3.split(' MB')[0]) >= 15) return urbae.reply(from, 'Size audio terlalu besar', id)
-									urbae.sendFileFromUrl(from, res.mp3, '', '', id)
-										.catch(err => {
-											console.log(err)
-											urbae.reply(from, err.message, id)
-										})
-								})
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'jadwalbola':
-					if (!isGroupMsg) return urbae.reply(from, `Perintah ini hanya bisa di gunakan dalam group!`, id)
-					urbae.reply(from, mess.wait, id)
-					try {
-						const jdbola = await fetch(`https://api.vhtear.com/jadwalbola&apikey=${vhtearkey}`)
-						if (!jdbola.ok) throw new Error(`unexpected response ${jdbola.statusText}`)
-						const jdbola2 = await jdbola.json()
-						const { data } = await jdbola2.result
-						let xixixi = `*「 JADWAL BOLA 」*\n\n`
-						for (let i = 0; i < data.length; i++) {
-							xixixi += `\n─────────────────\n\n*Kick-Off* : ${data[i].kickoff}\n*Pertandingan* : ${data[i].pertandingan}\n*Stasiun TV* : ${data[i].stasiuntv}`
-						}
-						await urbae.sendText(from, xixixi, id)
-					} catch (err) {
-						console.log(err)
-						await urbae.sendFileFromUrl(from, errorurl2, 'error.png', '💔️ Maaf, Jadwal tidak ditemukan')
-					}
-					break
-				case prefix + 'shitposting':
-					urbae.reply(from, mess.wait, id)
-					urbae.sendFileFromUrl(from, `https://api.xteam.xyz/shitpost?APIKEY=db0e06bd9f096399`, 'gelap.mp4', '', id)
-						.catch(() => {
-							urbae.reply(from, 'Maaf, sistem sedang error', id)
-						})
-					break
+				// case prefix + 'ytmp3':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk mendownload lagu dari youtube\nketik: ${prefix}ytmp3 [link_yt]`, id)
+				// 	//if (!isPrem) return urbae.reply(from, mess.prem, id)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	yt.ytMp3(q)
+				// 		.then(result => {
+				// 			console.log(result)
+				// 			urbae.sendFileFromUrl(from, result.thumb, 'thumb.jpg', `「 *YT MP4* 」\n\n*Title:* ${result.title}\n*Views:* ${result.views}\n*Channel:* ${result.channel}\n*Uploaded:* ${result.published}\n\n${mess.sendfileaudio}`, id)
+				// 			scrape.youtubedown(q)
+				// 				.then(res => {
+				// 					//if (Number(res.size_mp3.split(' MB')[0]) >= 15) return urbae.reply(from, 'Size audio terlalu besar', id)
+				// 					urbae.sendFileFromUrl(from, res.mp3, '', '', id)
+				// 						.catch(err => {
+				// 							console.log(err)
+				// 							urbae.reply(from, err.message, id)
+				// 						})
+				// 				})
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'jadwalbola':
+				// 	if (!isGroupMsg) return urbae.reply(from, `Perintah ini hanya bisa di gunakan dalam group!`, id)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const jdbola = await fetch(`https://api.vhtear.com/jadwalbola&apikey=${vhtearkey}`)
+				// 		if (!jdbola.ok) throw new Error(`unexpected response ${jdbola.statusText}`)
+				// 		const jdbola2 = await jdbola.json()
+				// 		const { data } = await jdbola2.result
+				// 		let xixixi = `*「 JADWAL BOLA 」*\n\n`
+				// 		for (let i = 0; i < data.length; i++) {
+				// 			xixixi += `\n─────────────────\n\n*Kick-Off* : ${data[i].kickoff}\n*Pertandingan* : ${data[i].pertandingan}\n*Stasiun TV* : ${data[i].stasiuntv}`
+				// 		}
+				// 		await urbae.sendText(from, xixixi, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		await urbae.sendFileFromUrl(from, errorurl2, 'error.png', '💔️ Maaf, Jadwal tidak ditemukan')
+				// 	}
+				// 	break
+				// case prefix + 'shitposting':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	urbae.sendFileFromUrl(from, `https://api.xteam.xyz/shitpost?APIKEY=db0e06bd9f096399`, 'gelap.mp4', '', id)
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Maaf, sistem sedang error', id)
+				// 		})
+				// 	break
 				case prefix + 'emojisticker':
 				case prefix + 'emojistiker':
 				case prefix + 'emoji':
@@ -3053,146 +3061,146 @@ module.exports = HandleMsg = async (urbae, message) => {
 							urbae.reply(from, err.message, id)
 						})
 					break
-				case prefix + 'qotd':
-					axios.get(`https://dapuhy-api.herokuapp.com/api/fun/quoteslucu?apikey=${dapuhyapi}`)
-						.then(async (res) => {
-							if (res.data.status == false) return urbae.reply(from, 'Rest Api sedang error', id)
-							urbae.reply(from, res.data.quotes, id)
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'distance':
-					if (!isGroupMsg) return urbae.reply(from, `Perintah ini hanya bisa di gunakan dalam group!`, id)
-					if (args.length === 0) return urbae.reply(from, `[❗] Kirim perintah *${prefix}distance [ Daerah1|Daerah2 ]*\ncontoh : *${prefix}distance Jakarta|Bandung*`)
-					urbae.reply(from, `[WAIT] Sedang di proses⏳ silahkan tunggu ± 1 min!`, id)
-					try {
-						const dfdc1 = arg.split('|')[0]
-						const dfdc2 = arg.split('|')[1]
-						const dfdcres = await axios.get('https://api.vhtear.com/distance?from=' + dfdc1 + '&to=' + dfdc2 + '&apikey=' + vhtearkey)
-						const { result } = dfdcres.data
-						await urbae.reply(from, `*「 DRIVING-FLYING DISTANCE 」*\n\n${result.data}`, id)
-					} catch (err) {
-						console.error(err.message)
-						await urbae.sendFileFromUrl(from, errorurl2, 'error.png', '💔️ Maaf, Lokasi tidak ditemukan')
-					}
-					break
-				case prefix + 'glitch':
-					if (args.length === 0) return urbae.reply(from, `Kirim perintah *${prefix}glitch [ Teks1|Teks2 ]*, contoh *${prefix}glitch |Urbaeexyz|Dev Thoriq*`, id)
-					try {
-						urbae.reply(from, mess.wait, id)
-						const glitch1 = q.split('|')[0]
-						const glitch2 = q.split('|')[1]
-						if (glitch1.length > 10) return urbae.reply(from, '*Teks1 Terlalu Panjang!*\n_Maksimal 10 huruf!_', id)
-						if (glitch2.length > 15) return urbae.reply(from, '*Teks2 Terlalu Panjang!*\n_Maksimal 15 huruf!_', id)
-						urbae.sendFileFromUrl(from, `https://api.zeks.me/api/gtext?text1=${glitch1}&text2=${glitch2}&apikey=${apikeyvinz}`, '', id)
-							.catch(err => {
-								console.log(err)
-								urbae.reply(from, 'Terjadi kesalahan, silahkan coba lagi', id)
-							})
-					} catch (err) {
-						urbae.reply(from, 'Format pesannya salah tuh', id)
-					}
-					break
-				case prefix + 'javcosplay':
-					await urbae.reply(from, mess.wait, id)
-					rugaapi.cosplay()
-						.then(async ({ result }) => {
-							let jav = '-----[ *Jav Cosplay* ]-----'
-							for (let i = 0; i < result.length; i++) {
-								jav += `\n\n• *Title :* ${result[i].title}\n• *Detail :* ${result[i].detail}\n• *URL :* ${result[i].url}\n\n=_=_=_=_=_=_=_=_=_=_=_=_=`
-							}
-							await urbae.reply(from, jav, id)
-							console.log('Succes Sending Jav Cosplay')
-						})
-						.catch(async (err) => {
-							console.error(err)
-							urbae.reply(from, 'Error....', id)
-						})
-					break
-				case prefix + 'listnekopoi':
-					await urbae.reply(from, mess.wait, id)
-					rugaapi.listnek()
-						.then(async ({ result }) => {
-							let listnekopoi = '-----[ *NEKOPOI LIST* ]-----'
-							for (let i = 0; i < result.length; i++) {
-								listnekopoi += `\n\n• *Judul :* ${result[i].title}\n• *Seri :* ${result[i].seri}\n• *URL :* ${result[i].url}\n=_=_=_=_=_=_=_=_=_=_=_=_=`
-							}
-							await urbae.reply(from, listnekopoi, id)
-							console.log('Succes Sending List Nekopoi')
-						})
-						.catch(async (err) => {
-							console.error(err)
-							urbae.reply(from, 'Error...', id)
-						})
-					break
-				case prefix + 'randomquran':
-					await urbae.reply(from, mess.wait, id)
-					rugaapi.quran()
-						.then(async (res) => {
-							const jelasin = `Surah : ${res.nama}\nArti : ${res.arti}\nAsma : ${res.asma}\nAyat : ${res.ayat}\nDiturunkan di : ${res.type}\nNomor : ${res.nomor}\n Urutan Ke : ${res.urut}`
-							await urbae.sendFileFromUrl(from, res.audio, '', '', id)
-							urbae.reply(from, jelasin, id)
-						})
-					break
-				case prefix + 'linknobg':
-					if (args.length == 0) return urbae.reply(from, 'Kirim link untuk menjadikan sticker nobg', id)
-					const linkid = body.slice(10)
-					await urbae.sendFileFromUrl(from, `https://api.zeks.me/api/removebg?apikey=${apikeyvinz}&url=${linkid}`, 'img.jpg', 'nehh', id)
-					await urbae.sendImageAsSticker(from, `https://api.zeks.me/api/removebg?apikey=${apikeyvinz}&url=${linkid}`)
-						.catch(() => {
-							urbae.reply(from, 'Error', id)
-						})
-					break
-				case prefix + 'sketch':
-					if (isMedia && isImage || isQuotedImage) {
-						await urbae.reply(from, mess.wait, id)
-						const encryptMedia = isQuotedImage ? quotedMsg : message
-						const mediaData = await decryptMedia(encryptMedia, uaOverride)
-						const linkImg = await uploadImages(mediaData, `${sender.id}_img`)
-						axios.get(`https://api.zeks.me/api/sketchf?img=${linkImg}&apikey=${apikeyvinz}`)
-							.then(async (res) => {
-								await urbae.sendFileFromUrl(from, res.data.result, 'img.jpg', '', id)
-							})
-					} else {
-						await urbae.reply(from, 'Error njing', id)
-					}
-					break
-				case prefix + '3dphoto':
-					if (isMedia || isImage || isQuotedImage) {
-						urbae.reply(from, mess.wait, id)
-						const encrypt = isQuotedImage ? quotedMsg : message
-						const mediaData = await decryptMedia(encrypt, uaOverride)
-						const beimage = await uploadImages(mediaData, `${sender}_img`)
-						await urbae.sendFileFromUrl(from, `https://videfikri.com/api/textmaker/3dlinephoto/?urlgbr=${beimage}`, '', '', id)
-							.catch(() => {
-								urbae.reply(from, 'Kesalahan waktu mengupload foto, silahkan coba lagi', id)
-							})
-					} else {
-						urbae.reply(from, 'Format pesan salah, silahkan post/reply foto', id)
-					}
-					break
-				case prefix + 'imgbb':
-					if (isMedia || isImage || isQuotedImage) {
-						urbae.reply(from, mess.wait, id)
-						const jajas = isQuotedImage ? quotedMsg : message
-						const mediaData = await decryptMedia(jajas, uaOverride)
-						const uploadImg2 = await uploadImages(mediaData, `${sender.id}_img`)
-						const namas = body.slice(7)
-						axios.get(`https://videfikri.com/api/imgbb/?urlgbr=${uploadImg2}&title=${namas}`)
-							.then(async (res) => {
-								const besx = `Link: ${res.data.result.url}`
-								urbae.sendFileFromUrl(from, res.data.result.url, '', besx, id)
-									.catch(err => {
-										urbae.reply(from, besx, id)
-									})
-							})
-					} else {
-						urbae.reply(from, 'Format pesan salah', id)
-					}
-					break
+				// case prefix + 'qotd':
+				// 	axios.get(`https://dapuhy-api.herokuapp.com/api/fun/quoteslucu?apikey=${dapuhyapi}`)
+				// 		.then(async (res) => {
+				// 			if (res.data.status == false) return urbae.reply(from, 'Rest Api sedang error', id)
+				// 			urbae.reply(from, res.data.quotes, id)
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'distance':
+				// 	if (!isGroupMsg) return urbae.reply(from, `Perintah ini hanya bisa di gunakan dalam group!`, id)
+				// 	if (args.length === 0) return urbae.reply(from, `[❗] Kirim perintah *${prefix}distance [ Daerah1|Daerah2 ]*\ncontoh : *${prefix}distance Jakarta|Bandung*`)
+				// 	urbae.reply(from, `[WAIT] Sedang di proses⏳ silahkan tunggu ± 1 min!`, id)
+				// 	try {
+				// 		const dfdc1 = arg.split('|')[0]
+				// 		const dfdc2 = arg.split('|')[1]
+				// 		const dfdcres = await axios.get('https://api.vhtear.com/distance?from=' + dfdc1 + '&to=' + dfdc2 + '&apikey=' + vhtearkey)
+				// 		const { result } = dfdcres.data
+				// 		await urbae.reply(from, `*「 DRIVING-FLYING DISTANCE 」*\n\n${result.data}`, id)
+				// 	} catch (err) {
+				// 		console.error(err.message)
+				// 		await urbae.sendFileFromUrl(from, errorurl2, 'error.png', '💔️ Maaf, Lokasi tidak ditemukan')
+				// 	}
+				// 	break
+				// case prefix + 'glitch':
+				// 	if (args.length === 0) return urbae.reply(from, `Kirim perintah *${prefix}glitch [ Teks1|Teks2 ]*, contoh *${prefix}glitch |Urbaeexyz|Dev Thoriq*`, id)
+				// 	try {
+				// 		urbae.reply(from, mess.wait, id)
+				// 		const glitch1 = q.split('|')[0]
+				// 		const glitch2 = q.split('|')[1]
+				// 		if (glitch1.length > 10) return urbae.reply(from, '*Teks1 Terlalu Panjang!*\n_Maksimal 10 huruf!_', id)
+				// 		if (glitch2.length > 15) return urbae.reply(from, '*Teks2 Terlalu Panjang!*\n_Maksimal 15 huruf!_', id)
+				// 		urbae.sendFileFromUrl(from, `https://api.zeks.me/api/gtext?text1=${glitch1}&text2=${glitch2}&apikey=${apikeyvinz}`, '', id)
+				// 			.catch(err => {
+				// 				console.log(err)
+				// 				urbae.reply(from, 'Terjadi kesalahan, silahkan coba lagi', id)
+				// 			})
+				// 	} catch (err) {
+				// 		urbae.reply(from, 'Format pesannya salah tuh', id)
+				// 	}
+				// 	break
+				// case prefix + 'javcosplay':
+				// 	await urbae.reply(from, mess.wait, id)
+				// 	rugaapi.cosplay()
+				// 		.then(async ({ result }) => {
+				// 			let jav = '-----[ *Jav Cosplay* ]-----'
+				// 			for (let i = 0; i < result.length; i++) {
+				// 				jav += `\n\n• *Title :* ${result[i].title}\n• *Detail :* ${result[i].detail}\n• *URL :* ${result[i].url}\n\n=_=_=_=_=_=_=_=_=_=_=_=_=`
+				// 			}
+				// 			await urbae.reply(from, jav, id)
+				// 			console.log('Succes Sending Jav Cosplay')
+				// 		})
+				// 		.catch(async (err) => {
+				// 			console.error(err)
+				// 			urbae.reply(from, 'Error....', id)
+				// 		})
+				// 	break
+				// case prefix + 'listnekopoi':
+				// 	await urbae.reply(from, mess.wait, id)
+				// 	rugaapi.listnek()
+				// 		.then(async ({ result }) => {
+				// 			let listnekopoi = '-----[ *NEKOPOI LIST* ]-----'
+				// 			for (let i = 0; i < result.length; i++) {
+				// 				listnekopoi += `\n\n• *Judul :* ${result[i].title}\n• *Seri :* ${result[i].seri}\n• *URL :* ${result[i].url}\n=_=_=_=_=_=_=_=_=_=_=_=_=`
+				// 			}
+				// 			await urbae.reply(from, listnekopoi, id)
+				// 			console.log('Succes Sending List Nekopoi')
+				// 		})
+				// 		.catch(async (err) => {
+				// 			console.error(err)
+				// 			urbae.reply(from, 'Error...', id)
+				// 		})
+				// 	break
+				// case prefix + 'randomquran':
+				// 	await urbae.reply(from, mess.wait, id)
+				// 	rugaapi.quran()
+				// 		.then(async (res) => {
+				// 			const jelasin = `Surah : ${res.nama}\nArti : ${res.arti}\nAsma : ${res.asma}\nAyat : ${res.ayat}\nDiturunkan di : ${res.type}\nNomor : ${res.nomor}\n Urutan Ke : ${res.urut}`
+				// 			await urbae.sendFileFromUrl(from, res.audio, '', '', id)
+				// 			urbae.reply(from, jelasin, id)
+				// 		})
+				// 	break
+				// case prefix + 'linknobg':
+				// 	if (args.length == 0) return urbae.reply(from, 'Kirim link untuk menjadikan sticker nobg', id)
+				// 	const linkid = body.slice(10)
+				// 	await urbae.sendFileFromUrl(from, `https://api.zeks.me/api/removebg?apikey=${apikeyvinz}&url=${linkid}`, 'img.jpg', 'nehh', id)
+				// 	await urbae.sendImageAsSticker(from, `https://api.zeks.me/api/removebg?apikey=${apikeyvinz}&url=${linkid}`)
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Error', id)
+				// 		})
+				// 	break
+				// case prefix + 'sketch':
+				// 	if (isMedia && isImage || isQuotedImage) {
+				// 		await urbae.reply(from, mess.wait, id)
+				// 		const encryptMedia = isQuotedImage ? quotedMsg : message
+				// 		const mediaData = await decryptMedia(encryptMedia, uaOverride)
+				// 		const linkImg = await uploadImages(mediaData, `${sender.id}_img`)
+				// 		axios.get(`https://api.zeks.me/api/sketchf?img=${linkImg}&apikey=${apikeyvinz}`)
+				// 			.then(async (res) => {
+				// 				await urbae.sendFileFromUrl(from, res.data.result, 'img.jpg', '', id)
+				// 			})
+				// 	} else {
+				// 		await urbae.reply(from, 'Error njing', id)
+				// 	}
+				// 	break
+				// case prefix + '3dphoto':
+				// 	if (isMedia || isImage || isQuotedImage) {
+				// 		urbae.reply(from, mess.wait, id)
+				// 		const encrypt = isQuotedImage ? quotedMsg : message
+				// 		const mediaData = await decryptMedia(encrypt, uaOverride)
+				// 		const beimage = await uploadImages(mediaData, `${sender}_img`)
+				// 		await urbae.sendFileFromUrl(from, `https://videfikri.com/api/textmaker/3dlinephoto/?urlgbr=${beimage}`, '', '', id)
+				// 			.catch(() => {
+				// 				urbae.reply(from, 'Kesalahan waktu mengupload foto, silahkan coba lagi', id)
+				// 			})
+				// 	} else {
+				// 		urbae.reply(from, 'Format pesan salah, silahkan post/reply foto', id)
+				// 	}
+				// 	break
+				// case prefix + 'imgbb':
+				// 	if (isMedia || isImage || isQuotedImage) {
+				// 		urbae.reply(from, mess.wait, id)
+				// 		const jajas = isQuotedImage ? quotedMsg : message
+				// 		const mediaData = await decryptMedia(jajas, uaOverride)
+				// 		const uploadImg2 = await uploadImages(mediaData, `${sender.id}_img`)
+				// 		const namas = body.slice(7)
+				// 		axios.get(`https://videfikri.com/api/imgbb/?urlgbr=${uploadImg2}&title=${namas}`)
+				// 			.then(async (res) => {
+				// 				const besx = `Link: ${res.data.result.url}`
+				// 				urbae.sendFileFromUrl(from, res.data.result.url, '', besx, id)
+				// 					.catch(err => {
+				// 						urbae.reply(from, besx, id)
+				// 					})
+				// 			})
+				// 	} else {
+				// 		urbae.reply(from, 'Format pesan salah', id)
+				// 	}
+				// 	break
 				case prefix + 'givecolor':
 					if (isMedia || isImage || isQuotedImage) {
 						urbae.reply(from, mess.wait, id)
@@ -3212,59 +3220,57 @@ module.exports = HandleMsg = async (urbae, message) => {
 						urbae.reply(from, `Kirim/reply foto dengan caption ${prefix}givecolor`, id)
 					}
 					break
-				case prefix + 'pencilart':
-				case prefix + 'artpencil':
-				case prefix + 'pensilart':
-					if (isMedia || isImage || isQuotedImage) {
-						urbae.reply(from, mess.wait, id)
-						const bamg = isQuotedImage ? quotedMsg : message
-						const mediaData = await decryptMedia(bamg, uaOverride)
-						const uploadimg = await uploadImages(mediaData, `${sender.id}_img`)
-						const beimgbb = await axios.get(`https://videfikri.com/api/imgbb/?urlgbr=${uploadimg}&title=Urbaeexyz`)
-						const dataimage = beimgbb.data.result.url
-						await urbae.sendFileFromUrl(from, `http://api.lolhuman.xyz/api/editor/pencil?apikey=${lolhuman}&img=${dataimage}`, '', '', id)
-							.catch(err => {
-								console.log(err)
-								urbae.reply(from, 'Terjadi kesalahan saat mengupload Foto', id)
-							})
-					} else if (args[0]) {
-						urbae.reply(from, mess.wait, id)
-						const textlink = args[0]
-						await urbae.sendFileFromUrl(from, `http://api.lolhuman.xyz/api/editor/pencil?apikey=${lolhuman}&img=${textlink}`, '', '', id)
-					} else {
-						urbae.reply(from, `kirim/reply foto dengan caption ${prefix}gambarpensil`, id)
-					}
-					break
-				case prefix + 'pencil':
-				case prefix + 'pensil':
-					if (isMedia || isImage || isQuotedImage) {
-						urbae.reply(from, mess.wait, id)
-						const encrypt = isQuotedImage ? quotedMsg : message
-						const mediaData = await decryptMedia(encrypt, uaOverride)
-						const beimages = await uploadImages(mediaData, `${sender}_img`)
-						await urbae.sendFileFromUrl(from, `https://videfikri.com/api/textmaker/pencil/?urlgbr=${beimages}`, '', '', id)
-							.catch(() => {
-								urbae.reply(from, 'Kesalahan waktu mengupload foto, silahkan coba lagi', id)
-							})
-					} else {
-						urbae.reply(from, 'Format pesan salah, silahkan post/reply foto', id)
-					}
-					break
-				case prefix + 'pencil2':
-				case prefix + 'pensil2':
-					if (isMedia || isImage || isQuotedImage) {
-						urbae.reply(from, mess.wait, id)
-						const encrypt = isQuotedImage ? quotedMsg : message
-						const mediaData = await decryptMedia(encrypt, uaOverride)
-						const inimage = await uploadImages(mediaData, `${sender.id}_img`)
-						urbae.sendFileFromUrl(from, `https://videfikri.com/api/textmaker/pencildrawing/?urlgbr=${inimage}`, '', '', id)
-							.catch(() => {
-								urbae.reply(from, 'Kesalahan waktu mengupload foto, silahkan coba lagi', id)
-							})
-					} else {
-						urbae.reply(from, 'Format pesan salah, silahkan post/reply foto', id)
-					}
-					break
+				// case prefix + 'gambarpensil':
+				// 	if (isMedia || isImage || isQuotedImage) {
+				// 		urbae.reply(from, mess.wait, id)
+				// 		const bamg = isQuotedImage ? quotedMsg : message
+				// 		const mediaData = await decryptMedia(bamg, uaOverride)
+				// 		const uploadimg = await uploadImages(mediaData, `${sender.id}_img`)
+				// 		const beimgbb = await axios.get(`https://videfikri.com/api/imgbb/?urlgbr=${uploadimg}&title=Urbaeexyz`)
+				// 		const dataimage = beimgbb.data.result.url
+				// 		await urbae.sendFileFromUrl(from, `http://api.lolhuman.xyz/api/editor/pencil?apikey=${lolhuman}&img=${dataimage}`, '', '', id)
+				// 			.catch(err => {
+				// 				console.log(err)
+				// 				urbae.reply(from, 'Terjadi kesalahan saat mengupload Foto', id)
+				// 			})
+				// 	} else if (args[0]) {
+				// 		urbae.reply(from, mess.wait, id)
+				// 		const textlink = args[0]
+				// 		await urbae.sendFileFromUrl(from, `http://api.lolhuman.xyz/api/editor/pencil?apikey=${lolhuman}&img=${textlink}`, '', '', id)
+				// 	} else {
+				// 		urbae.reply(from, `kirim/reply foto dengan caption ${prefix}gambarpensil`, id)
+				// 	}
+				// 	break
+				// case prefix + 'pencil':
+				// case prefix + 'pensil':
+				// 	if (isMedia || isImage || isQuotedImage) {
+				// 		urbae.reply(from, mess.wait, id)
+				// 		const encrypt = isQuotedImage ? quotedMsg : message
+				// 		const mediaData = await decryptMedia(encrypt, uaOverride)
+				// 		const beimages = await uploadImages(mediaData, `${sender}_img`)
+				// 		await urbae.sendFileFromUrl(from, `https://videfikri.com/api/textmaker/pencil/?urlgbr=${beimages}`, '', '', id)
+				// 			.catch(() => {
+				// 				urbae.reply(from, 'Kesalahan waktu mengupload foto, silahkan coba lagi', id)
+				// 			})
+				// 	} else {
+				// 		urbae.reply(from, 'Format pesan salah, silahkan post/reply foto', id)
+				// 	}
+				// 	break
+				// case prefix + 'pencil2':
+				// case prefix + 'pensil2':
+				// 	if (isMedia || isImage || isQuotedImage) {
+				// 		urbae.reply(from, mess.wait, id)
+				// 		const encrypt = isQuotedImage ? quotedMsg : message
+				// 		const mediaData = await decryptMedia(encrypt, uaOverride)
+				// 		const inimage = await uploadImages(mediaData, `${sender.id}_img`)
+				// 		urbae.sendFileFromUrl(from, `https://videfikri.com/api/textmaker/pencildrawing/?urlgbr=${inimage}`, '', '', id)
+				// 			.catch(() => {
+				// 				urbae.reply(from, 'Kesalahan waktu mengupload foto, silahkan coba lagi', id)
+				// 			})
+				// 	} else {
+				// 		urbae.reply(from, 'Format pesan salah, silahkan post/reply foto', id)
+				// 	}
+				// 	break
 				case prefix + 'thuglife':
 					if (isMedia || isImage || isQuotedImage) {
 						urbae.reply(from, mess.wait, id)
@@ -3294,18 +3300,18 @@ module.exports = HandleMsg = async (urbae, message) => {
 						urbae.reply(from, 'Format pesan salah, kirim foto bukan video/gif', id)
 					}
 					break
-				case prefix + 'imgtopdf':
-				case prefix + 'topdf':
-					if (isMedia && isImage || isQuotedImage) {
-						await urbae.reply(from, mess.wait, id)
-						const skript = isQuotedImage ? quotedMsg : message
-						const mediaData = await decryptMedia(skript, uaOverride)
-						const linksx = await uploadImages(mediaData, `${sender.id}_img`)
-						await urbae.sendFileFromUrl(from, `http://api.lolhuman.xyz/api/convert/imgtopdf?apikey=${lolhuman}&img=${linksx}`, `${sender.id}`, '', id)
-					} else {
-						urbae.reply(from, 'Format pesan salah', id)
-					}
-					break
+				// case prefix + 'imgtopdf':
+				// case prefix + 'topdf':
+				// 	if (isMedia && isImage || isQuotedImage) {
+				// 		await urbae.reply(from, mess.wait, id)
+				// 		const skript = isQuotedImage ? quotedMsg : message
+				// 		const mediaData = await decryptMedia(skript, uaOverride)
+				// 		const linksx = await uploadImages(mediaData, `${sender.id}_img`)
+				// 		await urbae.sendFileFromUrl(from, `http://api.lolhuman.xyz/api/convert/imgtopdf?apikey=${lolhuman}&img=${linksx}`, `${sender.id}`, '', id)
+				// 	} else {
+				// 		urbae.reply(from, 'Format pesan salah', id)
+				// 	}
+				// 	break
 				case prefix + 'nobg':
 				case prefix + 'stcnobg':
 				case prefix + 'stikernobg':
@@ -3387,134 +3393,134 @@ module.exports = HandleMsg = async (urbae, message) => {
 							urbae.reply(from, err.message, id)
 						})
 					break
-				case prefix + 'igreels':
-				case prefix + 'instagramreels':
-				case prefix + 'reelsig':
-					if (args.length == 0) return urbae.reply(from, `Untuk mendownload reel instagram gunakan ${prefix}igreels link\nContoh: ${prefix}igreels https://www.instagram.com/reel/CTMQQxunAXb/`, id)
-					const reelink = body.slice(9)
-					axios.get(`https://cakrayp.herokuapp.com/api/instagram/feeds?url=${reelink}&apikey=${cakrayp}`)
-						.then(async (res) => {
-							if (res.data.status == false) return urbae.reply(from, res.data.message.info, id)
-							urbae.sendFileFromUrl(from, res.data.result.thumbimg, 'thumb.jpg', `• *Username:* ${res.data.result.username}\n• *Likes:* ${res.data.result.likes}\n• *Comments:* ${res.data.result.comments}\n• *Caption:* ${res.data.result.caption}`, id)
-							urbae.sendFileFromUrl(from, res.data.result.link[0].url, '', '', id)
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'ig':
-				case prefix + 'instagram':
-					if (args.length == 0) return urbae.reply(from, `Kirim perintah *${prefix}ig [linkIg]*`, id)
-					urbae.reply(from, mess.wait, id)
-					insta.fetchPost(args[0])
-						.then(async (result) => {
-							if (args[1] == '' || args[1] == undefined) {
-								var beone = 1
-							} else {
-								var beone = args[1]
-							}
-							for (let i = 0; i < beone; i++) {
-								await urbae.sendFileFromUrl(from, result.links[i].url, '', '', id)
-									.then(() => {
-										console.log('Success sending Media')
-									})
-									.catch((err) => {
-										console.error(err)
-									})
-							}
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'doujin':
-					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					if (args.length == 0) return urbae.reply(from, `Mencari doujin gunakan ${prefix}doujin judul\nContoh : ${prefix}doujin my sister`, id)
-					const doujsearch = body.slice(8)
-					const douj = await axios.get(`https://h4ck3rs404-api.herokuapp.com/api/doujin?q=${doujsearch}&apikey=${hackapi}`)
-					const doujdata = douj.data
-					if (doujdata.status == false) return urbae.reply(from, `Judul yang kamu cari tidak dapat ditemukan`, id)
-					const { result } = await doujdata
-					let doujtext = `*「  D O U J I N  」*\n`
-					for (let i = 0; i < result.length; i++) {
-						doujtext = + `\n─────────────────\n\n*•Judul:* ${result[i].title}\n*•Rating:* ${result[i].rating}\n*•Status:* ${result[i].status}\n*•Url:* ${result[i].url}\n`
-					}
-					await urbae.sendFileFromUrl(from, doujtext, id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, 'Terjadi kesalahan, coba lagi nanti')
-						})
-					break
-				case prefix + 'asupan7':
-					urbae.reply(from, mess.wait, id)
-					urbae.sendFileFromUrl(from, `https://server-api-rey.herokuapp.com/api/asupan?apikey=${apirey}`, '', '* R A N D O M  A S U P A N*', id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'asupan6':
-					urbae.reply(from, mess.wait, id)
-					fetch('http://sansekai.my.id/sansekai.txt')
-						.then(res => res.text())
-						.then(body => {
-							let asupantxt = body.split('\n')
-							let asupanvid = asupantxt[Math.floor(Math.random() * asupantxt.length)]
-							urbae.sendFileFromUrl(from, asupanvid, 'asupan.mp4', 'aahh wangy wangy', id)
-								.then(() => console.log('Success sending Asupan Video'))
-						})
-						.catch(() => {
-							urbae.reply(from, 'Ada yang Error!', id)
-						})
-					break
-				case prefix + 'asupan5':
-					urbae.reply(from, mess.wait, id)
-					axios.get(`http://api.lolhuman.xyz/api/asupan?apikey=${lolhuman}`)
-						.then(async (res) => {
-							if (res.data.status == 404) return urbae.reply(from, res.data.message, id)
-							await urbae.sendFileFromUrl(from, res.data.result, `asupan.mp4`, `*R A N D O M  A S U P A N*`, id)
-						})
-						.catch(err => {
-							urbae.reply(from, err.data, id)
-						})
-					break
-				case prefix + 'asupan4':
-					urbae.reply(from, mess.wait, id)
-					axios.get(`http://zekais-api.herokuapp.com/ptlvid?apikey=${zekais}`)
-						.then(async (res) => {
-							urbae.sendFileFromUrl(from, res.data.result, '', '*R A N D O M  A S U P A N*', id)
-								.catch(() => {
-									console.log(err)
-									urbae.reply(from, 'Error bang', id)
-								})
-						})
-						.catch(err => {
-							urbae.reply(from, 'Error bang', id)
-						})
-					break
-				case prefix + 'asupanukhty':
-					urbae.reply(from, mess.wait, id)
-					await urbae.sendFileFromUrl(from, `https://dapuhy-api.herokuapp.com/api/asupan/asupanukhty?apikey=${dapuhyapi}`, 'vid.mp4', '', id)
-					break
-				case prefix + 'asupan3':
-					urbae.reply(from, mess.wait, id)
-					await urbae.sendFileFromUrl(from, `https://dapuhy-api.herokuapp.com/api/asupan/asupanbocil?apikey=${dapuhyapi}`, 'asupan.mp4', '', id)
-					break
-				case prefix + 'asupan2':
-					urbae.reply(from, mess.wait, id)
-					await urbae.sendFileFromUrl(from, `https://dapuhy-api.herokuapp.com/api/asupan/asupansantuy?apikey=${dapuhyapi}`, 'vid.mp4', '', id)
-					break
-				case prefix + 'asupan':
-					urbae.reply(from, mess.wait, id)
-					urbae.sendFileFromUrl(from, 'https://api.akuari.my.id/asupan/62', '', '', id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
+				// case prefix + 'igreels':
+				// case prefix + 'instagramreels':
+				// case prefix + 'reelsig':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk mendownload reel instagram gunakan ${prefix}igreels link\nContoh: ${prefix}igreels https://www.instagram.com/reel/CTMQQxunAXb/`, id)
+				// 	const reelink = body.slice(9)
+				// 	axios.get(`https://cakrayp.herokuapp.com/api/instagram/feeds?url=${reelink}&apikey=${cakrayp}`)
+				// 		.then(async (res) => {
+				// 			if (res.data.status == false) return urbae.reply(from, res.data.message.info, id)
+				// 			urbae.sendFileFromUrl(from, res.data.result.thumbimg, 'thumb.jpg', `• *Username:* ${res.data.result.username}\n• *Likes:* ${res.data.result.likes}\n• *Comments:* ${res.data.result.comments}\n• *Caption:* ${res.data.result.caption}`, id)
+				// 			urbae.sendFileFromUrl(from, res.data.result.link[0].url, '', '', id)
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'ig':
+				// case prefix + 'instagram':
+				// 	if (args.length == 0) return urbae.reply(from, `Kirim perintah *${prefix}ig [linkIg]*`, id)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	insta.fetchPost(args[0])
+				// 		.then(async (result) => {
+				// 			if (args[1] == '' || args[1] == undefined) {
+				// 				var beone = 1
+				// 			} else {
+				// 				var beone = args[1]
+				// 			}
+				// 			for (let i = 0; i < beone; i++) {
+				// 				await urbae.sendFileFromUrl(from, result.links[i].url, '', '', id)
+				// 					.then(() => {
+				// 						console.log('Success sending Media')
+				// 					})
+				// 					.catch((err) => {
+				// 						console.error(err)
+				// 					})
+				// 			}
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'doujin':
+				// 	if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	if (args.length == 0) return urbae.reply(from, `Mencari doujin gunakan ${prefix}doujin judul\nContoh : ${prefix}doujin my sister`, id)
+				// 	const doujsearch = body.slice(8)
+				// 	const douj = await axios.get(`https://h4ck3rs404-api.herokuapp.com/api/doujin?q=${doujsearch}&apikey=${hackapi}`)
+				// 	const doujdata = douj.data
+				// 	if (doujdata.status == false) return urbae.reply(from, `Judul yang kamu cari tidak dapat ditemukan`, id)
+				// 	const { result } = await doujdata
+				// 	let doujtext = `*「  D O U J I N  」*\n`
+				// 	for (let i = 0; i < result.length; i++) {
+				// 		doujtext = + `\n─────────────────\n\n*•Judul:* ${result[i].title}\n*•Rating:* ${result[i].rating}\n*•Status:* ${result[i].status}\n*•Url:* ${result[i].url}\n`
+				// 	}
+				// 	await urbae.sendFileFromUrl(from, doujtext, id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, 'Terjadi kesalahan, coba lagi nanti')
+				// 		})
+				// 	break
+				// case prefix + 'asupan7':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	urbae.sendFileFromUrl(from, `https://server-api-rey.herokuapp.com/api/asupan?apikey=${apirey}`, '', '* R A N D O M  A S U P A N*', id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'asupan6':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	fetch('http://sansekai.my.id/sansekai.txt')
+				// 		.then(res => res.text())
+				// 		.then(body => {
+				// 			let asupantxt = body.split('\n')
+				// 			let asupanvid = asupantxt[Math.floor(Math.random() * asupantxt.length)]
+				// 			urbae.sendFileFromUrl(from, asupanvid, 'asupan.mp4', 'aahh wangy wangy', id)
+				// 				.then(() => console.log('Success sending Asupan Video'))
+				// 		})
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Ada yang Error!', id)
+				// 		})
+				// 	break
+				// case prefix + 'asupan5':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get(`http://api.lolhuman.xyz/api/asupan?apikey=${lolhuman}`)
+				// 		.then(async (res) => {
+				// 			if (res.data.status == 404) return urbae.reply(from, res.data.message, id)
+				// 			await urbae.sendFileFromUrl(from, res.data.result, `asupan.mp4`, `*R A N D O M  A S U P A N*`, id)
+				// 		})
+				// 		.catch(err => {
+				// 			urbae.reply(from, err.data, id)
+				// 		})
+				// 	break
+				// case prefix + 'asupan4':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get(`http://zekais-api.herokuapp.com/ptlvid?apikey=${zekais}`)
+				// 		.then(async (res) => {
+				// 			urbae.sendFileFromUrl(from, res.data.result, '', '*R A N D O M  A S U P A N*', id)
+				// 				.catch(() => {
+				// 					console.log(err)
+				// 					urbae.reply(from, 'Error bang', id)
+				// 				})
+				// 		})
+				// 		.catch(err => {
+				// 			urbae.reply(from, 'Error bang', id)
+				// 		})
+				// 	break
+				// case prefix + 'asupanukhty':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	await urbae.sendFileFromUrl(from, `https://dapuhy-api.herokuapp.com/api/asupan/asupanukhty?apikey=${dapuhyapi}`, 'vid.mp4', '', id)
+				// 	break
+				// case prefix + 'asupan3':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	await urbae.sendFileFromUrl(from, `https://dapuhy-api.herokuapp.com/api/asupan/asupanbocil?apikey=${dapuhyapi}`, 'asupan.mp4', '', id)
+				// 	break
+				// case prefix + 'asupan2':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	await urbae.sendFileFromUrl(from, `https://dapuhy-api.herokuapp.com/api/asupan/asupansantuy?apikey=${dapuhyapi}`, 'vid.mp4', '', id)
+				// 	break
+				// case prefix + 'asupan':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	urbae.sendFileFromUrl(from, 'https://api.akuari.my.id/asupan/62', '', '', id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
 				/*case prefix+'ranal':
 				urbae.reply(from, mess.wait, id)
 				axios.get(`https://onlydevcity.herokuapp.com/api/asupanrana?apikey=${onlydev}`)
@@ -3558,11 +3564,11 @@ module.exports = HandleMsg = async (urbae, message) => {
 					urbae.reply(from, 'Errorrrrrr', id)
 				})
 				break*/
-				case prefix + 'gheayoubi':
-				case prefix + 'ghea':
-					urbae.reply(from, mess.wait, id)
-					await urbae.sendFileFromUrl(from, `https://dapuhy-api.herokuapp.com/api/asupan/asupanghea?apikey=${dapuhyapi}`, 'ghea.mp4', '', id)
-					break
+				// case prefix + 'gheayoubi':
+				// case prefix + 'ghea':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	await urbae.sendFileFromUrl(from, `https://dapuhy-api.herokuapp.com/api/asupan/asupanghea?apikey=${dapuhyapi}`, 'ghea.mp4', '', id)
+				// 	break
 				/*	case prefix+'jessicajane':
 					case prefix+'jessica':
 					case prefix+'jane':
@@ -3653,19 +3659,19 @@ module.exports = HandleMsg = async (urbae, message) => {
 							console.log(err)
 						})
 					break
-				case prefix + 'sindiran':
-					axios.get(`https://leyscoders-api.herokuapp.com/api/skak?apikey=${leysapi}`)
-						.then(async (res) => {
-							urbae.reply(from, res.data.result, id)
-								.catch(() => {
-									urbae.reply(from, 'Maaf terjadi kesalahan, mungkin website sedang maintenance', id)
-								})
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, 'Terjadi kesalahan, silahkan coba ulangi', id)
-						})
-					break
+				// case prefix + 'sindiran':
+				// 	axios.get(`https://leyscoders-api.herokuapp.com/api/skak?apikey=${leysapi}`)
+				// 		.then(async (res) => {
+				// 			urbae.reply(from, res.data.result, id)
+				// 				.catch(() => {
+				// 					urbae.reply(from, 'Maaf terjadi kesalahan, mungkin website sedang maintenance', id)
+				// 				})
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, 'Terjadi kesalahan, silahkan coba ulangi', id)
+				// 		})
+				// 	break
 				case prefix + 'infoloker':
 					urbae.reply(from, mess.wait, id)
 					try {
@@ -3700,105 +3706,105 @@ module.exports = HandleMsg = async (urbae, message) => {
 						urbae.reply(from, `Tv yang anda cari tidak tersedia`, id)
 					}
 					break
-				case prefix + 'ecchi':
-					urbae.reply(from, mess.wait, id)
-					const echhiurl = await axios.get(`https://dapuhy-api.herokuapp.com/api/kartun/ecchi?apikey=${dapuhyapi}`)
-					const ecchidata = ecchiurl.data
-					const ecchires = ecchidata.result
-					let ecchitext = `*「 GENRE ECCHI 」*\n`
-					for (let i = 0; i < ecchires.length; i++) {
-						ecchitext = `\n─────────────────\n\n*•Judul:* ${ecchires[i].title}\n*•Status:* ${ecchires[i].status}\n*•Url:* ${ecchires[i].url}\n`
-					}
-					await urbae.sendFileFromUrl(from, ecchires[0].thumb, 'thumb.jpg', ecchitext, id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'lk21new':
-					urbae.reply(from, mess.wait, id)
-					try {
-						const new21 = await axios.get(`https://api-lk21.herokuapp.com/newupload`)
-						const new2 = new21.data
-						const { result } = new2
-						let nw21 = `*「 LK21 NEW 」*\n`
-						for (let i = 0; i < result.length; i++) {
-							nw21 += `\n─────────────────\n\n*•Title:* ${result[i].title}\n*•Genre:* ${result[i].genre}\n*•Rating:* ${result[i].rating}\n*•Duration:* ${result[i].duration}\n*•Quality:* ${result[i].quality}\n*•Streaming:* ${result[i].watch}\n*•Trailer:* ${result[i].trailer}\n`
-						}
-						await urbae.sendFileFromUrl(from, result[0].thumbnail, 'img.jpg', nw21, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, 'Lagi Error', id)
-					}
-					break
-				case prefix + 'lk21comingsoon':
-					urbae.reply(from, mess.wait, id)
-					try {
-						const nws = await axios.get(`https://api-lk21.herokuapp.com/comingsoon`)
-						const nwsa = nws.data
-						const { result } = nwsa
-						let nwss = `*「 LK21 COMING SOON 」*\n`
-						for (let i = 0; i < result.length; i++) {
-							nwss += `\n─────────────────\n\n*•Title:* ${result[i].title}\n*•Genre:* ${result[i].genre}\n*•Rating:* ${result[i].rating}\n*•Duration:* ${result[i].duration}\n*•Quality:* ${result[i].quality}\n*•Streaming:* ${result[i].watch}\n*•Trailer:* ${result[i].trailer}\n`
-						}
-						await urbae.sendFileFromUrl(from, result[0].thumbnail, 'img.jpg', nwss, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, 'Terjadi kesalahan, silahkan coba lagi nanti', id)
-					}
-					break
-				case prefix + 'lk21seriestv':
-					urbae.reply(from, mess.wait, id)
-					try {
-						const nwsx = await axios.get(`https://api-lk21.herokuapp.com/tv`)
-						const nwsax = nwsx.data
-						const { result } = nwsax
-						let nwsz = `*「 LK21 SERIES TV 」*\n`
-						for (let i = 0; i < result.length; i++) {
-							nwsz += `\n─────────────────\n\n*•Title:* ${result[i].title}\n*•Genre:* ${result[i].genre}\n*•Rating:* ${result[i].rating}\n*•Duration:* ${result[i].duration}\n*•Quality:* ${result[i].quality}\n*•Streaming:* ${result[i].watch}\n*•Trailer:* ${result[i].trailer}\n`
-						}
-						await urbae.sendFileFromUrl(from, result[0].thumbnail, 'img.jpg', nwsz, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, 'Terjadi kesalahan, silahkan coba lagi nanti', id)
-					}
-					break
-				case prefix + 'lk21negara':
-					if (args.length == 0) return urbae.reply(from, `Mencari sebuah film berdasarkan negara, gunakan ${prefix}lk21negara negara\nContoh: ${prefix}lk21negara usa`, id)
-					const tipex = body.slice(12)
-					urbae.reply(from, mess.wait, id)
-					try {
-						const aish = await axios.get(`http://api-lk21.herokuapp.com/country?country=${tipex}`)
-						const iash = aish.data
-						const { result } = iash
-						let nwsz = `*「 LK21 COUNTRY 」*\n`
-						for (let i = 0; i < result.length; i++) {
-							nwsz += `\n─────────────────\n\n*•Title:* ${result[i].title}\n*•Genre:* ${result[i].genre}\n*•Rating:* ${result[i].rating}\n*•Duration:* ${result[i].duration}\n*•Quality:* ${result[i].quality}\n*•Streaming:* ${result[i].watch}\n*•Trailer:* ${result[i].trailer}\n`
-						}
-						await urbae.sendFileFromUrl(from, result[0].thumbnail, 'img.jpg', nwsz, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, `Film negara ${tipex} tidak ada didalam website`, id)
-					}
-					break
-				case prefix + 'lk21genre':
-					if (args.length == 0) return urbae.reply(from, `Mencari sebuah film berdasarkan genre, gunakan ${prefix}lk21genre genrenya\nContoh: ${prefix}lk21genre action`, id)
-					const tipe = body.slice(11)
-					urbae.reply(from, mess.wait, id)
-					try {
-						const nwz = await axios.get(`http://api-lk21.herokuapp.com/genre?genre=${tipe}`)
-						const nwa = nwz.data
-						const { result } = nwa
-						let nwsz = `*「 LK21 GENRE 」*\n`
-						for (let i = 0; i < result.length; i++) {
-							nwsz += `\n─────────────────\n\n*•Title:* ${result[i].title}\n*•Genre:* ${result[i].genre}\n*•Rating:* ${result[i].rating}\n*•Duration:* ${result[i].duration}\n*•Quality:* ${result[i].quality}\n*•Streaming:* ${result[i].watch}\n*•Trailer:* ${result[i].trailer}\n`
-						}
-						await urbae.sendFileFromUrl(from, result[0].thumbnail, 'img.jpg', nwsz, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, `Genre ${tipe} tidak ada didalam website!`, id)
-					}
-					break
+				// case prefix + 'ecchi':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const echhiurl = await axios.get(`https://dapuhy-api.herokuapp.com/api/kartun/ecchi?apikey=${dapuhyapi}`)
+				// 	const ecchidata = ecchiurl.data
+				// 	const ecchires = ecchidata.result
+				// 	let ecchitext = `*「 GENRE ECCHI 」*\n`
+				// 	for (let i = 0; i < ecchires.length; i++) {
+				// 		ecchitext = `\n─────────────────\n\n*•Judul:* ${ecchires[i].title}\n*•Status:* ${ecchires[i].status}\n*•Url:* ${ecchires[i].url}\n`
+				// 	}
+				// 	await urbae.sendFileFromUrl(from, ecchires[0].thumb, 'thumb.jpg', ecchitext, id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'lk21new':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const new21 = await axios.get(`https://api-lk21.herokuapp.com/newupload`)
+				// 		const new2 = new21.data
+				// 		const { result } = new2
+				// 		let nw21 = `*「 LK21 NEW 」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			nw21 += `\n─────────────────\n\n*•Title:* ${result[i].title}\n*•Genre:* ${result[i].genre}\n*•Rating:* ${result[i].rating}\n*•Duration:* ${result[i].duration}\n*•Quality:* ${result[i].quality}\n*•Streaming:* ${result[i].watch}\n*•Trailer:* ${result[i].trailer}\n`
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, result[0].thumbnail, 'img.jpg', nw21, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, 'Lagi Error', id)
+				// 	}
+				// 	break
+				// case prefix + 'lk21comingsoon':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const nws = await axios.get(`https://api-lk21.herokuapp.com/comingsoon`)
+				// 		const nwsa = nws.data
+				// 		const { result } = nwsa
+				// 		let nwss = `*「 LK21 COMING SOON 」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			nwss += `\n─────────────────\n\n*•Title:* ${result[i].title}\n*•Genre:* ${result[i].genre}\n*•Rating:* ${result[i].rating}\n*•Duration:* ${result[i].duration}\n*•Quality:* ${result[i].quality}\n*•Streaming:* ${result[i].watch}\n*•Trailer:* ${result[i].trailer}\n`
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, result[0].thumbnail, 'img.jpg', nwss, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, 'Terjadi kesalahan, silahkan coba lagi nanti', id)
+				// 	}
+				// 	break
+				// case prefix + 'lk21seriestv':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const nwsx = await axios.get(`https://api-lk21.herokuapp.com/tv`)
+				// 		const nwsax = nwsx.data
+				// 		const { result } = nwsax
+				// 		let nwsz = `*「 LK21 SERIES TV 」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			nwsz += `\n─────────────────\n\n*•Title:* ${result[i].title}\n*•Genre:* ${result[i].genre}\n*•Rating:* ${result[i].rating}\n*•Duration:* ${result[i].duration}\n*•Quality:* ${result[i].quality}\n*•Streaming:* ${result[i].watch}\n*•Trailer:* ${result[i].trailer}\n`
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, result[0].thumbnail, 'img.jpg', nwsz, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, 'Terjadi kesalahan, silahkan coba lagi nanti', id)
+				// 	}
+				// 	break
+				// case prefix + 'lk21negara':
+				// 	if (args.length == 0) return urbae.reply(from, `Mencari sebuah film berdasarkan negara, gunakan ${prefix}lk21negara negara\nContoh: ${prefix}lk21negara usa`, id)
+				// 	const tipex = body.slice(12)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const aish = await axios.get(`http://api-lk21.herokuapp.com/country?country=${tipex}`)
+				// 		const iash = aish.data
+				// 		const { result } = iash
+				// 		let nwsz = `*「 LK21 COUNTRY 」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			nwsz += `\n─────────────────\n\n*•Title:* ${result[i].title}\n*•Genre:* ${result[i].genre}\n*•Rating:* ${result[i].rating}\n*•Duration:* ${result[i].duration}\n*•Quality:* ${result[i].quality}\n*•Streaming:* ${result[i].watch}\n*•Trailer:* ${result[i].trailer}\n`
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, result[0].thumbnail, 'img.jpg', nwsz, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, `Film negara ${tipex} tidak ada didalam website`, id)
+				// 	}
+				// 	break
+				// case prefix + 'lk21genre':
+				// 	if (args.length == 0) return urbae.reply(from, `Mencari sebuah film berdasarkan genre, gunakan ${prefix}lk21genre genrenya\nContoh: ${prefix}lk21genre action`, id)
+				// 	const tipe = body.slice(11)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const nwz = await axios.get(`http://api-lk21.herokuapp.com/genre?genre=${tipe}`)
+				// 		const nwa = nwz.data
+				// 		const { result } = nwa
+				// 		let nwsz = `*「 LK21 GENRE 」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			nwsz += `\n─────────────────\n\n*•Title:* ${result[i].title}\n*•Genre:* ${result[i].genre}\n*•Rating:* ${result[i].rating}\n*•Duration:* ${result[i].duration}\n*•Quality:* ${result[i].quality}\n*•Streaming:* ${result[i].watch}\n*•Trailer:* ${result[i].trailer}\n`
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, result[0].thumbnail, 'img.jpg', nwsz, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, `Genre ${tipe} tidak ada didalam website!`, id)
+				// 	}
+				// 	break
 				case prefix + 'faktaunik':
 					urbae.reply(from, mess.wait, id)
 					fetchJson('https://docs-jojo.herokuapp.com/api/fakta-unik')
@@ -3814,527 +3820,527 @@ module.exports = HandleMsg = async (urbae, message) => {
 							urbae.reply(from, err.data, id)
 						})
 					break
-				case prefix + 'ytplaylist':
-				case prefix + 'playlistyt':
-					if (args.length == 0) return urbae.reply(from, `mencari sebuah playlist dari youtube gunakan ${prefix}ytplaylist nama playlist\nContoh: ${prefix}ytplaylist good taste music`, id)
-					const playlists = body.slice(12)
-					urbae.reply(from, mess.wait, id)
-					try {
-						const ytplays = await fetchJson(`https://api.zeks.me/api/ytplaylist?apikey=${apikeyvinz}&q=${playlists}`)
-						if (ytplays.status == false) return urbae.reply(from, 'Playlist yang anda cari tidak ada', id)
-						const { result } = await ytplays
-						let playsyt = `*「 YOUTUBE  PLAYLISTS  」*\n`
-						for (let i = 0; i < result.length; i++) {
-							playsyt += `\n─────────────────\n\n*•Playlist Name:* ${result[i].title}\n*•Video Count:* ${result[i].video_count}\n*•Playlist ID:* ${result[i].id}\n*•Username:* ${result[i].uploader.username}\n*Playlist Url:* ${result[i].url}\n`
-						}
-						await urbae.sendFileFromUrl(from, result[0].thumbnail, 'thumbnail.jpg', playsyt, id)
-					} catch (err) {
-						console.log(err)
-					}
-					break
-				case prefix + 'indoxxi':
-					if (args.length == 0) return urbae.reply(from, `Mencari film dari website indoxxi, gunakan ${prefix}indoxxi judul film`, id)
-					const inxxi = body.slice(9)
-					urbae.reply(from, mess.wait, id)
-					try {
-						const indoxxii = await axios.get(`https://h4ck3rs404-api.herokuapp.com/api/film/indoxxi?q=${inxxi}&apikey=${hackapi}`)
-						const indodata = indoxxii.data
-						if (indodata.status == false) return urbae.reply(from, 'Film yang kamu cari tidak ada', id)
-						const { result } = await indodata
-						let indotext = `*「 INDO XXI  」*\n`
-						for (let i = 0; i < result.length; i++) {
-							indotext += `\n─────────────────\n\n*•Title:* ${result[i].judul}\n*•Duration:* ${result[i].durtion}\n*•Rating:* ${result[i].rating}\n*•Quality:* ${result[i].quality}\n`
-						}
-						await urbae.sendFileFromUrl(from, result[0].thumb, 'thumb.jpg', indotext, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, err.message, id)
-					}
-					break
-				case prefix + 'r18+':
-					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					fetchJson(`https://h4ck3rs404-api.herokuapp.com/api/randomp?apikey=${hackapi}`)
-						.then(async (res) => {
-							if (res.status == false) return urbae.reply(from, 'something wrong, i can feel it:v', id)
-							await urbae.sendFileFromUrl(from, res.result.url, '', `${pushname} mesum`, id)
-								.catch(err => {
-									console.log(err)
-									urbae.reply(from, 'something wrong i can feel it:v', id)
-								})
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, 'something wrong i can feel it:v', id)
-						})
-					break
-				case prefix + 'trendfilm':
-				case prefix + 'trendingfilm':
-				case prefix + 'filmtrending':
-				case prefix + 'filmtrend':
-					urbae.reply(from, mess.wait, id)
-					try {
-						const trendata = await axios.get(`https://h4ck3rs404-api.herokuapp.com/api/news/filmtrending?apikey=${hackapi}`)
-						const trenjs = trendata.data
-						if (trenjs.status == false) return urbae.reply(from, 'Film yang kamu cari ngga ada', id)
-						const { result } = await trenjs
-						let trenword = `*「 TRENDING FILM  」*\n`
-						for (let i = 0; i < result.length; i++) {
-							trenword += `\n─────────────────\n\n*•Film:* ${result[i].title}\n*•Rank:* ${result[i].rank}\n*•Views:* ${result[i].penonton}\n*•Url:* ${result[i].link}\n`
-						}
-						await urbae.reply(from, trenword, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, 'Terjadi kesalahan, silahkan coba lagi', id)
-					}
-					break
-				case prefix + 'lk21':
-					if (args.length == 0) return urbae.reply(from, `Untuk mencari sebuah film dari website LK21, gunakan ${prefix}lk21 judul film`, id)
-					const lksearch = body.slice(6)
-					urbae.reply(from, mess.wait, id)
-					try {
-						const forlk21 = await axios.get(`http://api-lk21.herokuapp.com/search?query=${lksearch}`)
-						const likejs = forlk21.data
-						const { result } = await likejs
-						let elka = `*「 LK 21 」*\n`
-						for (let i = 0; i < result.length; i++) {
-							elka += `\n─────────────────\n\n*•Judul:* ${result[i].title}\n*•Rating:* ${result[i].rating}\n*•Durasi:* ${result[i].duration}\n*•Genre:* ${result[i].genre}\n*•Streaming:* ${result[i].watch}\n*•Trailer:* ${result[i].trailer}\n`
-						}
-						await urbae.sendFileFromUrl(from, result[0].thumbnail, 'thumb.jpg', elka, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, `Film ${lksearch} tidak ada diwebsite`, id)
-					}
-					break
-				case prefix + 'drakorupdate':
-					urbae.reply(from, mess.wait, id)
-					try {
-						const latest = await axios.get(`http://zekais-api.herokuapp.com/drakorlatest?apikey=${zekais}`)
-						const belasts = latest.data
-						if (belasts.status == 500) return urbae.reply(from, res.message, id)
-						const { result } = belasts
-						let latestdrak = `*「 DRAKOR UPDATE 」*\n`
-						for (let i = 0; i < result.length; i++) {
-							latestdrak += `\n─────────────────\n\n*•Title:* ${result[i].name}\n*•Uploaded:* ${result[i].upload}\n*•Tag:* ${result[i].tag}\n*•Content:* ${result[i].conten}\n\n*•Link Streaming:* ${result[i].url}\n`
-						}
-						await urbae.sendFileFromUrl(from, result[0].thumb, 'korea.jpg', latestdrak, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, 'Lagi error', id)
-					}
-					break
-				case prefix + 'drakorapik':
-					await urbae.reply(from, mess.wait, id)
-					try {
-						const apikdrak = await axios.get(`http://zekais-api.herokuapp.com/filmapikdrama?apikey=${zekais}`)
-						const apikkz = apikdrak.data
-						const { result } = apikkz
-						let bedrak = `*「 FILM APIK DRAKOR 」*\n`
-						for (let i = 0; i < result.length; i++) {
-							bedrak += `\n─────────────────\n\n*•Judul:* ${result[i].name}\n*•Episode:* ${result[i].episode}\n*•Stars:* ${result[i].star}\n*•Url:* ${result[i].url}\n`
-						}
-						await urbae.sendFileFromUrl(from, result[0].thumb, 'thumb.jpg', bedrak, id)
-					} catch (err) {
-						urbae.reply(from, 'Lagi error', id)
-					}
-					break
-				case prefix + 'drakor':
-					if (args.length == 0) return urbae.reply(from, `Mencari drakor gunakan ${prefix}drakorasia judul`, id)
-					const caridrakor = body.slice(8)
-					urbae.reply(from, mess.wait, id)
-					try {
-						const juduldrakor = await axios.get(`http://zekais-api.herokuapp.com/drakor?query=${caridrakor}&apikey=${zekais}`)
-						const anjays = juduldrakor.data
-						if (anjays.status == 500) return urbae.reply(from, anjays.message, id)
-						const { download } = anjays
-						let inidrakor = `*•Judul:* ${anjays.title}\n*•Genre:* ${anjays.genre}\n*•Tayang:* ${anjays.tayang}\n*•Director:* ${anjays.director}\n*•Total Episodes:* ${anjays.total_episode}\n*•Sinopsis:* ${anjays.sinopsis}\n`
-						for (let i = 0; i < download.length; i++) {
-							inidrakor += `\n─────────────────\n\n*•Nama:* ${download[i].name}\n\n*•Zippyshare:* ${download[i].Zippyshare}\n\n*•MirrorDrive:* ${download[i].MirrorDrive}\n\n*•Uptocloud:* ${download[i].Uptocloud}\n\n`
-						}
-						await urbae.sendFileFromUrl(from, anjays.thumb, 'drakor.jpg', inidrakor, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, 'Drakor yang anda cari tidak ada', id)
-					}
-					break
-				case prefix + 'manga':
-					if (args.length == 0) return urbae.reply(from, 'Judulnya mana?', id)
-					const mangasearch = body.slice(7)
-					urbae.reply(from, mess.wait, id)
-					try {
-						const mangax = await axios.get(`https://onlydevcity.herokuapp.com/api/manga?search=${mangasearch}&apikey=${onlydev}`)
-						const mangas = mangax.data.result
-						const { downloads } = mangas
-						let mangi = `*•Judul:* ${mangas.title}\n*•Nama:* ${mangas.name}\n*•Type:* ${mangas.type}\n*•Genre:* ${mangas.genre}\n*•Rating:* ${mangas.rating}\n*•Author:* ${mangas.author}\n*•Released Year:* ${mangas.released}\n*•Status:* ${mangas.status}\n*•Note:* ${mangas.note}\n*•Description:* ${mangas.description[0]}\n`
-						for (let i = 0; i < downloads.length; i++) {
-							mangi += `\n─────────────────\n\n*•Web:* ${downloads[i].title}\n*•Detail:* ${downloads[i].date}\n*•Link:* ${downloads[i].link}\n`
-						}
-						await urbae.reply(from, mangi, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, 'Manga yang anda cari tidak ada', id)
-					}
-					break
-				case prefix + 'topanime':
-					urbae.reply(from, mess.wait, id)
-					try {
-						const topan = await axios.get(`https://onlydevcity.herokuapp.com/api/anime/topanime?apikey=${onlydev}`)
-						const topani = topan.data.result
-						const { data } = topani
-						let topis = `*「 TOP ANIME 」*\n`
-						for (let i = 0; i < data.length; i++) {
-							topis += `\n─────────────────\n\n*•Title:* ${data[i].title}\n*•Studio:* ${data[i].studio}\n*•Peak:* ${data[i].stats.peak}\n*•Previously:* ${data[i].stats.previously}\n*•Weeks On Top:* ${data[i].stats.weeksOnTop}\n*•Status:* ${data[i].stats.status}\n*•Stats:* ${data[i].stats.stat}\n`
-						}
-						await urbae.sendFileFromUrl(from, data[0].imageUrl, 'image.jpg', topis, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, 'Lagi error', id)
-					}
-					break
-				case prefix + 'filmkat':
-					if (args.length == 0) return urbae.reply(from, `Mencari sebuah kategori film dari website Film Apik, Gunakan ${prefix}filmkat kategori\nContoh: ${prefix}filmkat comedy\n\nGunakan bahasa inggris buat kategorinya`, id)
-					const katsearch = body.slice(9)
-					urbae.reply(from, mess.wait, id)
-					try {
-						const forkat = await axios.get(`https://api-filmapik.herokuapp.com/category?search=${katsearch}`)
-						const bekat = forkat.data
-						const { result } = await bekat
-						let kat = `*「 FILM APIK CATEGORY 」*\n`
-						for (let i = 0; i < result.length; i++) {
-							kat += `\n─────────────────\n\n*•Title:* ${result[i].title}\n*•Rating:* ${result[i].rating}\n*•Quality:* ${result[i].quality}\n*•Id:* ${result[i].movieId}\n*•Views:* ${result[i].detail.views}\n*•Genre:* ${result[i].detail.genre}\n*•Director:* ${result[i].detail.director}\n*•Actors:* ${result[i].detail.actors}\n*•Country:* ${result[i].detail.country}\n*•Duration:* ${result[i].detail.duration}\n*•Released Year:* ${result[i].detail.release}\n*•Description:* ${result[i].detail.description}\n`
-						}
-						const thumbnailpot = result[0].thumbnailPotrait
-						const thumbnailscp = result[0].detail.thumbnailLandscape
-						if (thumbnailscp == '' || thumbnailscp == undefined || thumbnailscp == null) {
-							var pfps = thumbnailpot
-						} else {
-							var pfps = thumbnailscp
-						}
-						await urbae.sendFileFromUrl(from, pfps, 'img.jpg', kat, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, `Kategori yang anda cari tidak ada didalam Website!`, id)
-					}
-					break
-				case prefix + 'filmapiknew':
-					urbae.reply(from, mess.wait, id)
-					try {
-						const forkats = await axios.get(`https://api-filmapik.herokuapp.com/latest`)
-						const bekats = forkats.data
-						const { result } = await bekats
-						let kat = `*「 FILM APIK TERBARU 」*\n`
-						for (let i = 0; i < result.length; i++) {
-							kat += `\n─────────────────\n\n*•Title:* ${result[i].title}\n*•Rating:* ${result[i].rating}\n*•Quality:* ${result[i].quality}\n*•Id:* ${result[i].movieId}\n*•Views:* ${result[i].detail.views}\n*•Genre:* ${result[i].detail.genre}\n*•Director:* ${result[i].detail.director}\n*•Actors:* ${result[i].detail.actors}\n*•Country:* ${result[i].detail.country}\n*•Duration:* ${result[i].detail.duration}\n*•Released Year:* ${result[i].detail.release}\n*•Description:* ${result[i].detail.description}\n`
-						}
-						const thumbnailpots = result[0].thumbnailPotrait
-						const thumbnailscps = result[0].detail.thumbnailLandscape
-						if (thumbnailscps == '' || thumbnailscps == undefined) {
-							var pfpz = thumbnailpots
-						} else {
-							var pfpz = thumbnailscps
-						}
-						await urbae.sendFileFromUrl(from, pfpz, 'img.jpg', kat, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, `Terjadi kesalahan pada sistem, silahkan coba lagi nanti`, id)
-					}
-					break
-				case prefix + 'film':
-					if (args.length == 0) return urbae.reply(from, `Format salah!\nKirim perintah ${prefix}film [judul film]\nContoh : ${prefix}film the conjuring`, id)
-					const carifilm = body.slice(6)
-					await urbae.reply(from, mess.wait, id)
-					try {
-						const filmlk = await axios.get(`https://api.vhtear.com/downloadfilm?judul=${carifilm}&apikey=${vhtearkey}`)
-						const filmdata = filmlk.data.result
-						const { data } = filmdata
-						let lkfl = `*「 FILM 」*\n`
-						for (let i = 0; i < data.length; i++) {
-							lkfl += `\n─────────────────\n\n*•Resolusi:* ${data[i].resolusi}\n*•Url Download:* ${data[i].urlDownload}\n`
-						}
-						await urbae.reply(from, lkfl, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, `Film yang anda cari tidak ada didalam Website!`, id)
-					}
-					break
-				case prefix + 'filmapik':
-					if (args.length == 0) return urbae.reply(from, `Mencari sebuah film dari Website Film Apik!\nContoh : ${prefix}filmapik Revolutionary Love`, id)
-					await urbae.reply(from, mess.wait, id)
-					const pilem = body.slice(10)
-					try {
-						const scpik = await axios.get(`https://api-filmapik.herokuapp.com/search?q=${pilem}`)
-						const apikjson = scpik.data
-						const { result } = await apikjson
-						let iniapik = `*「 FILM APIK 」*\n`
-						for (let i = 0; i < result.length; i++) {
-							iniapik += `\n─────────────────\n\n*•Title:* ${result[i].title}\n*•Rating:* ${result[i].rating}\n*•Quality:* ${result[i].quality}\n*•Episode:* ${result[i].episode}\n*•Id:* ${result[i].movieId}\n*•Views:* ${result[i].detail.views}\n*•Genre:* ${result[i].detail.genre}\n*•Duration:* ${result[i].detail.duration}\n*•Director:* ${result[i].detail.director}\n*•Actors:* ${result[i].detail.actors}\n*•Country:* ${result[i].detail.country}\n*•Released Year:* ${result[i].detail.release}\n*•Description:* ${result[i].detail.description}\n`
-						}
-						const thportrait = result[0].thumbnailPotrait
-						const thlandscape = result[0].detail.thumbnailLandscape
-						if (thlandscape == '' || thlandscape == undefined) {
-							var thp = thportrait
-						} else {
-							var thp = thlandscape
-						}
-						await urbae.sendFileFromUrl(from, thp, 'img.jpg', iniapik, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, `Film yang anda cari tidak ada didalam website`, id)
-					}
-					break
-				case prefix + 'randomkpop':
-					urbae.reply(from, mess.wait, id)
-					axios.get(`https://tobz-api.herokuapp.com/api/randomkpop?apikey=${tobzapi}`)
-						.then(async (res) => {
-							urbae.sendFileFromUrl(from, res.data.result, 'img.jpg', `nehh ${pushname}`, id)
-								.catch(() => {
-									urbae.reply(from, 'Error, mungkin server sedang maintenance', id)
-								})
-						})
-						.catch((err) => {
-							console.log(err)
-						})
-					break
-				case prefix + 'drakorindo':
-					if (args.length == 0) return urbae.reply(from, `Untuk mencari drakor dari website Drakor Indo, gunakan ${prefix}drakorindo judul drakor`, id)
-					const scdrak = body.slice(12)
-					urbae.reply(from, mess.wait, id)
-					try {
-						const respo1 = await fetch(`https://tobz-api.herokuapp.com/api/drakorindo?q=${scdrak}&apikey=${tobzapi}`)
-						const respo11 = await respo1.json()
-						const { result } = await respo11
-						let drk = `*「 DRAKOR INDO 」*\n`
-						for (let i = 0; i < result.length; i++) {
-							drk += `\n─────────────────\n\n• *Judul:* ${result[i].title}\n• *Upload:* ${result[i].upload}\n• *Link:* ${result[i].link}\n• *Sinopsis:* ${result[i].sinopsis}\n`
-						}
-						await urbae.sendFileFromUrl(from, result[0].image, 'img.jpg', drk, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, `Drakor yang anda cari tidak ada didalam website`, id)
-					}
-					break
-				case prefix + 'doramaindo':
-					if (args.length == 0) return urbae.reply(from, `Untuk mencari drakor dari website Dorama Indo, Gunakan ${prefix}doramaindo judul drakor`, id)
-					const draksc = body.slice(12)
-					urbae.reply(from, mess.wait, id)
-					try {
-						const resp1 = await fetch(`https://tobz-api.herokuapp.com/api/doramaindo?q=${draksc}&apikey=${tobzapi}`)
-						const resp11 = await resp1.json()
-						const { result } = await resp11
-						let doramax = `*「 DORAMA INDO 」*\n`
-						for (let i = 0; i < result.length; i++) {
-							doramax += `\n─────────────────\n\n• *Judul:* ${result[i].title}\n• *Genre:* ${result[i].genre}\n• *Status:* ${result[i].status}\n• *Link:* ${result[i].link}\n`
-						}
-						await urbae.sendFileFromUrl(from, result[0].image, 'img.jpg', doramax, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, `Drakor yang anda cari tidak tersedia diwebsite`, id)
-					}
-					break
-				case prefix + 'xnxx':
-					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					if (args.length == 0) return urbae.reply(from, `Mendapatkan detail video dari website xnxx, Gunakan ${prefix}xnxx link\nContoh: ${prefix}xnxx https://www.xnxx.com/video-kt0nb99/who_is_she_big_hot_girl_asia_japan_korean_jav`, id)
-					const pcas = body.slice(6)
-					axios.get(`http://api.lolhuman.xyz/api/xnxx?apikey=${lolhuman}&url=${pcas}`)
-						.then(async (res) => {
-							await urbae.sendFileFromUrl(from, res.data.result.thumbnail, 'img.jpg', `「 *XNXX* 」\n\n*Title:* ${res.data.result.title}\n*Duration:* ${res.data.result.duration}\n*Views:* ${res.data.result.view}\n*Rating:* ${res.data.result.rating}\n*Like:* ${res.data.result.like}\n*Dislike:* ${res.data.result.dislike}\n*Comment:* ${res.data.result.comment}`, id)
-							const inihasilvid = res.data.result.link[1].link
-							await urbae.sendFileFromUrl(from, inihasilvid, 'vid.mp4', '', id)
-								.catch(() => {
-									urbae.reply(from, 'Url salah, silahkan masukkan url yang benar', id)
-								})
-						})
-						.catch((err) => {
-							console.log(err)
-						})
-					break
-				case prefix + 'xnxxsearch':
-					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					if (args.length == 0) return urbae.reply(from, `Mencari video dari website XNXX, Gunakan ${prefix}xnxxsearch judul\nContoh: ${prefix}xnxxsearch japan`, id)
-					const xsch = body.slice(12)
-					urbae.reply(from, mess.wait, id)
-					try {
-						const fucth = await axios.get(`https://h4ck3rs404-api.herokuapp.com/api/xnxx-search?q=${xsch}&apikey=${hackapi}`)
-						const fucth2 = fucth.data
-						const { result } = fucth2
-						let xsz = `*「 XNXX 」*\n`
-						for (let i = 0; i < result.length; i++) {
-							xsz += `\n─────────────────\n\n• *Title:* ${result[i].judul}\n• *Views:* ${result[i].viewers}\n• *Info:* ${result[i].info}\n• *Url:* ${result[i].url}\n`
-						}
-						await urbae.sendFileFromUrl(from, result[0].thumb, 'thumb.jpg', xsz, id)
-					} catch (err) {
-						console.log(err)
-						urbae.reply(from, `Mungkin hasil pencarian yang anda inginkan tidak ada didalam website`, id)
-					}
-					break
-				case prefix + 'tebakanime':
-					const animesoal = await fetchJson(`https://h4ck3rs404-api.herokuapp.com/api/kuis/tebakanime?apikey=${hackapi}`)
-					if (animesoal.status == false) return urbae.reply(from, 'Lagi error', id)
-					const imageanime = animesoal.result.image
-					const jawabananime = `Result : ${animesoal.result.name}\nDeskripsi : ${animesoal.result.desc}`
-					urbae.sendFileFromUrl(from, imageanime, 'image.jpg', `Tebak chara apa ini`, id)
-					await sleep(10000)
-					urbae.sendText(from, '_30 detik lagi_')
-					await sleep(10000)
-					urbae.sendText(from, '_20 detik lagi_')
-					await sleep(10000)
-					urbae.sendText(from, '_10 detik lagi_')
-					await sleep(10000)
-					urbae.reply(from, jawabananime, id)
-					break
-				case prefix + 'phsearch':
-					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					if (args.length == 0) return urbae.reply(from, `Mencari bokep dari website Pornhub, gunakan ${prefix}phsearch judul\nContoh: ${prefix}phsearch step sister`, id)
-					const phword = body.slice(10)
-					urbae.reply(from, mess.wait, id)
-					const phapi = await axios.get(`https://h4ck3rs404-api.herokuapp.com/api/phub-search?q=${phword}&apikey=${hackapi}`)
-					const phdata = phapi.data
-					if (phdata.status == false) return urbae.reply(from, 'Film yang anda cari tidak dapat ditemukan', id)
-					const pornhubb = phdata.result
-					let phtext = `*「 P O R N H U B 」*\n`
-					for (let i = 0; i < pornhubb.length; i++) {
-						phtext += `\n─────────────────\n\n•*Title:* ${result[i].title}\n•*Views:* ${result[i].views}\n•*Channel:* ${result[i].author}\n•*Uploaded:* ${result[i].publish}\n•*Url:* ${result[i].url}\n`
-					}
-					await urbae.sendFileFromUrl(from, result[0].thumb, 'thumbnail.jpg', phtext, id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, 'Terjadi kesalahan, coba lagi nanti', id)
-						})
-					break
-				case prefix + 'searchuser':
-					if (args.length == 0) return urbae.reply(from, `Mencari user instagram gunakan ${prefix}searchuser query\nContoh: ${prefix}searchuser zennny`, id)
-					const userinsta = body.slice(12)
-					urbae.reply(from, mess.wait, id)
-					const userapi = await axios.get(`https://h4ck3rs404-api.herokuapp.com/api/iguser?q=${userinsta}&apikey=${hackapi}`)
-					const userdata = userapi.data
-					const resultdata2 = userdata.result
-					let instatext = `*「 INSTAGRAM USER 」*\n`
-					for (let i = 0; i < resultdata2.length; i++) {
-						instatext = `\n─────────────────\n\n• *Username:* ${resultdata2[i].username}\n• *Fullname:* ${resultdata2[i].full_name}\n• *Verified:* ${resultdata2[i].verified_user}\n• *Private:* ${resultdata2[i].private_user}\n`
-					}
-					await urbae.sendFileFromUrl(from, resultdata2[0].profile_pic, 'profile.jpg', instatext, id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'npbioskop':
-				case prefix + 'nowplaying':
-					urbae.reply(from, mess.wait, id)
-					const bioskopurl = await axios.get(`https://zenzapi.xyz/api/nowplayingbioskop?apikey=${zenzapi}`)
-					const bioskopdata = bioskopurl.data
-					if (bioskopdata.status == false) return urbae.reply(from, 'Rest Api sedang error', id)
-					const bioskopresult = bioskopdata.result
-					let bioskoptxt = `*「 NOW PLAYING ON BIOSKOP 」*\n`
-					for (let i = 0; i < bioskopresult.length; i++) {
-						bioskoptxt += `\n─────────────────\n\n• *Title:* ${bioskopresult[i].title}\n• *Url:* ${bioskopresult[i].url}\n`
-					}
-					await urbae.sendFileFromUrl(from, bioskopresult[0].img, 'img.jpg', bioskoptxt, id)
-					break
-				case prefix + 'bbcindo':
-					urbae.reply(from, mess.wait, id)
-					const bbcurl = await axios.get(`https://dapuhy-api.herokuapp.com/api/berita/cnn?apikey=${dapuhyapi}`)
-					const bbcdata = bbcurl.data
-					if (bbcdata.status == false) return urbae.reply(from, 'Rest Api sedang error', id)
-					const bbcresult = bbcdata.result
-					let bbctxt = `*「 BBC INDONESIA 」*\n`
-					for (let i = 0; i < bbcresult.length; i++) {
-						bbctxt += `\n─────────────────\n\n• *Berita:* ${bbcresult[i].title}\n• *Upload:* ${bbcresult[i].upload}\n• *Url:* ${bbcresult[i].url}\n`
-					}
-					await urbae.reply(from, bbctxt, id)
-					break
-				case prefix + 'cnnindonesia':
-				case prefix + 'cnnindo':
-					urbae.reply(from, mess.wait, id)
-					const cnnapi = await axios.get(`https://dapuhy-api.herokuapp.com/api/berita/cnn?apikey=${dapuhyapi}`)
-					const cnndata = cnnapi.data
-					if (cnndata.status == false) return urbae.reply(from, 'Rest Api sedang error', id)
-					const cnnresult = cnndata.result
-					let cnntext = `*「 CNN INDONESIA 」*\n`
-					for (let i = 0; i < cnnresult.length; i++) {
-						cnntext += `\n─────────────────\n\n• *Berita:* ${cnnresult[i].title}\n• *Upload:* ${cnnresult[i].upload}\n• *Url:* ${cnnresult[i].url}\n`
-					}
-					await urbae.sendFileFromUrl(from, cnnresult[0].thumb, 'img.jpg', cnntext, id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'nanimelatest':
-					urbae.reply(from, mess.wait, id)
-					const nanimeurl = await axios.get(`http://zekais-api.herokuapp.com/nanimenew?apikey=${zekais}`)
-					const nanimedata = nanimeurl.data
-					if (nanimedata.status == 500) return urbae.reply(from, nanimedata.result, id)
-					const nanimeres = nanimedata.result
-					let nanimetxt = `*「 NANIME LATEST 」*\n`
-					for (let i = 0; i < nanimeres.length; i++) {
-						nanimetxt += `\n─────────────────\n\n• *Judul:* ${nanimeres[i].name}\n• *Rating:* ${nanimeres[i].rating}\n• *Status:* ${nanimeres[i].status}\n• *Url:* ${nanimeres[i].url}\n`
-					}
-					await urbae.sendFileFromUrl(from, nanimeres[0].thumb, 'thumb.jpg', nanimetxt, id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'nanimesr':
-					if (args.length == 0) return urbae.reply(from, `Mencari anime dari website Nanime gunakan ${prefix}nanimesr query\nContoh: ${prefix}nanimesr sword`, id)
-					const sranime = body.slice(10)
-					urbae.reply(from, mess.wait, id)
-					const sranimeurl = axios.get(`http://zekais-api.herokuapp.com/nanimesr?query=${sranime}&apikey=${zekais}`)
-					const srdatanime = sranimeurl.data
-					if (srdatanime == 500) return urbae.reply(from, srdatanime.result, id)
-					const resultnime = srdatanime.result
-					let txtnanim = `*「 NANIME SEARCH 」*\n`
-					for (let i = 0; i < resultnime.length; i++) {
-						txtanim += `\n─────────────────\n\n• *Judul:* ${resultnime[i].name}\n• *Rating:* ${resultnime[i].rating}\n• *Status:* ${resultnime[i].status}\n• *Url:* ${resultnime[i].url}\n`
-					}
-					await urbae.sendFileFromUrl(from, resultnime[0].thumb, 'thumb.jpg', txtanim, id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'nanimeget':
-					if (args.length == 0) return urbae.reply(from, `Masukan url nanime nya\nContoh: ${prefix}nanimeget https://nanime.biz/anime/sword-art-online-alicization-war-of-underworld-2nd-season`, id)
-					const getnanime = body.slice(11)
-					urbae.reply(from, mess.wait, id)
-					const geturlnime = axios.get(`http://zekais-api.herokuapp.com/nanimeget?url=${getnanime}&apikey=${zekais}`)
-					const nanimedata2 = geturlnime.data.result
-					if (geturlnime.data.result.status == 500) return urbae.reply(from, geturlnime.data.result, id)
-					const judulnanime = nanimedata2.title
-					const thumbnanime = nanimedata2.thumb
-					const descnanime = nanimedata2.desc
-					urbae.sendFileFromUrl(from, thumbnanime, 'thumb.jpg', `Judul: ${judulnanime}\nDeskripsi: ${descnanime}`, id)
-					const nameandurl = nanimedata2.url
-					let nanimegetxt = `*「 NANIME INFO 」*\n`
-					for (let i = 0; i < nanimedata2.length; i++) {
-						nanimegetxt += `\n─────────────────\n\n• *Judul:* ${nanimedata2[i].name}\n• *Url:* ${nanimedata2[i].url}\n`
-					}
-					await urbae.reply(from, nanimegetxt, id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'youtubetrending':
-				case prefix + 'trendingyt':
-				case prefix + 'trendingyoutube':
-				case prefix + 'yttrending':
-					if (args.length == 0) return urbae.reply(from, `Usage : ${prefix}trendingyt countrycode\nContoh : ${prefix}trendingyt id\nContoh 2 : ${prefix}trendingyt usa\nCountry Code bisa ditemukan menggunakan ${prefix}kodebahasa`, id)
-					urbae.reply(from, mess.wait, id)
-					const trendyt = await axios.get(`https://cakrayp.herokuapp.com/api/youtube/trending?country=${args[0]}&page=trending&apikey=${cakrayp}`)
-					const datatrend = trendyt.data
-					if (datatrend.status == false) return urbae.reply(from, datatrend.message, id)
-					const trendres = datatrend.result
-					let trendtxt = `*「 YOUTUBE TRENDING 」*\n`
-					for (let i = 0; i < trendres.length; i++) {
-						trendtxt += `\n─────────────────\n\n• *Title:* ${trendres[i].title}\n• *Duration:* ${trendres[i].duration}\n• *Viewers:* ${trendres[i].viewers}\n• *Uploaded:* ${trendres[i].publishedat}\n• *Channel:* ${trendres[i].channel.name}\n• *Verified:* ${trendres[i].isverified}\n• *Url:* ${trendres[i].video.url}\n• *Description:* ${trendres[i].description}\n`
-					}
-					await urbae.sendFileFromUrl(from, trendres[0].thumbnail.url, 'thumbnail.jpg', trendtxt, id)
-					break
+				// case prefix + 'ytplaylist':
+				// case prefix + 'playlistyt':
+				// 	if (args.length == 0) return urbae.reply(from, `mencari sebuah playlist dari youtube gunakan ${prefix}ytplaylist nama playlist\nContoh: ${prefix}ytplaylist good taste music`, id)
+				// 	const playlists = body.slice(12)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const ytplays = await fetchJson(`https://api.zeks.me/api/ytplaylist?apikey=${apikeyvinz}&q=${playlists}`)
+				// 		if (ytplays.status == false) return urbae.reply(from, 'Playlist yang anda cari tidak ada', id)
+				// 		const { result } = await ytplays
+				// 		let playsyt = `*「 YOUTUBE  PLAYLISTS  」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			playsyt += `\n─────────────────\n\n*•Playlist Name:* ${result[i].title}\n*•Video Count:* ${result[i].video_count}\n*•Playlist ID:* ${result[i].id}\n*•Username:* ${result[i].uploader.username}\n*Playlist Url:* ${result[i].url}\n`
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, result[0].thumbnail, 'thumbnail.jpg', playsyt, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 	}
+				// 	break
+				// case prefix + 'indoxxi':
+				// 	if (args.length == 0) return urbae.reply(from, `Mencari film dari website indoxxi, gunakan ${prefix}indoxxi judul film`, id)
+				// 	const inxxi = body.slice(9)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const indoxxii = await axios.get(`https://h4ck3rs404-api.herokuapp.com/api/film/indoxxi?q=${inxxi}&apikey=${hackapi}`)
+				// 		const indodata = indoxxii.data
+				// 		if (indodata.status == false) return urbae.reply(from, 'Film yang kamu cari tidak ada', id)
+				// 		const { result } = await indodata
+				// 		let indotext = `*「 INDO XXI  」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			indotext += `\n─────────────────\n\n*•Title:* ${result[i].judul}\n*•Duration:* ${result[i].durtion}\n*•Rating:* ${result[i].rating}\n*•Quality:* ${result[i].quality}\n`
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, result[0].thumb, 'thumb.jpg', indotext, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, err.message, id)
+				// 	}
+				// 	break
+				// case prefix + 'r18+':
+				// 	if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	fetchJson(`https://h4ck3rs404-api.herokuapp.com/api/randomp?apikey=${hackapi}`)
+				// 		.then(async (res) => {
+				// 			if (res.status == false) return urbae.reply(from, 'something wrong, i can feel it:v', id)
+				// 			await urbae.sendFileFromUrl(from, res.result.url, '', `${pushname} mesum`, id)
+				// 				.catch(err => {
+				// 					console.log(err)
+				// 					urbae.reply(from, 'something wrong i can feel it:v', id)
+				// 				})
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, 'something wrong i can feel it:v', id)
+				// 		})
+				// 	break
+				// case prefix + 'trendfilm':
+				// case prefix + 'trendingfilm':
+				// case prefix + 'filmtrending':
+				// case prefix + 'filmtrend':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const trendata = await axios.get(`https://h4ck3rs404-api.herokuapp.com/api/news/filmtrending?apikey=${hackapi}`)
+				// 		const trenjs = trendata.data
+				// 		if (trenjs.status == false) return urbae.reply(from, 'Film yang kamu cari ngga ada', id)
+				// 		const { result } = await trenjs
+				// 		let trenword = `*「 TRENDING FILM  」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			trenword += `\n─────────────────\n\n*•Film:* ${result[i].title}\n*•Rank:* ${result[i].rank}\n*•Views:* ${result[i].penonton}\n*•Url:* ${result[i].link}\n`
+				// 		}
+				// 		await urbae.reply(from, trenword, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, 'Terjadi kesalahan, silahkan coba lagi', id)
+				// 	}
+				// 	break
+				// case prefix + 'lk21':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk mencari sebuah film dari website LK21, gunakan ${prefix}lk21 judul film`, id)
+				// 	const lksearch = body.slice(6)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const forlk21 = await axios.get(`http://api-lk21.herokuapp.com/search?query=${lksearch}`)
+				// 		const likejs = forlk21.data
+				// 		const { result } = await likejs
+				// 		let elka = `*「 LK 21 」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			elka += `\n─────────────────\n\n*•Judul:* ${result[i].title}\n*•Rating:* ${result[i].rating}\n*•Durasi:* ${result[i].duration}\n*•Genre:* ${result[i].genre}\n*•Streaming:* ${result[i].watch}\n*•Trailer:* ${result[i].trailer}\n`
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, result[0].thumbnail, 'thumb.jpg', elka, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, `Film ${lksearch} tidak ada diwebsite`, id)
+				// 	}
+				// 	break
+				// case prefix + 'drakorupdate':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const latest = await axios.get(`http://zekais-api.herokuapp.com/drakorlatest?apikey=${zekais}`)
+				// 		const belasts = latest.data
+				// 		if (belasts.status == 500) return urbae.reply(from, res.message, id)
+				// 		const { result } = belasts
+				// 		let latestdrak = `*「 DRAKOR UPDATE 」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			latestdrak += `\n─────────────────\n\n*•Title:* ${result[i].name}\n*•Uploaded:* ${result[i].upload}\n*•Tag:* ${result[i].tag}\n*•Content:* ${result[i].conten}\n\n*•Link Streaming:* ${result[i].url}\n`
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, result[0].thumb, 'korea.jpg', latestdrak, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, 'Lagi error', id)
+				// 	}
+				// 	break
+				// case prefix + 'drakorapik':
+				// 	await urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const apikdrak = await axios.get(`http://zekais-api.herokuapp.com/filmapikdrama?apikey=${zekais}`)
+				// 		const apikkz = apikdrak.data
+				// 		const { result } = apikkz
+				// 		let bedrak = `*「 FILM APIK DRAKOR 」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			bedrak += `\n─────────────────\n\n*•Judul:* ${result[i].name}\n*•Episode:* ${result[i].episode}\n*•Stars:* ${result[i].star}\n*•Url:* ${result[i].url}\n`
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, result[0].thumb, 'thumb.jpg', bedrak, id)
+				// 	} catch (err) {
+				// 		urbae.reply(from, 'Lagi error', id)
+				// 	}
+				// 	break
+				// case prefix + 'drakor':
+				// 	if (args.length == 0) return urbae.reply(from, `Mencari drakor gunakan ${prefix}drakorasia judul`, id)
+				// 	const caridrakor = body.slice(8)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const juduldrakor = await axios.get(`http://zekais-api.herokuapp.com/drakor?query=${caridrakor}&apikey=${zekais}`)
+				// 		const anjays = juduldrakor.data
+				// 		if (anjays.status == 500) return urbae.reply(from, anjays.message, id)
+				// 		const { download } = anjays
+				// 		let inidrakor = `*•Judul:* ${anjays.title}\n*•Genre:* ${anjays.genre}\n*•Tayang:* ${anjays.tayang}\n*•Director:* ${anjays.director}\n*•Total Episodes:* ${anjays.total_episode}\n*•Sinopsis:* ${anjays.sinopsis}\n`
+				// 		for (let i = 0; i < download.length; i++) {
+				// 			inidrakor += `\n─────────────────\n\n*•Nama:* ${download[i].name}\n\n*•Zippyshare:* ${download[i].Zippyshare}\n\n*•MirrorDrive:* ${download[i].MirrorDrive}\n\n*•Uptocloud:* ${download[i].Uptocloud}\n\n`
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, anjays.thumb, 'drakor.jpg', inidrakor, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, 'Drakor yang anda cari tidak ada', id)
+				// 	}
+				// 	break
+				// case prefix + 'manga':
+				// 	if (args.length == 0) return urbae.reply(from, 'Judulnya mana?', id)
+				// 	const mangasearch = body.slice(7)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const mangax = await axios.get(`https://onlydevcity.herokuapp.com/api/manga?search=${mangasearch}&apikey=${onlydev}`)
+				// 		const mangas = mangax.data.result
+				// 		const { downloads } = mangas
+				// 		let mangi = `*•Judul:* ${mangas.title}\n*•Nama:* ${mangas.name}\n*•Type:* ${mangas.type}\n*•Genre:* ${mangas.genre}\n*•Rating:* ${mangas.rating}\n*•Author:* ${mangas.author}\n*•Released Year:* ${mangas.released}\n*•Status:* ${mangas.status}\n*•Note:* ${mangas.note}\n*•Description:* ${mangas.description[0]}\n`
+				// 		for (let i = 0; i < downloads.length; i++) {
+				// 			mangi += `\n─────────────────\n\n*•Web:* ${downloads[i].title}\n*•Detail:* ${downloads[i].date}\n*•Link:* ${downloads[i].link}\n`
+				// 		}
+				// 		await urbae.reply(from, mangi, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, 'Manga yang anda cari tidak ada', id)
+				// 	}
+				// 	break
+				// case prefix + 'topanime':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const topan = await axios.get(`https://onlydevcity.herokuapp.com/api/anime/topanime?apikey=${onlydev}`)
+				// 		const topani = topan.data.result
+				// 		const { data } = topani
+				// 		let topis = `*「 TOP ANIME 」*\n`
+				// 		for (let i = 0; i < data.length; i++) {
+				// 			topis += `\n─────────────────\n\n*•Title:* ${data[i].title}\n*•Studio:* ${data[i].studio}\n*•Peak:* ${data[i].stats.peak}\n*•Previously:* ${data[i].stats.previously}\n*•Weeks On Top:* ${data[i].stats.weeksOnTop}\n*•Status:* ${data[i].stats.status}\n*•Stats:* ${data[i].stats.stat}\n`
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, data[0].imageUrl, 'image.jpg', topis, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, 'Lagi error', id)
+				// 	}
+				// 	break
+				// case prefix + 'filmkat':
+				// 	if (args.length == 0) return urbae.reply(from, `Mencari sebuah kategori film dari website Film Apik, Gunakan ${prefix}filmkat kategori\nContoh: ${prefix}filmkat comedy\n\nGunakan bahasa inggris buat kategorinya`, id)
+				// 	const katsearch = body.slice(9)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const forkat = await axios.get(`https://api-filmapik.herokuapp.com/category?search=${katsearch}`)
+				// 		const bekat = forkat.data
+				// 		const { result } = await bekat
+				// 		let kat = `*「 FILM APIK CATEGORY 」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			kat += `\n─────────────────\n\n*•Title:* ${result[i].title}\n*•Rating:* ${result[i].rating}\n*•Quality:* ${result[i].quality}\n*•Id:* ${result[i].movieId}\n*•Views:* ${result[i].detail.views}\n*•Genre:* ${result[i].detail.genre}\n*•Director:* ${result[i].detail.director}\n*•Actors:* ${result[i].detail.actors}\n*•Country:* ${result[i].detail.country}\n*•Duration:* ${result[i].detail.duration}\n*•Released Year:* ${result[i].detail.release}\n*•Description:* ${result[i].detail.description}\n`
+				// 		}
+				// 		const thumbnailpot = result[0].thumbnailPotrait
+				// 		const thumbnailscp = result[0].detail.thumbnailLandscape
+				// 		if (thumbnailscp == '' || thumbnailscp == undefined || thumbnailscp == null) {
+				// 			var pfps = thumbnailpot
+				// 		} else {
+				// 			var pfps = thumbnailscp
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, pfps, 'img.jpg', kat, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, `Kategori yang anda cari tidak ada didalam Website!`, id)
+				// 	}
+				// 	break
+				// case prefix + 'filmapiknew':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const forkats = await axios.get(`https://api-filmapik.herokuapp.com/latest`)
+				// 		const bekats = forkats.data
+				// 		const { result } = await bekats
+				// 		let kat = `*「 FILM APIK TERBARU 」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			kat += `\n─────────────────\n\n*•Title:* ${result[i].title}\n*•Rating:* ${result[i].rating}\n*•Quality:* ${result[i].quality}\n*•Id:* ${result[i].movieId}\n*•Views:* ${result[i].detail.views}\n*•Genre:* ${result[i].detail.genre}\n*•Director:* ${result[i].detail.director}\n*•Actors:* ${result[i].detail.actors}\n*•Country:* ${result[i].detail.country}\n*•Duration:* ${result[i].detail.duration}\n*•Released Year:* ${result[i].detail.release}\n*•Description:* ${result[i].detail.description}\n`
+				// 		}
+				// 		const thumbnailpots = result[0].thumbnailPotrait
+				// 		const thumbnailscps = result[0].detail.thumbnailLandscape
+				// 		if (thumbnailscps == '' || thumbnailscps == undefined) {
+				// 			var pfpz = thumbnailpots
+				// 		} else {
+				// 			var pfpz = thumbnailscps
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, pfpz, 'img.jpg', kat, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, `Terjadi kesalahan pada sistem, silahkan coba lagi nanti`, id)
+				// 	}
+				// 	break
+				// case prefix + 'film':
+				// 	if (args.length == 0) return urbae.reply(from, `Format salah!\nKirim perintah ${prefix}film [judul film]\nContoh : ${prefix}film the conjuring`, id)
+				// 	const carifilm = body.slice(6)
+				// 	await urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const filmlk = await axios.get(`https://api.vhtear.com/downloadfilm?judul=${carifilm}&apikey=${vhtearkey}`)
+				// 		const filmdata = filmlk.data.result
+				// 		const { data } = filmdata
+				// 		let lkfl = `*「 FILM 」*\n`
+				// 		for (let i = 0; i < data.length; i++) {
+				// 			lkfl += `\n─────────────────\n\n*•Resolusi:* ${data[i].resolusi}\n*•Url Download:* ${data[i].urlDownload}\n`
+				// 		}
+				// 		await urbae.reply(from, lkfl, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, `Film yang anda cari tidak ada didalam Website!`, id)
+				// 	}
+				// 	break
+				// case prefix + 'filmapik':
+				// 	if (args.length == 0) return urbae.reply(from, `Mencari sebuah film dari Website Film Apik!\nContoh : ${prefix}filmapik Revolutionary Love`, id)
+				// 	await urbae.reply(from, mess.wait, id)
+				// 	const pilem = body.slice(10)
+				// 	try {
+				// 		const scpik = await axios.get(`https://api-filmapik.herokuapp.com/search?q=${pilem}`)
+				// 		const apikjson = scpik.data
+				// 		const { result } = await apikjson
+				// 		let iniapik = `*「 FILM APIK 」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			iniapik += `\n─────────────────\n\n*•Title:* ${result[i].title}\n*•Rating:* ${result[i].rating}\n*•Quality:* ${result[i].quality}\n*•Episode:* ${result[i].episode}\n*•Id:* ${result[i].movieId}\n*•Views:* ${result[i].detail.views}\n*•Genre:* ${result[i].detail.genre}\n*•Duration:* ${result[i].detail.duration}\n*•Director:* ${result[i].detail.director}\n*•Actors:* ${result[i].detail.actors}\n*•Country:* ${result[i].detail.country}\n*•Released Year:* ${result[i].detail.release}\n*•Description:* ${result[i].detail.description}\n`
+				// 		}
+				// 		const thportrait = result[0].thumbnailPotrait
+				// 		const thlandscape = result[0].detail.thumbnailLandscape
+				// 		if (thlandscape == '' || thlandscape == undefined) {
+				// 			var thp = thportrait
+				// 		} else {
+				// 			var thp = thlandscape
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, thp, 'img.jpg', iniapik, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, `Film yang anda cari tidak ada didalam website`, id)
+				// 	}
+				// 	break
+				// case prefix + 'randomkpop':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get(`https://tobz-api.herokuapp.com/api/randomkpop?apikey=${tobzapi}`)
+				// 		.then(async (res) => {
+				// 			urbae.sendFileFromUrl(from, res.data.result, 'img.jpg', `nehh ${pushname}`, id)
+				// 				.catch(() => {
+				// 					urbae.reply(from, 'Error, mungkin server sedang maintenance', id)
+				// 				})
+				// 		})
+				// 		.catch((err) => {
+				// 			console.log(err)
+				// 		})
+				// 	break
+				// case prefix + 'drakorindo':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk mencari drakor dari website Drakor Indo, gunakan ${prefix}drakorindo judul drakor`, id)
+				// 	const scdrak = body.slice(12)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const respo1 = await fetch(`https://tobz-api.herokuapp.com/api/drakorindo?q=${scdrak}&apikey=${tobzapi}`)
+				// 		const respo11 = await respo1.json()
+				// 		const { result } = await respo11
+				// 		let drk = `*「 DRAKOR INDO 」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			drk += `\n─────────────────\n\n• *Judul:* ${result[i].title}\n• *Upload:* ${result[i].upload}\n• *Link:* ${result[i].link}\n• *Sinopsis:* ${result[i].sinopsis}\n`
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, result[0].image, 'img.jpg', drk, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, `Drakor yang anda cari tidak ada didalam website`, id)
+				// 	}
+				// 	break
+				// case prefix + 'doramaindo':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk mencari drakor dari website Dorama Indo, Gunakan ${prefix}doramaindo judul drakor`, id)
+				// 	const draksc = body.slice(12)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const resp1 = await fetch(`https://tobz-api.herokuapp.com/api/doramaindo?q=${draksc}&apikey=${tobzapi}`)
+				// 		const resp11 = await resp1.json()
+				// 		const { result } = await resp11
+				// 		let doramax = `*「 DORAMA INDO 」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			doramax += `\n─────────────────\n\n• *Judul:* ${result[i].title}\n• *Genre:* ${result[i].genre}\n• *Status:* ${result[i].status}\n• *Link:* ${result[i].link}\n`
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, result[0].image, 'img.jpg', doramax, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, `Drakor yang anda cari tidak tersedia diwebsite`, id)
+				// 	}
+				// 	break
+				// case prefix + 'xnxx':
+				// 	if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	if (args.length == 0) return urbae.reply(from, `Mendapatkan detail video dari website xnxx, Gunakan ${prefix}xnxx link\nContoh: ${prefix}xnxx https://www.xnxx.com/video-kt0nb99/who_is_she_big_hot_girl_asia_japan_korean_jav`, id)
+				// 	const pcas = body.slice(6)
+				// 	axios.get(`http://api.lolhuman.xyz/api/xnxx?apikey=${lolhuman}&url=${pcas}`)
+				// 		.then(async (res) => {
+				// 			await urbae.sendFileFromUrl(from, res.data.result.thumbnail, 'img.jpg', `「 *XNXX* 」\n\n*Title:* ${res.data.result.title}\n*Duration:* ${res.data.result.duration}\n*Views:* ${res.data.result.view}\n*Rating:* ${res.data.result.rating}\n*Like:* ${res.data.result.like}\n*Dislike:* ${res.data.result.dislike}\n*Comment:* ${res.data.result.comment}`, id)
+				// 			const inihasilvid = res.data.result.link[1].link
+				// 			await urbae.sendFileFromUrl(from, inihasilvid, 'vid.mp4', '', id)
+				// 				.catch(() => {
+				// 					urbae.reply(from, 'Url salah, silahkan masukkan url yang benar', id)
+				// 				})
+				// 		})
+				// 		.catch((err) => {
+				// 			console.log(err)
+				// 		})
+				// 	break
+				// case prefix + 'xnxxsearch':
+				// 	if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	if (args.length == 0) return urbae.reply(from, `Mencari video dari website XNXX, Gunakan ${prefix}xnxxsearch judul\nContoh: ${prefix}xnxxsearch japan`, id)
+				// 	const xsch = body.slice(12)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const fucth = await axios.get(`https://h4ck3rs404-api.herokuapp.com/api/xnxx-search?q=${xsch}&apikey=${hackapi}`)
+				// 		const fucth2 = fucth.data
+				// 		const { result } = fucth2
+				// 		let xsz = `*「 XNXX 」*\n`
+				// 		for (let i = 0; i < result.length; i++) {
+				// 			xsz += `\n─────────────────\n\n• *Title:* ${result[i].judul}\n• *Views:* ${result[i].viewers}\n• *Info:* ${result[i].info}\n• *Url:* ${result[i].url}\n`
+				// 		}
+				// 		await urbae.sendFileFromUrl(from, result[0].thumb, 'thumb.jpg', xsz, id)
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 		urbae.reply(from, `Mungkin hasil pencarian yang anda inginkan tidak ada didalam website`, id)
+				// 	}
+				// 	break
+				// case prefix + 'tebakanime':
+				// 	const animesoal = await fetchJson(`https://h4ck3rs404-api.herokuapp.com/api/kuis/tebakanime?apikey=${hackapi}`)
+				// 	if (animesoal.status == false) return urbae.reply(from, 'Lagi error', id)
+				// 	const imageanime = animesoal.result.image
+				// 	const jawabananime = `Result : ${animesoal.result.name}\nDeskripsi : ${animesoal.result.desc}`
+				// 	urbae.sendFileFromUrl(from, imageanime, 'image.jpg', `Tebak chara apa ini`, id)
+				// 	await sleep(10000)
+				// 	urbae.sendText(from, '_30 detik lagi_')
+				// 	await sleep(10000)
+				// 	urbae.sendText(from, '_20 detik lagi_')
+				// 	await sleep(10000)
+				// 	urbae.sendText(from, '_10 detik lagi_')
+				// 	await sleep(10000)
+				// 	urbae.reply(from, jawabananime, id)
+				// 	break
+				// case prefix + 'phsearch':
+				// 	if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	if (args.length == 0) return urbae.reply(from, `Mencari bokep dari website Pornhub, gunakan ${prefix}phsearch judul\nContoh: ${prefix}phsearch step sister`, id)
+				// 	const phword = body.slice(10)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const phapi = await axios.get(`https://h4ck3rs404-api.herokuapp.com/api/phub-search?q=${phword}&apikey=${hackapi}`)
+				// 	const phdata = phapi.data
+				// 	if (phdata.status == false) return urbae.reply(from, 'Film yang anda cari tidak dapat ditemukan', id)
+				// 	const pornhubb = phdata.result
+				// 	let phtext = `*「 P O R N H U B 」*\n`
+				// 	for (let i = 0; i < pornhubb.length; i++) {
+				// 		phtext += `\n─────────────────\n\n•*Title:* ${result[i].title}\n•*Views:* ${result[i].views}\n•*Channel:* ${result[i].author}\n•*Uploaded:* ${result[i].publish}\n•*Url:* ${result[i].url}\n`
+				// 	}
+				// 	await urbae.sendFileFromUrl(from, result[0].thumb, 'thumbnail.jpg', phtext, id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, 'Terjadi kesalahan, coba lagi nanti', id)
+				// 		})
+				// 	break
+				// case prefix + 'searchuser':
+				// 	if (args.length == 0) return urbae.reply(from, `Mencari user instagram gunakan ${prefix}searchuser query\nContoh: ${prefix}searchuser zennny`, id)
+				// 	const userinsta = body.slice(12)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const userapi = await axios.get(`https://h4ck3rs404-api.herokuapp.com/api/iguser?q=${userinsta}&apikey=${hackapi}`)
+				// 	const userdata = userapi.data
+				// 	const resultdata2 = userdata.result
+				// 	let instatext = `*「 INSTAGRAM USER 」*\n`
+				// 	for (let i = 0; i < resultdata2.length; i++) {
+				// 		instatext = `\n─────────────────\n\n• *Username:* ${resultdata2[i].username}\n• *Fullname:* ${resultdata2[i].full_name}\n• *Verified:* ${resultdata2[i].verified_user}\n• *Private:* ${resultdata2[i].private_user}\n`
+				// 	}
+				// 	await urbae.sendFileFromUrl(from, resultdata2[0].profile_pic, 'profile.jpg', instatext, id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'npbioskop':
+				// case prefix + 'nowplaying':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const bioskopurl = await axios.get(`https://zenzapi.xyz/api/nowplayingbioskop?apikey=${zenzapi}`)
+				// 	const bioskopdata = bioskopurl.data
+				// 	if (bioskopdata.status == false) return urbae.reply(from, 'Rest Api sedang error', id)
+				// 	const bioskopresult = bioskopdata.result
+				// 	let bioskoptxt = `*「 NOW PLAYING ON BIOSKOP 」*\n`
+				// 	for (let i = 0; i < bioskopresult.length; i++) {
+				// 		bioskoptxt += `\n─────────────────\n\n• *Title:* ${bioskopresult[i].title}\n• *Url:* ${bioskopresult[i].url}\n`
+				// 	}
+				// 	await urbae.sendFileFromUrl(from, bioskopresult[0].img, 'img.jpg', bioskoptxt, id)
+				// 	break
+				// case prefix + 'bbcindo':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const bbcurl = await axios.get(`https://dapuhy-api.herokuapp.com/api/berita/cnn?apikey=${dapuhyapi}`)
+				// 	const bbcdata = bbcurl.data
+				// 	if (bbcdata.status == false) return urbae.reply(from, 'Rest Api sedang error', id)
+				// 	const bbcresult = bbcdata.result
+				// 	let bbctxt = `*「 BBC INDONESIA 」*\n`
+				// 	for (let i = 0; i < bbcresult.length; i++) {
+				// 		bbctxt += `\n─────────────────\n\n• *Berita:* ${bbcresult[i].title}\n• *Upload:* ${bbcresult[i].upload}\n• *Url:* ${bbcresult[i].url}\n`
+				// 	}
+				// 	await urbae.reply(from, bbctxt, id)
+				// 	break
+				// case prefix + 'cnnindonesia':
+				// case prefix + 'cnnindo':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const cnnapi = await axios.get(`https://dapuhy-api.herokuapp.com/api/berita/cnn?apikey=${dapuhyapi}`)
+				// 	const cnndata = cnnapi.data
+				// 	if (cnndata.status == false) return urbae.reply(from, 'Rest Api sedang error', id)
+				// 	const cnnresult = cnndata.result
+				// 	let cnntext = `*「 CNN INDONESIA 」*\n`
+				// 	for (let i = 0; i < cnnresult.length; i++) {
+				// 		cnntext += `\n─────────────────\n\n• *Berita:* ${cnnresult[i].title}\n• *Upload:* ${cnnresult[i].upload}\n• *Url:* ${cnnresult[i].url}\n`
+				// 	}
+				// 	await urbae.sendFileFromUrl(from, cnnresult[0].thumb, 'img.jpg', cnntext, id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'nanimelatest':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const nanimeurl = await axios.get(`http://zekais-api.herokuapp.com/nanimenew?apikey=${zekais}`)
+				// 	const nanimedata = nanimeurl.data
+				// 	if (nanimedata.status == 500) return urbae.reply(from, nanimedata.result, id)
+				// 	const nanimeres = nanimedata.result
+				// 	let nanimetxt = `*「 NANIME LATEST 」*\n`
+				// 	for (let i = 0; i < nanimeres.length; i++) {
+				// 		nanimetxt += `\n─────────────────\n\n• *Judul:* ${nanimeres[i].name}\n• *Rating:* ${nanimeres[i].rating}\n• *Status:* ${nanimeres[i].status}\n• *Url:* ${nanimeres[i].url}\n`
+				// 	}
+				// 	await urbae.sendFileFromUrl(from, nanimeres[0].thumb, 'thumb.jpg', nanimetxt, id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'nanimesr':
+				// 	if (args.length == 0) return urbae.reply(from, `Mencari anime dari website Nanime gunakan ${prefix}nanimesr query\nContoh: ${prefix}nanimesr sword`, id)
+				// 	const sranime = body.slice(10)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const sranimeurl = axios.get(`http://zekais-api.herokuapp.com/nanimesr?query=${sranime}&apikey=${zekais}`)
+				// 	const srdatanime = sranimeurl.data
+				// 	if (srdatanime == 500) return urbae.reply(from, srdatanime.result, id)
+				// 	const resultnime = srdatanime.result
+				// 	let txtnanim = `*「 NANIME SEARCH 」*\n`
+				// 	for (let i = 0; i < resultnime.length; i++) {
+				// 		txtanim += `\n─────────────────\n\n• *Judul:* ${resultnime[i].name}\n• *Rating:* ${resultnime[i].rating}\n• *Status:* ${resultnime[i].status}\n• *Url:* ${resultnime[i].url}\n`
+				// 	}
+				// 	await urbae.sendFileFromUrl(from, resultnime[0].thumb, 'thumb.jpg', txtanim, id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'nanimeget':
+				// 	if (args.length == 0) return urbae.reply(from, `Masukan url nanime nya\nContoh: ${prefix}nanimeget https://nanime.biz/anime/sword-art-online-alicization-war-of-underworld-2nd-season`, id)
+				// 	const getnanime = body.slice(11)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const geturlnime = axios.get(`http://zekais-api.herokuapp.com/nanimeget?url=${getnanime}&apikey=${zekais}`)
+				// 	const nanimedata2 = geturlnime.data.result
+				// 	if (geturlnime.data.result.status == 500) return urbae.reply(from, geturlnime.data.result, id)
+				// 	const judulnanime = nanimedata2.title
+				// 	const thumbnanime = nanimedata2.thumb
+				// 	const descnanime = nanimedata2.desc
+				// 	urbae.sendFileFromUrl(from, thumbnanime, 'thumb.jpg', `Judul: ${judulnanime}\nDeskripsi: ${descnanime}`, id)
+				// 	const nameandurl = nanimedata2.url
+				// 	let nanimegetxt = `*「 NANIME INFO 」*\n`
+				// 	for (let i = 0; i < nanimedata2.length; i++) {
+				// 		nanimegetxt += `\n─────────────────\n\n• *Judul:* ${nanimedata2[i].name}\n• *Url:* ${nanimedata2[i].url}\n`
+				// 	}
+				// 	await urbae.reply(from, nanimegetxt, id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'youtubetrending':
+				// case prefix + 'trendingyt':
+				// case prefix + 'trendingyoutube':
+				// case prefix + 'yttrending':
+				// 	if (args.length == 0) return urbae.reply(from, `Usage : ${prefix}trendingyt countrycode\nContoh : ${prefix}trendingyt id\nContoh 2 : ${prefix}trendingyt usa\nCountry Code bisa ditemukan menggunakan ${prefix}kodebahasa`, id)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const trendyt = await axios.get(`https://cakrayp.herokuapp.com/api/youtube/trending?country=${args[0]}&page=trending&apikey=${cakrayp}`)
+				// 	const datatrend = trendyt.data
+				// 	if (datatrend.status == false) return urbae.reply(from, datatrend.message, id)
+				// 	const trendres = datatrend.result
+				// 	let trendtxt = `*「 YOUTUBE TRENDING 」*\n`
+				// 	for (let i = 0; i < trendres.length; i++) {
+				// 		trendtxt += `\n─────────────────\n\n• *Title:* ${trendres[i].title}\n• *Duration:* ${trendres[i].duration}\n• *Viewers:* ${trendres[i].viewers}\n• *Uploaded:* ${trendres[i].publishedat}\n• *Channel:* ${trendres[i].channel.name}\n• *Verified:* ${trendres[i].isverified}\n• *Url:* ${trendres[i].video.url}\n• *Description:* ${trendres[i].description}\n`
+				// 	}
+				// 	await urbae.sendFileFromUrl(from, trendres[0].thumbnail.url, 'thumbnail.jpg', trendtxt, id)
+				// 	break
 				case prefix + 'trendingmusic':
 				case prefix + 'trendmusic':
 					if (args.length == 0) return urbae.reply(from, `Usage : ${prefix}trendmusic countrycode\nContoh : ${prefix}trendmusic id\nContoh 2 : ${prefix}trendmusic usa\nCountry Code bisa ditemukan menggunakan ${prefix}kodebahasa`, id)
@@ -4421,55 +4427,55 @@ module.exports = HandleMsg = async (urbae, message) => {
 						urbae.reply(from, `Format pesan salah\nReply atau post foto dengan menggunakan caption ${prefix}kalender`, id)
 					}
 					break
-				case prefix + 'missing':
-					if (args.length == 0) return urbae.reply(from, 'Format pesan salah')
-					const atas = q.substring(0, q.indexOf('|') - 1)
-					const tengah = q.substring(q.indexOf('|') + 2, q.lastIndexOf('|') - 1)
-					const bawah = q.substring(q.lastIndexOf('|') + 2)
-					if (isMedia && isImage || isQuotedImage) {
-						await urbae.reply(from, mess.wait, id)
-						const encryptMedia = isQuotedImage ? quotedMsg : message
-						const mediaData = await decryptMedia(encryptMedia, uaOverride)
-						const imageLink = await uploadImages(mediaData, `missing.${sender.id}`)
-						rugaapi.missing(atas, tengah, bawah, imageLink)
-							.then(async ({ result }) => {
-								await urbae.sendFileFromUrl(from, result.imgUrl, 'missing.jpg', '', id)
-								console.log('Success sending image!')
-							})
-							.catch(async (err) => {
-								console.error(err)
-								await urbae.reply(from, 'Error!', id)
-							})
-					} else {
-						await urbae.reply(from, 'Format pesan salah', id)
-					}
-					break
-				case prefix + 'myzodiac':
-				case prefix + 'myzodiak':
-					if (args.length == 0) return await urbae.reply(from, `Kirim perintah ${prefix}myzodiak namazodiak\nContoh: ${prefix}myzodiak aquarius`, id)
-					await urbae.reply(from, mess.wait, id)
-					fetchJson(`https://zenzapi.xyz/api/zodiak-harian?query=${args[0]}&apikey=${zenzapi}`)
-						.then(async (res) => {
-							if (res.status == false) return urbae.reply(from, 'Zodiak yang kamu cari tidak ada', id)
-							const zodiakmu = res.result.judul
-							const thumbnailni = res.result.thumb
-							const datezodiak = res.result.date
-							const nohoky = res.result.no_hoki
-							const teoriumum2 = res.result.teori.umum
-							const teoricinta2 = res.result.teori.love
-							const teoriduit2 = res.result.teori.keuangan
-							const initextnya = `Zodiak: ${zodiakmu}\nTanggal: ${datezodiak}\nNo Hoki: ${nohoky}\nUmum: ${teoriumum2}\nPercintaan: ${teoricinta2}\nKeuangan: ${teoriduit2}`
-							await urbae.sendFileFromUrl(from, thumbnailni, 'thumb.jpg', initextnya, id)
-								.catch(err => {
-									console.log(err)
-									urbae.reply(from, err.message, id)
-								})
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.messsage, id)
-						})
-					break
+				// case prefix + 'missing':
+				// 	if (args.length == 0) return urbae.reply(from, 'Format pesan salah')
+				// 	const atas = q.substring(0, q.indexOf('|') - 1)
+				// 	const tengah = q.substring(q.indexOf('|') + 2, q.lastIndexOf('|') - 1)
+				// 	const bawah = q.substring(q.lastIndexOf('|') + 2)
+				// 	if (isMedia && isImage || isQuotedImage) {
+				// 		await urbae.reply(from, mess.wait, id)
+				// 		const encryptMedia = isQuotedImage ? quotedMsg : message
+				// 		const mediaData = await decryptMedia(encryptMedia, uaOverride)
+				// 		const imageLink = await uploadImages(mediaData, `missing.${sender.id}`)
+				// 		rugaapi.missing(atas, tengah, bawah, imageLink)
+				// 			.then(async ({ result }) => {
+				// 				await urbae.sendFileFromUrl(from, result.imgUrl, 'missing.jpg', '', id)
+				// 				console.log('Success sending image!')
+				// 			})
+				// 			.catch(async (err) => {
+				// 				console.error(err)
+				// 				await urbae.reply(from, 'Error!', id)
+				// 			})
+				// 	} else {
+				// 		await urbae.reply(from, 'Format pesan salah', id)
+				// 	}
+					// break
+				// case prefix + 'myzodiac':
+				// case prefix + 'myzodiak':
+				// 	if (args.length == 0) return await urbae.reply(from, `Kirim perintah ${prefix}myzodiak namazodiak\nContoh: ${prefix}myzodiak aquarius`, id)
+				// 	await urbae.reply(from, mess.wait, id)
+				// 	fetchJson(`https://zenzapi.xyz/api/zodiak-harian?query=${args[0]}&apikey=${zenzapi}`)
+				// 		.then(async (res) => {
+				// 			if (res.status == false) return urbae.reply(from, 'Zodiak yang kamu cari tidak ada', id)
+				// 			const zodiakmu = res.result.judul
+				// 			const thumbnailni = res.result.thumb
+				// 			const datezodiak = res.result.date
+				// 			const nohoky = res.result.no_hoki
+				// 			const teoriumum2 = res.result.teori.umum
+				// 			const teoricinta2 = res.result.teori.love
+				// 			const teoriduit2 = res.result.teori.keuangan
+				// 			const initextnya = `Zodiak: ${zodiakmu}\nTanggal: ${datezodiak}\nNo Hoki: ${nohoky}\nUmum: ${teoriumum2}\nPercintaan: ${teoricinta2}\nKeuangan: ${teoriduit2}`
+				// 			await urbae.sendFileFromUrl(from, thumbnailni, 'thumb.jpg', initextnya, id)
+				// 				.catch(err => {
+				// 					console.log(err)
+				// 					urbae.reply(from, err.message, id)
+				// 				})
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.messsage, id)
+				// 		})
+				// 	break
 				case prefix + 'zodiak':
 					if (args.length !== 4) return urbae.reply(from, `Untuk mengecek zodiak, gunakan ${prefix}zodiak nama tanggallahir bulanlahir tahunlahir\nContoh: ${prefix}zodiak fikri 13 06 2004`, id)
 					const cekzodiak = await rugaapi.cekzodiak(args[0], args[1], args[2])
@@ -4478,75 +4484,76 @@ module.exports = HandleMsg = async (urbae, message) => {
 							urbae.reply(from, 'Ada yang Error!', id)
 						})
 					break
-				case prefix + 'zodiakmingguan':
-					if (args.length == 0) return urbae.reply(from, `Untuk mengecek zodiak mingguan, gunakan ${prefix}zodiakmingguan nama zodiak\nContoh: ${prefix}zodiakmingguan sagitarius`, id)
-					fetchJson(`https://zenzapi.xyz/api/zodiak-harian?query=${args[0]}&apikey=${zenzapi}`)
-						.then(async (res) => {
-							if (res.status == false) return urbae.reply(from, 'Zodiak yang kamu cari tidak ada, pastikan ketik dengan benar', id)
-							const namezod = res.result.judul
-							const thumbzod = res.result.thumb
-							const datezod = res.result.date
-							const nohoki = res.result.no_hoki
-							const teoriumum = res.result.teori.umum
-							const teorilove = res.result.teori.love
-							const teoriduit = res.result.teori.duit
-							const bethetext = `Zodiak: ${namezod}\nTanggal: ${datezod}\nNo Hoki: ${nohoki}\nTeori Umum: ${teoriumum}\nTeori Cinta: ${teorilove}\nTeori Keuangan: ${teoriduit}`
-							await urbae.sendFileFromUrl(from, thumbzod, 'thumbnail.jpg', bethetext, id)
-								.catch(err => {
-									console.log(err)
-									urbae.reply(from, err.message, id)
-								})
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'artinama':
-					if (args.length == 0) return urbae.reply(from, `Untuk mengetahui arti nama seseorang\nketik ${prefix}artinama namakamu`, id)
-					rugaapi.artinama(body.slice(10))
-						.then(async (res) => {
-							await urbae.reply(from, `Arti : ${res}`, id)
-								.catch(() => {
-									urbae.reply(from, 'Sedang error', id)
-								})
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'cekjodoh':
-					if (args.length == 0) return urbae.reply(from, `Untuk mengecek jodoh melalui nama\nketik: ${prefix}cekjodoh nama-kamu nama-pasangan\n\ncontoh: ${prefix}cekjodoh bagas siti\n\nhanya bisa pakai nama panggilan (satu kata)`, id)
-					rugaapi.cekjodoh(args[0], args[1])
-						.then(async (res) => {
-							await urbae.sendFileFromUrl(from, `${res.link}`, '', `${res.text}`, id)
-						})
-					break
+				// case prefix + 'zodiakmingguan':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk mengecek zodiak mingguan, gunakan ${prefix}zodiakmingguan nama zodiak\nContoh: ${prefix}zodiakmingguan sagitarius`, id)
+				// 	fetchJson(`https://zenzapi.xyz/api/zodiak-harian?query=${args[0]}&apikey=${zenzapi}`)
+				// 		.then(async (res) => {
+				// 			if (res.status == false) return urbae.reply(from, 'Zodiak yang kamu cari tidak ada, pastikan ketik dengan benar', id)
+				// 			const namezod = res.result.judul
+				// 			const thumbzod = res.result.thumb
+				// 			const datezod = res.result.date
+				// 			const nohoki = res.result.no_hoki
+				// 			const teoriumum = res.result.teori.umum
+				// 			const teorilove = res.result.teori.love
+				// 			const teoriduit = res.result.teori.duit
+				// 			const bethetext = `Zodiak: ${namezod}\nTanggal: ${datezod}\nNo Hoki: ${nohoki}\nTeori Umum: ${teoriumum}\nTeori Cinta: ${teorilove}\nTeori Keuangan: ${teoriduit}`
+				// 			await urbae.sendFileFromUrl(from, thumbzod, 'thumbnail.jpg', bethetext, id)
+				// 				.catch(err => {
+				// 					console.log(err)
+				// 					urbae.reply(from, err.message, id)
+				// 				})
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'artinama':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk mengetahui arti nama seseorang\nketik ${prefix}artinama namakamu`, id)
+				// 	rugaapi.artinama(body.slice(10))
+				// 		.then(async (res) => {
+				// 			await urbae.reply(from, `Arti : ${res}`, id)
+				// 				.catch(() => {
+				// 					urbae.reply(from, 'Sedang error', id)
+				// 				})
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'cekjodoh':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk mengecek jodoh melalui nama\nketik: ${prefix}cekjodoh nama-kamu nama-pasangan\n\ncontoh: ${prefix}cekjodoh bagas siti\n\nhanya bisa pakai nama panggilan (satu kata)`, id)
+				// 	rugaapi.cekjodoh(args[0], args[1])
+				// 		.then(async (res) => {
+				// 			await urbae.sendFileFromUrl(from, `${res.link}`, '', `${res.text}`, id)
+				// 		})
+				// 	break
 
 				// Random Kata
-				case prefix + 'fiersa':
-					fetch('https://raw.githubusercontent.com/AlvioAdjiJanuar/Fiersa-Besari/main/fiersa-besari.txt')
-						.then(res => res.text())
-						.then(body => {
-							let ff = body.split('\n')
-							let randomff = ff[Math.floor(Math.random() * ff.length)]
-							urbae.reply(from, randomff, id)
-						})
-						.catch(() => {
-							urbae.reply(from, 'Ada yang Error!', id)
-						})
-					break
+				// case prefix + 'fiersa':
+				// 	fetch('https://raw.githubusercontent.com/AlvioAdjiJanuar/Fiersa-Besari/main/fiersa-besari.txt')
+				// 		.then(res => res.text())
+				// 		.then(body => {
+				// 			let ff = body.split('\n')
+				// 			let randomff = ff[Math.floor(Math.random() * ff.length)]
+				// 			urbae.reply(from, randomff, id)
+				// 		})
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Ada yang Error!', id)
+				// 		})
+				// 	break
 				case prefix + 'buatgrup':
 					const bwtgrup = body.trim().split(' ')
 					const gcnuma = bwtgrup[1]
 					urbae.createGroup(gcnuma, sender.id)
+					await urbae.promoteParticipant(groupId, from)
 					urbae.sendText(from, 'berhasil membuat grup', id)
 					break
-				case prefix + 'chika':
-					await urbae.reply(from, `media sedang dikirim , tunggu sampe10-20 detik`, id)
-					await urbae.sendFileFromUrlFrom(from, `https://pencarikode.xyz/api/chika?apikey=${paiskey}`, 'chika.mp4', '', id)
-					break
+				// case prefix + 'chika':
+				// 	await urbae.reply(from, `media sedang dikirim , tunggu sampe10-20 detik`, id)
+				// 	await urbae.sendFileFromUrlFrom(from, `https://pencarikode.xyz/api/chika?apikey=${paiskey}`, 'chika.mp4', '', id)
+				// 	break
 				case prefix + 'tomp3':
 					if (isMedia || isQuotedVideo || isVideo) {
 						await urbae.reply(from, mess.wait, id)
@@ -4579,68 +4586,68 @@ module.exports = HandleMsg = async (urbae, message) => {
 						await urbae.reply(from, 'Format pesan salah', id)
 					}
 					break
-				case prefix + 'motivasi':
-					fetch('https://raw.githubusercontent.com/AlvioAdjiJanuar/motivasi/main/motivasi.txt')
-						.then(res => res.text())
-						.then(body => {
-							let splitmotivasi = body.split('\n')
-							let randommotivasi = splitmotivasi[Math.floor(Math.random() * splitmotivasi.length)]
-							urbae.reply(from, randommotivasi, id)
-						})
-						.catch(() => {
-							urbae.reply(from, 'Ada yang Error!', id)
-						})
-					break
-				case prefix + 'urgay':
-					if (args.length == 0) return urbae.reply(from, `Untuk mengetahui seberapa gay seseorang gunakan ${prefix}urgay namanya\n\nContoh: ${prefix}urgay burhan`, id)
-					axios.get(`https://urbaez.herokuapp.com/api/howgay`)
-						.then(res => {
-							const gayy = res.data.desc
-							urbae.reply(from, gayy, id)
-						})
-					break
-				case prefix + 'fakta2':
+				// case prefix + 'motivasi':
+				// 	fetch('https://raw.githubusercontent.com/AlvioAdjiJanuar/motivasi/main/motivasi.txt')
+				// 		.then(res => res.text())
+				// 		.then(body => {
+				// 			let splitmotivasi = body.split('\n')
+				// 			let randommotivasi = splitmotivasi[Math.floor(Math.random() * splitmotivasi.length)]
+				// 			urbae.reply(from, randommotivasi, id)
+				// 		})
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Ada yang Error!', id)
+				// 		})
+				// 	break
+				// case prefix + 'urgay':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk mengetahui seberapa gay seseorang gunakan ${prefix}urgay namanya\n\nContoh: ${prefix}urgay burhan`, id)
+				// 	axios.get(`https://urbaez.herokuapp.com/api/howgay`)
+				// 		.then(res => {
+				// 			const gayy = res.data.desc
+				// 			urbae.reply(from, gayy, id)
+				// 		})
+				// 	break
+				case prefix + 'fakta':
 					axios.get(`https://kocakz.herokuapp.com/api/random/text/faktaunik`).then(res => {
 						const faktuy = `${res.data.result}`
 						urbae.reply(from, faktuy, id)
 					})
 					break
-				case prefix + 'fakta':
-					fetch('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/random/faktaunix.txt')
-						.then(res => res.text())
-						.then(body => {
-							let splitnix = body.split('\n')
-							let randomnix = splitnix[Math.floor(Math.random() * splitnix.length)]
-							urbae.reply(from, randomnix, id)
-						})
-						.catch(() => {
-							urbae.reply(from, 'Ada yang Error!', id)
-						})
-					break
-				case prefix + 'katabijak':
-					fetch('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/random/katabijax.txt')
-						.then(res => res.text())
-						.then(body => {
-							let splitbijak = body.split('\n')
-							let randombijak = splitbijak[Math.floor(Math.random() * splitbijak.length)]
-							urbae.reply(from, randombijak, id)
-						})
-						.catch(() => {
-							urbae.reply(from, 'Ada yang Error!', id)
-						})
-					break
-				case prefix + 'fakboy':
-					fetch('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/random/pantun.txt')
-						.then(res => res.text())
-						.then(body => {
-							let splitpantun = body.split('\n')
-							let randompantun = splitpantun[Math.floor(Math.random() * splitpantun.length)]
-							urbae.reply(from, randompantun.replace(/urbae-line/g, "\n"), id)
-						})
-						.catch(() => {
-							urbae.reply(from, 'Ada yang Error!', id)
-						})
-					break
+				// case prefix + 'fakta2':
+				// 	fetch('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/random/faktaunix.txt')
+				// 		.then(res => res.text())
+				// 		.then(body => {
+				// 			let splitnix = body.split('\n')
+				// 			let randomnix = splitnix[Math.floor(Math.random() * splitnix.length)]
+				// 			urbae.reply(from, randomnix, id)
+				// 		})
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Ada yang Error!', id)
+				// 		})
+				// 	break
+				// case prefix + 'katabijak':
+				// 	fetch('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/random/katabijax.txt')
+				// 		.then(res => res.text())
+				// 		.then(body => {
+				// 			let splitbijak = body.split('\n')
+				// 			let randombijak = splitbijak[Math.floor(Math.random() * splitbijak.length)]
+				// 			urbae.reply(from, randombijak, id)
+				// 		})
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Ada yang Error!', id)
+				// 		})
+				// 	break
+				// case prefix + 'fakboy':
+				// 	fetch('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/random/pantun.txt')
+				// 		.then(res => res.text())
+				// 		.then(body => {
+				// 			let splitpantun = body.split('\n')
+				// 			let randompantun = splitpantun[Math.floor(Math.random() * splitpantun.length)]
+				// 			urbae.reply(from, randompantun.replace(/urbae-line/g, "\n"), id)
+				// 		})
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Ada yang Error!', id)
+				// 		})
+				// 	break
 				case prefix + 'quote':
 					const quotex = await rugaapi.quote()
 					await urbae.reply(from, quotex, id)
@@ -4662,131 +4669,131 @@ module.exports = HandleMsg = async (urbae, message) => {
 							urbae.reply(from, err, id)
 						})
 					break
-				case prefix + 'cersex':
-					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					rugaapi.cersex()
-						.then(async (res) => {
-							await urbae.sendFileFromUrl(from, res.img, 'image.jpg', `- Judul: ${res.judul}\nCerita : ${res.cersex}`, id)
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'puisi':
-					urbae.reply(from, mess.wait, id)
-					await urbae.sendFileFromUrl(from, `https://api.vhtear.com/puisi_image&apikey=${vhtearkey}`, 'img.jpg', '', id)
-					break
+				// case prefix + 'cersex':
+				// 	if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	rugaapi.cersex()
+				// 		.then(async (res) => {
+				// 			await urbae.sendFileFromUrl(from, res.img, 'image.jpg', `- Judul: ${res.judul}\nCerita : ${res.cersex}`, id)
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'puisi':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	await urbae.sendFileFromUrl(from, `https://api.vhtear.com/puisi_image&apikey=${vhtearkey}`, 'img.jpg', '', id)
+				// 	break
 
 				//Random Images
-				case prefix + 'anime':
-					if (args.length == 0) return urbae.reply(from, `Untuk menggunakan ${prefix}anime\nSilahkan ketik: ${prefix}anime [query]\nContoh: ${prefix}anime random\n\nquery yang tersedia:\nrandom, waifu, husbu, neko`, id)
-					if (args[0] == 'random' || args[0] == 'waifu' || args[0] == 'husbu' || args[0] == 'neko') {
-						fetch('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/random/anime/' + args[0] + '.txt')
-							.then(res => res.text())
-							.then(body => {
-								let randomnime = body.split('\n')
-								let randomnimex = randomnime[Math.floor(Math.random() * randomnime.length)]
-								urbae.sendFileFromUrl(from, randomnimex, '', 'Nee..', id)
-							})
-							.catch(() => {
-								urbae.reply(from, 'Ada yang Error!', id)
-							})
-					} else {
-						urbae.reply(from, `Maaf query tidak tersedia. Silahkan ketik ${prefix}anime untuk melihat list query`)
-					}
-					break
-				case prefix + 'wallprogramming':
-					urbae.reply(from, mess.wait, id)
-					axios.get(`https://urbaee-xyz.herokuapp.com/api/wallpaper/programming?apikey=Urbaeexyz`)
-						.then(async (res) => {
-							const berandom = res.data.result
-							let thisrandom = berandom[Math.floor(Math.random() * berandom.length)]
-							urbae.sendFileFromUrl(from, thisrandom, 'img.jpg', 'ichi ni san nya ari lasso', id)
-								.catch(() => {
-									urbae.reply(from, 'Error', id)
-								})
-						})
-						.catch((err) => {
-							console.log(err)
-						})
-					break
-				case prefix + 'kpop':
-					if (args.length == 0) return urbae.reply(from, `Untuk menggunakan ${prefix}kpop\nSilahkan ketik: ${prefix}kpop [query]\nContoh: ${prefix}kpop bts\n\nquery yang tersedia:\nblackpink, exo, bts`, id)
-					if (args[0] == 'blackpink' || args[0] == 'exo' || args[0] == 'bts') {
-						fetch('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/random/kpop/' + args[0] + '.txt')
-							.then(res => res.text())
-							.then(body => {
-								let randomkpop = body.split('\n')
-								let randomkpopx = randomkpop[Math.floor(Math.random() * randomkpop.length)]
-								urbae.sendFileFromUrl(from, randomkpopx, '', 'Nee..', id)
-							})
-							.catch(() => {
-								urbae.reply(from, 'Ada yang Error!', id)
-							})
-					} else {
-						urbae.reply(from, `Maaf query tidak tersedia. Silahkan ketik ${prefix}kpop untuk melihat list query`)
-					}
-					break
-				case prefix + 'ppcp2':
-				case prefix + 'ppcouple2':
-					urbae.reply(from, mess.wait, id)
-					axios.get(`https://leyscoders-api.herokuapp.com/api/ppcouple?apikey=${leysapi}`)
-						.then(async (res) => {
-							urbae.sendFileFromUrl(from, res.data.result.male, 'img.jpg', '', id)
-							urbae.sendFileFromUrl(from, res.data.result.female, 'img.jpg', '', id)
-								.catch(err => {
-									console.log(err)
-									urbae.reply(from, 'Error', id)
-								})
-						})
-					break
-				case prefix + 'ppcp':
-				case prefix + 'ppcouple':
-					urbae.reply(from, mess.wait, id)
-					axios.get(`https://dapuhy-api.herokuapp.com/api/randomimage/couple?apikey=${dapuhyapi}`)
-						.then(async (res) => {
-							await urbae.sendFileFromUrl(from, res.data.result.pria, 'cp.jpg', '', id)
-							await urbae.sendFileFromUrl(from, res.data.result.wanita, 'cp.jpg', '', id)
-								.catch(() => {
-									urbae.reply(from, 'lagii error nich', id)
-								})
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'memes':
-					urbae.reply(from, mess.wait, id)
-					urbae.sendFileFromUrl(from, `https://lindow-api.herokuapp.com/api/random/meme?apikey=${lindowapi}`, 'img.jpg', '', id)
-						.catch(() => {
-							urbae.reply(from, 'Ada yang Error!', id)
-						})
-					break
+				// case prefix + 'anime':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk menggunakan ${prefix}anime\nSilahkan ketik: ${prefix}anime [query]\nContoh: ${prefix}anime random\n\nquery yang tersedia:\nrandom, waifu, husbu, neko`, id)
+				// 	if (args[0] == 'random' || args[0] == 'waifu' || args[0] == 'neko') {
+				// 		fetch('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/random/anime/' + args[0] + '.txt')
+				// 			.then(res => res.text())
+				// 			.then(body => {
+				// 				let randomnime = body.split('\n')
+				// 				let randomnimex = randomnime[Math.floor(Math.random() * randomnime.length)]
+				// 				urbae.sendFileFromUrl(from, randomnimex, '', 'Nee..', id)
+				// 			})
+				// 			.catch(() => {
+				// 				urbae.reply(from, 'Ada yang Error!', id)
+				// 			})
+				// 	} else {
+				// 		urbae.reply(from, `Maaf query tidak tersedia. Silahkan ketik ${prefix}anime untuk melihat list query`)
+				// 	}
+				// 	break
+				// case prefix + 'wallprogramming':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get(`https://urbaee-xyz.herokuapp.com/api/wallpaper/programming?apikey=Urbaeexyz`)
+				// 		.then(async (res) => {
+				// 			const berandom = res.data.result
+				// 			let thisrandom = berandom[Math.floor(Math.random() * berandom.length)]
+				// 			urbae.sendFileFromUrl(from, thisrandom, 'img.jpg', 'ichi ni san nya ari lasso', id)
+				// 				.catch(() => {
+				// 					urbae.reply(from, 'Error', id)
+				// 				})
+				// 		})
+				// 		.catch((err) => {
+				// 			console.log(err)
+				// 		})
+				// 	break
+				// case prefix + 'kpop':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk menggunakan ${prefix}kpop\nSilahkan ketik: ${prefix}kpop [query]\nContoh: ${prefix}kpop bts\n\nquery yang tersedia:\nblackpink, exo, bts`, id)
+				// 	if (args[0] == 'blackpink' || args[0] == 'exo' || args[0] == 'bts') {
+				// 		fetch('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/random/kpop/' + args[0] + '.txt')
+				// 			.then(res => res.text())
+				// 			.then(body => {
+				// 				let randomkpop = body.split('\n')
+				// 				let randomkpopx = randomkpop[Math.floor(Math.random() * randomkpop.length)]
+				// 				urbae.sendFileFromUrl(from, randomkpopx, '', 'Nee..', id)
+				// 			})
+				// 			.catch(() => {
+				// 				urbae.reply(from, 'Ada yang Error!', id)
+				// 			})
+				// 	} else {
+				// 		urbae.reply(from, `Maaf query tidak tersedia. Silahkan ketik ${prefix}kpop untuk melihat list query`)
+				// 	}
+				// 	break
+				// case prefix + 'ppcp2':
+				// case prefix + 'ppcouple2':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get(`https://leyscoders-api.herokuapp.com/api/ppcouple?apikey=${leysapi}`)
+				// 		.then(async (res) => {
+				// 			urbae.sendFileFromUrl(from, res.data.result.male, 'img.jpg', '', id)
+				// 			urbae.sendFileFromUrl(from, res.data.result.female, 'img.jpg', '', id)
+				// 				.catch(err => {
+				// 					console.log(err)
+				// 					urbae.reply(from, 'Error', id)
+				// 				})
+				// 		})
+				// 	break
+				// case prefix + 'ppcp':
+				// case prefix + 'ppcouple':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get(`https://dapuhy-api.herokuapp.com/api/randomimage/couple?apikey=${dapuhyapi}`)
+				// 		.then(async (res) => {
+				// 			await urbae.sendFileFromUrl(from, res.data.result.pria, 'cp.jpg', '', id)
+				// 			await urbae.sendFileFromUrl(from, res.data.result.wanita, 'cp.jpg', '', id)
+				// 				.catch(() => {
+				// 					urbae.reply(from, 'lagii error nich', id)
+				// 				})
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'memes':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	urbae.sendFileFromUrl(from, `https://lindow-api.herokuapp.com/api/random/meme?apikey=${lindowapi}`, 'img.jpg', '', id)
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Ada yang Error!', id)
+				// 		})
+				// 	break
 
-				// Search Any
-				case prefix + 'dewabatch':
-					if (args.length == 0) return urbae.reply(from, `Untuk mencari anime batch dari Dewa Batch, ketik ${prefix}dewabatch judul\n\nContoh: ${prefix}dewabatch naruto`, id)
-					rugaapi.dewabatch(args[0])
-						.then(async (res) => {
-							await urbae.sendFileFromUrl(from, `${res.link}`, '', `${res.text}, id`)
-						})
-					break
-				case prefix + 'infoalamat':
-					if (args.length == 0) return urbae.reply(from, `Untuk mencari suatu alamat\nUsage : ${prefix}infoalamat polresta`, id)
-					rugaapi.ingfo(body.slice(12))
-						.then(async (res) => {
-							const ingf = `*Alamat :* ${res.result.data}\n\n*Keterangan :* ${res.result.deskripsi}`
-							urbae.reply(from, ingf, id)
-						})
-						.catch(() => {
-							urbae.reply(from, 'Errorr...', id)
-						})
-					break
-				case prefix + 'kusonime':
-					if (args.length == 0) return urbae.reply(from, `Mencari anime dari website Kusonime, gunakan ${prefix}kusonime judul anime`, id)
+				// // Search Any
+				// case prefix + 'dewabatch':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk mencari anime batch dari Dewa Batch, ketik ${prefix}dewabatch judul\n\nContoh: ${prefix}dewabatch naruto`, id)
+				// 	rugaapi.dewabatch(args[0])
+				// 		.then(async (res) => {
+				// 			await urbae.sendFileFromUrl(from, `${res.link}`, '', `${res.text}, id`)
+				// 		})
+				// 	break
+				// case prefix + 'infoalamat':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk mencari suatu alamat\nUsage : ${prefix}infoalamat polresta`, id)
+				// 	rugaapi.ingfo(body.slice(12))
+				// 		.then(async (res) => {
+				// 			const ingf = `*Alamat :* ${res.result.data}\n\n*Keterangan :* ${res.result.deskripsi}`
+				// 			urbae.reply(from, ingf, id)
+				// 		})
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Errorr...', id)
+				// 		})
+				// 	break
+				case prefix + 'anime':
+					if (args.length == 0) return urbae.reply(from, `Untuk mencari anime, gunakan ${prefix}anime judul anime`, id)
 					const carianim = body.slice(10)
 					urbae.reply(from, mess.wait, id)
 					try {
@@ -4812,15 +4819,15 @@ module.exports = HandleMsg = async (urbae, message) => {
 					})
 					break
 					*/
-				case prefix + 'images':
-					if (args.length == 0) return urbae.reply(from, `Untuk mencari gambar dari pinterest\nketik: ${prefix}images [search]\ncontoh: ${prefix}images naruto`, id)
-					const cariwall = body.slice(8)
-					const hasilwall = await images.fdci(cariwall)
-					await urbae.sendFileFromUrl(from, hasilwall, '', '', id)
-						.catch(() => {
-							urbae.reply(from, 'Ada yang Error!', id)
-						})
-					break
+				// case prefix + 'images':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk mencari gambar dari pinterest\nketik: ${prefix}images [search]\ncontoh: ${prefix}images naruto`, id)
+				// 	const cariwall = body.slice(8)
+				// 	const hasilwall = await images.fdci(cariwall)
+				// 	await urbae.sendFileFromUrl(from, hasilwall, '', '', id)
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Ada yang Error!', id)
+				// 		})
+				// 	break
 				case prefix + 'sreddit':
 					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
 					if (args.length == 0) return urbae.reply(from, `Untuk mencari gambar dari sub reddit\nketik: ${prefix}sreddit [search]\ncontoh: ${prefix}sreddit naruto`, id)
@@ -4832,18 +4839,18 @@ module.exports = HandleMsg = async (urbae, message) => {
 							urbae.reply(from, 'Ada yang Error!', id)
 						})
 					break
-				case prefix + 'ayatkursi':
-					urbae.reply(from, mess.wait, id)
-					axios.get(`https://urbaee-xyz.herokuapp.com/api/muslim/ayatkursi?apikey=Urbaeexyz`)
-						.then(async (res) => {
-							const tafsr = `*Arab:* ${res.data.result.data.arabic}\n\n*Latin:* ${res.data.result.data.latin}\n\n*Arti:* ${res.data.result.data.translation}\n\n*Tafsir:* ${res.data.result.data.tafsir}`
-							await urbae.reply(from, tafsr, id)
-								.catch((err) => {
-									urbae.reply(from, err, id)
-									console.log(err)
-								})
-						})
-					break
+				// case prefix + 'ayatkursi':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get(`https://urbaee-xyz.herokuapp.com/api/muslim/ayatkursi?apikey=Urbaeexyz`)
+				// 		.then(async (res) => {
+				// 			const tafsr = `*Arab:* ${res.data.result.data.arabic}\n\n*Latin:* ${res.data.result.data.latin}\n\n*Arti:* ${res.data.result.data.translation}\n\n*Tafsir:* ${res.data.result.data.tafsir}`
+				// 			await urbae.reply(from, tafsr, id)
+				// 				.catch((err) => {
+				// 					urbae.reply(from, err, id)
+				// 					console.log(err)
+				// 				})
+				// 		})
+				// 	break
 				case prefix + 'resep':
 					if (args.length == 0) return urbae.reply(from, `Untuk mencari resep makanan\nCaranya ketik: ${prefix}resep [search]\n\ncontoh: ${prefix}resep tahu`, id)
 					const cariresep = body.slice(7)
@@ -4853,18 +4860,18 @@ module.exports = HandleMsg = async (urbae, message) => {
 							urbae.reply(from, 'Ada yang Error!', id)
 						})
 					break
-				case prefix + 'quotesislamic':
-				case prefix + 'quotesislam':
-					axios.get(`https://urbaee-xyz.herokuapp.com/api/randomquote/muslim?apikey=Urbaeexyz`)
-						.then(async (res) => {
-							const islm = res.data.result.text_id
-							urbae.reply(from, islm, id)
-								.catch((err) => {
-									urbae.reply(from, err, id)
-									console.log(err)
-								})
-						})
-					break
+				// case prefix + 'quotesislamic':
+				// case prefix + 'quotesislam':
+				// 	axios.get(`https://urbaee-xyz.herokuapp.com/api/randomquote/muslim?apikey=Urbaeexyz`)
+				// 		.then(async (res) => {
+				// 			const islm = res.data.result.text_id
+				// 			urbae.reply(from, islm, id)
+				// 				.catch((err) => {
+				// 					urbae.reply(from, err, id)
+				// 					console.log(err)
+				// 				})
+				// 		})
+				// 	break
 				case prefix + 'stalktiktok':
 				case prefix + 'stalktik':
 				case prefix + 'stalktt':
@@ -4884,92 +4891,92 @@ module.exports = HandleMsg = async (urbae, message) => {
 							urbae.reply(from, err.message, id)
 						})
 					break
-				case prefix + 'rtiktok':
-				case prefix + 'randomtiktok':
-					if (q.length == 0) return urbae.reply(from, 'nyari random video apa?', id)
-					urbae.reply(from, mess.wait, id)
-					scrape.randomTiktok(q)
-						.then(res => {
-							console.log(res.username)
-							ffmpeg(res.video)
-								.videoBitrate(1000)
-								.save(`./temp/video/${q}.mp4`)
-								.on('progress', p => {
-									console.log(color(`${p.targetSize}`, 'cyan'), color('downloaded', 'magenta'))
-								})
-								.on('end', () => {
-									console.log(color('[DONE]', 'cyan'), color('Fetching video', 'magenta'))
-									urbae.sendFile(from, `./temp/video/${q}.mp4`, '', `Username: ${res.username}\nLikes: ${res.likes}\nComments: ${res.comment}\nShare: ${res.share}`, id)
-										.then(() => {
-											console.log(color('[WAPI]', 'cyan'), color('Success sending video', 'magenta'))
-											setTimeout(() => {
-												fs.unlinkSync(`./temp/video/${q}.mp4`)
-												console.log(color('[SUCCESS]', 'cyan'), color(`Delete file temp/video/${q}.mp4`, 'magenta'))
-											}, 5000)
-										})
-								})
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'gsmarena':
-					if (args.length == 0) return urbae.reply(from, `Untuk mencari spefisikasi handphone dari Website GSMArena\nKetik ${prefix}gsmarena [jenishandphone]`, id)
-					fetchJson(`https://api.zeks.me/api/gsmArena?apikey=${apikeyvinz}&q=${body.slice(10)}`)
-						.then(async (res) => {
-							if (res.status == false) return urbae.reply(from, 'Barang yang kamu cari tidak ada', id)
-							const namabarang = res.data.title
-							const linkbarang = res.data.link
-							const thumbnailhp = res.data.thumb
-							const stringnich = res.data.full_desc.string
-							await urbae.sendFileFromUrl(from, thumbnailhp, '', `Nama: ${namabarang}\nLink: ${linkbarang}\n${stringnich}`, id)
-								.catch(err => {
-									console.log(err)
-									urbae.reply(from, err.message, id)
-								})
-						})
-					break
-				case prefix + 'memeindo2':
-					urbae.reply(from, mess.wait, id)
-					await urbae.sendFileFromUrl(from, `http://api.lolhuman.xyz/api/meme/memeindo?apikey=${lolhuman}`, 'img.jpg', '', id)
-					break
-				case prefix + 'memeindo':
-					await axios.get(`https://api.zeks.me/api/memeindo?apikey=${apikeyvinz}`).then(res => {
-						urbae.sendFileFromUrl(from, `${res.data.result}`, 'image.jpg', 'nehh njeng', id)
-						console.log('Success')
-					})
-						.catch((err) => {
-							urbae.reply(from, err, id)
-						})
-					break
-				case prefix + 'darkjokes':
-					urbae.reply(from, mess.wait, id)
-					await axios.get(`https://api.zeks.me/api/darkjokes?apikey=${apikeyvinz}`).then(res => {
-						urbae.sendFileFromUrl(from, `${res.data.result}`, 'image.jpg', 'nehh njeng', id)
-					})
-						.catch((err) => {
-							console.log(err)
-						})
-					break
-				case prefix + 'goldpb':
-					if (args.length == 0) return urbae.reply(from, `Bot akan mengirimkan Gold Play Button dengan nama yang kalian custom sendiri\nContoh : ${prefix}goldpb Urbaee`, id)
-					const yuza = body.slice(8)
-					await urbae.sendFileFromUrl(from, `https://api.zeks.me/api/gplaybutton?apikey=${apikeyvinz}&text=${yuza}`, 'img.jpg', `Congrats *${yuza} for passed 1M Subscribers`, id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'silverpb':
-					if (args.length == 0) return urbae.reply(from, `Bot akan mengirimkan Silver Play Button dengan kata yang anda masukkan\nContoh : ${prefix}silverpb Urbaee`, id)
-					const silsc = body.slice(10)
-					await urbae.sendFileFromUrl(from, `https://api.zeks.me/api/splaybutton?apikey=${apikeyvinz}&text=${silsc}`, '', `Congrats ${silsc} for passing 100K Subscribers`, id)
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
+				// case prefix + 'rtiktok':
+				// case prefix + 'randomtiktok':
+				// 	if (q.length == 0) return urbae.reply(from, 'nyari random video apa?', id)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	scrape.randomTiktok(q)
+				// 		.then(res => {
+				// 			console.log(res.username)
+				// 			ffmpeg(res.video)
+				// 				.videoBitrate(1000)
+				// 				.save(`./temp/video/${q}.mp4`)
+				// 				.on('progress', p => {
+				// 					console.log(color(`${p.targetSize}`, 'cyan'), color('downloaded', 'magenta'))
+				// 				})
+				// 				.on('end', () => {
+				// 					console.log(color('[DONE]', 'cyan'), color('Fetching video', 'magenta'))
+				// 					urbae.sendFile(from, `./temp/video/${q}.mp4`, '', `Username: ${res.username}\nLikes: ${res.likes}\nComments: ${res.comment}\nShare: ${res.share}`, id)
+				// 						.then(() => {
+				// 							console.log(color('[WAPI]', 'cyan'), color('Success sending video', 'magenta'))
+				// 							setTimeout(() => {
+				// 								fs.unlinkSync(`./temp/video/${q}.mp4`)
+				// 								console.log(color('[SUCCESS]', 'cyan'), color(`Delete file temp/video/${q}.mp4`, 'magenta'))
+				// 							}, 5000)
+				// 						})
+				// 				})
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'gsmarena':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk mencari spefisikasi handphone dari Website GSMArena\nKetik ${prefix}gsmarena [jenishandphone]`, id)
+				// 	fetchJson(`https://api.zeks.me/api/gsmArena?apikey=${apikeyvinz}&q=${body.slice(10)}`)
+				// 		.then(async (res) => {
+				// 			if (res.status == false) return urbae.reply(from, 'Barang yang kamu cari tidak ada', id)
+				// 			const namabarang = res.data.title
+				// 			const linkbarang = res.data.link
+				// 			const thumbnailhp = res.data.thumb
+				// 			const stringnich = res.data.full_desc.string
+				// 			await urbae.sendFileFromUrl(from, thumbnailhp, '', `Nama: ${namabarang}\nLink: ${linkbarang}\n${stringnich}`, id)
+				// 				.catch(err => {
+				// 					console.log(err)
+				// 					urbae.reply(from, err.message, id)
+				// 				})
+				// 		})
+				// 	break
+				// case prefix + 'memeindo2':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	await urbae.sendFileFromUrl(from, `http://api.lolhuman.xyz/api/meme/memeindo?apikey=${lolhuman}`, 'img.jpg', '', id)
+				// 	break
+				// case prefix + 'memeindo':
+				// 	await axios.get(`https://api.zeks.me/api/memeindo?apikey=${apikeyvinz}`).then(res => {
+				// 		urbae.sendFileFromUrl(from, `${res.data.result}`, 'image.jpg', 'nehh njeng', id)
+				// 		console.log('Success')
+				// 	})
+				// 		.catch((err) => {
+				// 			urbae.reply(from, err, id)
+				// 		})
+				// 	break
+				// case prefix + 'darkjokes':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	await axios.get(`https://api.zeks.me/api/darkjokes?apikey=${apikeyvinz}`).then(res => {
+				// 		urbae.sendFileFromUrl(from, `${res.data.result}`, 'image.jpg', 'nehh njeng', id)
+				// 	})
+				// 		.catch((err) => {
+				// 			console.log(err)
+				// 		})
+				// 	break
+				// case prefix + 'goldpb':
+				// 	if (args.length == 0) return urbae.reply(from, `Bot akan mengirimkan Gold Play Button dengan nama yang kalian custom sendiri\nContoh : ${prefix}goldpb Urbaee`, id)
+				// 	const yuza = body.slice(8)
+				// 	await urbae.sendFileFromUrl(from, `https://api.zeks.me/api/gplaybutton?apikey=${apikeyvinz}&text=${yuza}`, 'img.jpg', `Congrats *${yuza} for passed 1M Subscribers`, id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'silverpb':
+				// 	if (args.length == 0) return urbae.reply(from, `Bot akan mengirimkan Silver Play Button dengan kata yang anda masukkan\nContoh : ${prefix}silverpb Urbaee`, id)
+				// 	const silsc = body.slice(10)
+				// 	await urbae.sendFileFromUrl(from, `https://api.zeks.me/api/splaybutton?apikey=${apikeyvinz}&text=${silsc}`, '', `Congrats ${silsc} for passing 100K Subscribers`, id)
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
 				case prefix + 'stalktwit':
 				case prefix + 'stalktwitter':
 					if (args.length == 0) return urbae.reply(from, `Untuk men-stalk akun Burung Biru/Twitter seseorang\nketik ${prefix}stalktwit [username]\ncontoh : ${prefix}stalktwit anakbabi123`, id)
@@ -5004,24 +5011,24 @@ module.exports = HandleMsg = async (urbae, message) => {
 							urbae.reply(from, err.message, id)
 						})
 					break
-				case prefix + 'stalkig':
-				case prefix + 'igstalk':
-					if (q.length == 0) return urbae.reply(from, `Untuk men-stalk akun instagram seseorang\nKetik ${prefix}igstalk usernamenya\nContoh: ${prefix}igstalk thoriqazzikraa`, id)
-					urbae.reply(from, mess.wait, id)
-					insta.fetchUser(q)
-						.then(async (result) => {
-							console.log(result)
-							await urbae.sendFileFromUrl(from, result.hd_profile_pic_url_info.url, '', `*- Username:* ${result.username}\n*- Fullname:* ${result.fullname}\n*- Followers:* ${result.followers} Followers\n*- Following:* ${result.following} Following\n*- Verified:* ${result.is_verified}\n*- Private:* ${result.is_private}\n*- Bio:* ${result.biography}\n*- External Url:* ${result.external_url}\n*- Url Account:* https://instagram.com/${q}`, id)
-								.catch(err => {
-									console.log(err)
-									urbae.reply(from, err.message, id)
-								})
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
+				// case prefix + 'stalkig':
+				// case prefix + 'igstalk':
+				// 	if (q.length == 0) return urbae.reply(from, `Untuk men-stalk akun instagram seseorang\nKetik ${prefix}igstalk usernamenya\nContoh: ${prefix}igstalk thoriqazzikraa`, id)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	insta.fetchUser(q)
+				// 		.then(async (result) => {
+				// 			console.log(result)
+				// 			await urbae.sendFileFromUrl(from, result.hd_profile_pic_url_info.url, '', `*- Username:* ${result.username}\n*- Fullname:* ${result.fullname}\n*- Followers:* ${result.followers} Followers\n*- Following:* ${result.following} Following\n*- Verified:* ${result.is_verified}\n*- Private:* ${result.is_private}\n*- Bio:* ${result.biography}\n*- External Url:* ${result.external_url}\n*- Url Account:* https://instagram.com/${q}`, id)
+				// 				.catch(err => {
+				// 					console.log(err)
+				// 					urbae.reply(from, err.message, id)
+				// 				})
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
 				/*case prefix + 'stalkig':
 				case prefix + 'stalking':
 					if (args.length == 0) return urbae.reply(from, `Untuk men-stalk akun instagram seseorang\nketik ${prefix}stalkig [username]\ncontoh: ${prefix}stalkig thoriqazzikraa`, id)
@@ -5064,24 +5071,24 @@ module.exports = HandleMsg = async (urbae, message) => {
 							urbae.reply(from, err.message, id)
 						})
 					break
-				case prefix + 'rcosplay':
-				case prefix + 'cosplayer':
-				case prefix + 'cosplayers':
-					urbae.reply(from, mess.wait, id)
-					await urbae.sendFileFromUrl(from, `https://zenzapi.xyz/api/random/cosplay?apikey=${zenzapi}`, 'cosplay.jpg', '', id)
-					break
-				case prefix + 'creepypasta':
-				case prefix + 'creepyfact':
-					axios.get(`https://zenzapi.xyz/api/creepyfact?apikey=${zenzapi}`)
-						.then(async (res) => {
-							if (res.data.status == false) return urbae.reply(from, 'Lagi error', id)
-							urbae.reply(from, res.data.result.message, id)
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
+				// case prefix + 'rcosplay':
+				// case prefix + 'cosplayer':
+				// case prefix + 'cosplayers':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	await urbae.sendFileFromUrl(from, `https://zenzapi.xyz/api/random/cosplay?apikey=${zenzapi}`, 'cosplay.jpg', '', id)
+				// 	break
+				// case prefix + 'creepypasta':
+				// case prefix + 'creepyfact':
+				// 	axios.get(`https://zenzapi.xyz/api/creepyfact?apikey=${zenzapi}`)
+				// 		.then(async (res) => {
+				// 			if (res.data.status == false) return urbae.reply(from, 'Lagi error', id)
+				// 			urbae.reply(from, res.data.result.message, id)
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
 				case prefix + 'chord':
 					if (args.length == 0) return urbae.reply(from, `Untuk mencari lirik dan chord dari sebuah lagu\bketik: ${prefix}chord [judul_lagu]`, id)
 					const chordq = body.slice(7)
@@ -5096,12 +5103,12 @@ module.exports = HandleMsg = async (urbae, message) => {
 							urbae.reply(from, err.message, id)
 						})
 					break
-				case prefix + 'ssweb':
-					if (args.length == 0) return urbae.reply(from, `Kirim perintah *${prefix}ssweb [link website]\nContoh: ${prefix}ssweb2 https://github.com/Urbaeexyz/wa-bot`, id)
-					const webss = body.slice(7)
-					urbae.reply(from, mess.wait, id)
-					await urbae.sendFileFromUrl(from, `https://h4ck3rs404-api.herokuapp.com/api/ssweb?url=${webss}&apikey=${hackapi}`, 'img.jpg', `nih screenshot-an ${webss} nya`, id)
-					break
+				// case prefix + 'ssweb':
+				// 	if (args.length == 0) return urbae.reply(from, `Kirim perintah *${prefix}ssweb [link website]\nContoh: ${prefix}ssweb2 https://github.com/Urbaeexyz/wa-bot`, id)
+				// 	const webss = body.slice(7)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	await urbae.sendFileFromUrl(from, `https://h4ck3rs404-api.herokuapp.com/api/ssweb?url=${webss}&apikey=${hackapi}`, 'img.jpg', `nih screenshot-an ${webss} nya`, id)
+				// 	break
 				case prefix + 'fb3':
 				case prefix + 'facebook3':
 					if (args.length == 0) return urbae.reply(from, 'Linknya mana?', id)
@@ -5157,18 +5164,18 @@ module.exports = HandleMsg = async (urbae, message) => {
 							urbae.reply(from, err.message, id)
 						})
 					break
-				case prefix + 'ig2':
-					if (args.length == 0) return urbae.reply(from, `Kirim perintah ${prefix}ig2 linkig`, id)
-					urbae.reply(from, '_Scrapping Metadataa..._', id)
-					axios.get(`http://api.lolhuman.xyz/api/instagram2?apikey=${lolhuman}&url=${body.slice(5)}`)
-						.then(async (res) => {
-							urbae.sendFileFromUrl(from, res.data.result.media[0], 'ig.mp4', '', id)
-								.catch(err => {
-									console.log(err)
-									urbae.reply(from, 'Error njing', id)
-								})
-						})
-					break
+				// case prefix + 'ig2':
+				// 	if (args.length == 0) return urbae.reply(from, `Kirim perintah ${prefix}ig2 linkig`, id)
+				// 	urbae.reply(from, '_Scrapping Metadataa..._', id)
+				// 	axios.get(`http://api.lolhuman.xyz/api/instagram2?apikey=${lolhuman}&url=${body.slice(5)}`)
+				// 		.then(async (res) => {
+				// 			urbae.sendFileFromUrl(from, res.data.result.media[0], 'ig.mp4', '', id)
+				// 				.catch(err => {
+				// 					console.log(err)
+				// 					urbae.reply(from, 'Error njing', id)
+				// 				})
+				// 		})
+				// 	break
 				case prefix + 'twitter':
 					if (args.length == 0) return urbae.reply(from, `Kirim Perintah ${prefix}twitter [linktwitter]`, id)
 					urbae.reply(from, mess.wait, id)
@@ -5201,19 +5208,19 @@ module.exports = HandleMsg = async (urbae, message) => {
 							console.log(err)
 						})
 					break
-				case prefix + 'lolivid': //BY : Piyobot
-					urbae.reply(from, mess.wait, id)
-					fetch('https://raw.githubusercontent.com/AlvioAdjiJanuar/random/main/loli.txt')
-						.then(res => res.text())
-						.then(body => {
-							let loliurbae = body.split('\n')
-							let papololi = loliurbae[Math.floor(Math.random() * loliurbae.length)]
-							urbae.sendFileFromUrl(from, papololi, 'loli.mp4', 'Nih asu', id)
-								.then(() => console.log('Success sending Video Loli'))
-						})
-						.catch(() => {
-							urbae.reply(from, 'Ada yang Error!', id)
-						})
+				// case prefix + 'lolivid': //BY : Piyobot
+				// 	urbae.reply(from, mess.wait, id)
+				// 	fetch('https://raw.githubusercontent.com/AlvioAdjiJanuar/random/main/loli.txt')
+				// 		.then(res => res.text())
+				// 		.then(body => {
+				// 			let loliurbae = body.split('\n')
+				// 			let papololi = loliurbae[Math.floor(Math.random() * loliurbae.length)]
+				// 			urbae.sendFileFromUrl(from, papololi, 'loli.mp4', 'Nih asu', id)
+				// 				.then(() => console.log('Success sending Video Loli'))
+				// 		})
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Ada yang Error!', id)
+				// 		})
 					break
 				case prefix + 'tiktok':
 					if (q.length == 0) return urbae.reply(from, `Kirim perintah *${prefix}tiktok [linkTiktok]*`, id)
@@ -5401,22 +5408,22 @@ module.exports = HandleMsg = async (urbae, message) => {
 						urbae.reply(from, 'Error bang', id)
 					}
 					break
-				case prefix + 'wallhd':
-					if (args.length == 0) return urbae.reply(from, `Fitur untuk mencari wallpaper HD gunakan ${prefix}wallhd nama image.jumlah\nContoh: ${prefix}wallhd aesthetic.3`, id)
-					const wew2 = q.split('.')[0]
-					const wew3 = q.split('.')[1]
-					urbae.reply(from, mess.wait, id)
-					try {
-						const wew4 = await axios.get(`https://api.vhtear.com/walpaper?query=${wew2}&apikey=${vhtearkey}`)
-						const wew5 = wew4.data
-						if (wew3 > 7) return urbae.reply(from, `Maksimal 7 image!`, id)
-						for (let i = 0; i < wew3; i++) {
-							await urbae.sendFileFromUrl(from, wew5.result[i].LinkImg, '', '', id)
-						}
-					} catch (err) {
-						console.log(err)
-					}
-					break
+				// case prefix + 'wallhd':
+				// 	if (args.length == 0) return urbae.reply(from, `Fitur untuk mencari wallpaper HD gunakan ${prefix}wallhd nama image.jumlah\nContoh: ${prefix}wallhd aesthetic.3`, id)
+				// 	const wew2 = q.split('.')[0]
+				// 	const wew3 = q.split('.')[1]
+				// 	urbae.reply(from, mess.wait, id)
+				// 	try {
+				// 		const wew4 = await axios.get(`https://api.vhtear.com/walpaper?query=${wew2}&apikey=${vhtearkey}`)
+				// 		const wew5 = wew4.data
+				// 		if (wew3 > 7) return urbae.reply(from, `Maksimal 7 image!`, id)
+				// 		for (let i = 0; i < wew3; i++) {
+				// 			await urbae.sendFileFromUrl(from, wew5.result[i].LinkImg, '', '', id)
+				// 		}
+				// 	} catch (err) {
+				// 		console.log(err)
+				// 	}
+				// 	break
 				case prefix + 'findsticker':
 				case prefix + 'findstiker':
 					if (args.length == 0) return urbae.reply(from, `Format pesan salah!\nContoh : ${prefix}findstiker gore|4`, id)
@@ -5517,50 +5524,50 @@ module.exports = HandleMsg = async (urbae, message) => {
 							urbae.reply(from, err.message, id)
 						})
 					break
-				case prefix + 'javhd':
-					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					if (args.length == 0) return urbae.reply(from, `Fitur untuk mencari yaa you know lah mwehehe\nUsage : ${prefix}javhd title\nContoh: ${prefix}javhd big tits`, id)
-					const carijav = body.slice(7)
-					urbae.reply(from, mess.wait, id)
-					const javapi = await axios.get(`https://dapuhy-api.herokuapp.com/api/search/javhdd?query=${carijav}&apikey=${dapuhyapi}`)
-					const javdata = javapi.data
-					const javres = javdata.result
-					let javtext = `*「 J A V  H D 」*\n`
-					for (let i = 0; i < javres.length; i++) {
-						javtext += `\n─────────────────\n\n*•Judul:* ${javres[i].title}\n*•Kualitas:* ${javres[i].quality}\n*•Url:* ${javres[i].url}\n`
-					}
-					await urbae.sendFileFromUrl(from, javres[0].thumb, 'img.jpg', javtext, id)
-						.catch(() => {
-							urbae.reply(from, `Query yang anda cari tidak dapat ditemukan`, id)
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'javporn':
-					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					if (args.length == 0) return urbae.reply(from, `Fitur untuk mencari yaa you know lah mwehehe\nUsage : ${prefix}javporn title\nContoh: ${prefix}javporn mom`, id)
-					const cariporn = body.slice(9)
-					urbae.reply(from, mess.wait, id)
-					const javpornapi = await axios.get(`https://dapuhy-api.herokuapp.com/api/search/javhdporn?query=${cariporn}&apikey=${dapuhyapi}`)
-					const javporndata = javpornapi.data
-					const pornres = javporndata.result
-					let porntext = `*「 J A V  P O R N 」*\n`
-					for (let i = 0; i < pornres.length; i++) {
-						porntext += `\n─────────────────\n\n*•Judul:* ${pornres[i].title}\n*•Views:* ${pornres[i].viewers}\n*•Durasi:* ${pornres[i].duration}\n*•Kualitas:* ${pornres[i].quality}\n*•Url:* ${pornres[i].url}\n`
-					}
-					await urbae.sendFileFromUrl(from, pornres[0].thumb, 'thumb.jpg', porntext, id)
-						.catch(() => {
-							urbae.reply(from, 'Query yang kamu cari tidak ada', id)
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
+				// case prefix + 'javhd':
+				// 	if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	if (args.length == 0) return urbae.reply(from, `Fitur untuk mencari yaa you know lah mwehehe\nUsage : ${prefix}javhd title\nContoh: ${prefix}javhd big tits`, id)
+				// 	const carijav = body.slice(7)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const javapi = await axios.get(`https://dapuhy-api.herokuapp.com/api/search/javhdd?query=${carijav}&apikey=${dapuhyapi}`)
+				// 	const javdata = javapi.data
+				// 	const javres = javdata.result
+				// 	let javtext = `*「 J A V  H D 」*\n`
+				// 	for (let i = 0; i < javres.length; i++) {
+				// 		javtext += `\n─────────────────\n\n*•Judul:* ${javres[i].title}\n*•Kualitas:* ${javres[i].quality}\n*•Url:* ${javres[i].url}\n`
+				// 	}
+				// 	await urbae.sendFileFromUrl(from, javres[0].thumb, 'img.jpg', javtext, id)
+				// 		.catch(() => {
+				// 			urbae.reply(from, `Query yang anda cari tidak dapat ditemukan`, id)
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'javporn':
+				// 	if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	if (args.length == 0) return urbae.reply(from, `Fitur untuk mencari yaa you know lah mwehehe\nUsage : ${prefix}javporn title\nContoh: ${prefix}javporn mom`, id)
+				// 	const cariporn = body.slice(9)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	const javpornapi = await axios.get(`https://dapuhy-api.herokuapp.com/api/search/javhdporn?query=${cariporn}&apikey=${dapuhyapi}`)
+				// 	const javporndata = javpornapi.data
+				// 	const pornres = javporndata.result
+				// 	let porntext = `*「 J A V  P O R N 」*\n`
+				// 	for (let i = 0; i < pornres.length; i++) {
+				// 		porntext += `\n─────────────────\n\n*•Judul:* ${pornres[i].title}\n*•Views:* ${pornres[i].viewers}\n*•Durasi:* ${pornres[i].duration}\n*•Kualitas:* ${pornres[i].quality}\n*•Url:* ${pornres[i].url}\n`
+				// 	}
+				// 	await urbae.sendFileFromUrl(from, pornres[0].thumb, 'thumb.jpg', porntext, id)
+				// 		.catch(() => {
+				// 			urbae.reply(from, 'Query yang kamu cari tidak ada', id)
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
 				case prefix + 'spotifysearch':
 				case prefix + 'searchspotify':
 					if (args.length == 0) return urbae.reply(from, `Menampilkan list spotify yang anda cari!\nGunakan ${prefix}spotifysearch judul lagu\nContoh: ${prefix}spotifysearch young`, id)
@@ -5942,13 +5949,13 @@ module.exports = HandleMsg = async (urbae, message) => {
 							})
 					})
 					break
-				case prefix + 'bapakfont':
-					if (args.length == 0) return urbae.reply(from, `Mengubah kalimat menjadi alayyyyy\n\nketik ${prefix}bapakfont kalimat`, id)
-					rugaapi.bapakfont(body.slice(11))
-						.then(async (res) => {
-							await urbae.reply(from, `${res}`, id)
-						})
-					break
+				// case prefix + 'bapakfont':
+				// 	if (args.length == 0) return urbae.reply(from, `Mengubah kalimat menjadi alayyyyy\n\nketik ${prefix}bapakfont kalimat`, id)
+				// 	rugaapi.bapakfont(body.slice(11))
+				// 		.then(async (res) => {
+				// 			await urbae.reply(from, `${res}`, id)
+				// 		})
+				// 	break
 
 				// Group Commands (group admin only)
 				case prefix + 'add':
@@ -6567,7 +6574,7 @@ module.exports = HandleMsg = async (urbae, message) => {
 				case prefix + 'kickall': //mengeluarkan semua member
 					if (!isGroupMsg) return urbae.reply(from, 'Maaf, perintah ini hanya dapat dipakai didalam grup!', id)
 					let isOwnerGroup = sender.id === chat.groupMetadata.owner
-					if (!isOwnerGroup) return urbae.reply(from, 'Maaf, perintah ini hanya dapat digunakan oleh Owner Grup!', id)
+					if (!isOwnerGroup) return urbae.reply(from, 'Maaf, perintah ini hanya dapat digunakan oleh Pembuat Grup!', id)
 					if (!isBotGroupAdmins) return urbae.reply(from, 'Gagal, silahkan tambahkan bot sebagai admin grup!', id)
 					const allMem = await urbae.getGroupMembers(groupId)
 					for (let i = 0; i < allMem.length; i++) {
@@ -6884,13 +6891,13 @@ module.exports = HandleMsg = async (urbae, message) => {
 						urbae.sendText(ownerNumber, 'Google Error : ' + e);
 					})
 					break
-				case prefix + 'crygif':
-					urbae.reply(from, mess.wait, id)
-					axios.get(`https://tobz-api.herokuapp.com/api/cry?apikey=${tobzapi}`).then(res => {
-						urbae.sendFileFromUrl(from, res.data.result, 'img.jpg', '', id)
-						urbae.sendStickerfromUrl(from, res.data.result, `cry.gif`, '', id)
-					})
-					break
+				// case prefix + 'crygif':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get(`https://tobz-api.herokuapp.com/api/cry?apikey=${tobzapi}`).then(res => {
+				// 		urbae.sendFileFromUrl(from, res.data.result, 'img.jpg', '', id)
+				// 		urbae.sendStickerfromUrl(from, res.data.result, `cry.gif`, '', id)
+				// 	})
+				// 	break
 				case prefix + 'tickle':
 					urbae.reply(from, mess.wait, id)
 					axios.get('https://nekos.life/api/v2/img/tickle').then(res => {
@@ -6903,30 +6910,30 @@ module.exports = HandleMsg = async (urbae, message) => {
 						urbae.sendStickerfromUrl(from, res.data.url)
 					})
 					break
-				case prefix + 'trapnime':
-					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					urbae.reply(from, mess.wait, id)
-					axios.get('https://nekos.life/api/v2/img/trap').then(res => {
-						urbae.sendFileFromUrl(from, res.data.url, 'img.jpg', '', id)
-					})
-					break
-				case prefix + 'kuni':
-					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					urbae.reply(from, mess.wait, id)
-					axios.get('https://nekos.life/api/v2/img/kuni').then(res => {
-						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
-					})
-					break
-				case prefix + 'classic':
-					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					urbae.reply(from, mess.wait, id)
-					axios.get('https://nekos.life/api/v2/img/classic').then(res => {
-						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
-					})
-					break
+				// case prefix + 'trapnime':
+				// 	if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get('https://nekos.life/api/v2/img/trap').then(res => {
+				// 		urbae.sendFileFromUrl(from, res.data.url, 'img.jpg', '', id)
+				// 	})
+				// 	break
+				// case prefix + 'kuni':
+				// 	if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get('https://nekos.life/api/v2/img/kuni').then(res => {
+				// 		urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
+				// 	})
+				// 	break
+				// case prefix + 'classic':
+				// 	if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get('https://nekos.life/api/v2/img/classic').then(res => {
+				// 		urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
+				// 	})
+				// 	break
 				case prefix + 'spank':
 					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
 					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
@@ -6935,12 +6942,12 @@ module.exports = HandleMsg = async (urbae, message) => {
 						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
 					})
 					break
-				case prefix + 'randomhentai':
-					if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
-					urbae.sendText(from, mess.wait);
-					urbae.sendFileFromUrl(from, `https://zenzapi.xyz/api/morensfw/hentai?apikey=${zenzapi}`, '', '', id)
-					break
+				// case prefix + 'randomhentai':
+				// 	if (!isNsfwOn) return urbae.reply(from, mess.nsfwnoton, id)
+				// 	if (!isPrem && !isOwnerB) return urbae.reply(from, mess.prem, id)
+				// 	urbae.sendText(from, mess.wait);
+				// 	urbae.sendStickerfromUrl(from, `https://zenzapi.xyz/api/morensfw/hentai?apikey=${zenzapi}`, '', '', id)
+				// 	break
 				case prefix + 'randompat':
 					urbae.reply(from, mess.wait, id)
 					axios.get('https://nekos.life/api/v2/img/pat').then(res => {
@@ -6950,21 +6957,21 @@ module.exports = HandleMsg = async (urbae, message) => {
 							urbae.reply(from, `Error`, id)
 						})
 					break
-				case prefix + 'pokegif':
-					urbae.reply(from, mess.wait, id)
-					axios.get('https://nekos.life/api/v2/img/poke').then(res => {
-						urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
-					})
-					break
-				case prefix + 'rwink':
-					urbae.reply(from, mess.wait, id)
-					axios.get(`https://some-random-api.ml/animu/wink`).then(res => {
-						urbae.sendStickerfromUrl(from, res.data.link, StikerMetadata)
-					})
-						.catch((err) => {
-							urbae.reply(from, 'Error!', id)
-						})
-					break
+				// case prefix + 'pokegif':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get('https://nekos.life/api/v2/img/poke').then(res => {
+				// 		urbae.sendStickerfromUrl(from, res.data.url, StickerMetadata)
+				// 	})
+				// 	break
+				// case prefix + 'rwink':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get(`https://some-random-api.ml/animu/wink`).then(res => {
+				// 		urbae.sendStickerfromUrl(from, res.data.link, StikerMetadata)
+				// 	})
+				// 		.catch((err) => {
+				// 			urbae.reply(from, 'Error!', id)
+				// 		})
+				// 	break
 				case prefix + 'randomhug':
 					if (!isGroupMsg) return urbae.reply(from, 'Perintah ini hanya bisa di gunakan dalam group!', id)
 					urbae.sendText(from, mess.wait);
@@ -7138,7 +7145,7 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us', '')} pad
 						kuntul += `╠➥`
 						kuntul += `${premlist[i].replace(/@c.us/g, '')}\n`
 					}
-					kuntul += '╚═〘 *U R B A E  B O T* 〙'
+					kuntul += '╚═〘 *Defavolia [Bot]* 〙'
 					await urbae.reply(from, kuntul, id)
 					break
 				case prefix + 'listcecan':
@@ -7186,7 +7193,7 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us', '')} pad
 						kemtull += '╠➥'
 						kemtull += `${imagick[i]}\n`
 					}
-					kemtull += '╚═〘 *U R B A E  B O T* 〙'
+					kemtull += '╚═〘 *Defavolia [Bot]* 〙'
 					await urbae.reply(from, kemtull, id)
 					break
 				case prefix + 'listvn':
@@ -7196,7 +7203,7 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us', '')} pad
 						kemtul += '╠➥'
 						kemtul += `${vnlist[i]}\n`
 					}
-					kemtul += '╚═〘 *U R B A E  B O T* 〙'
+					kemtul += '╚═〘 *Defavolia [Bot]* 〙'
 					await urbae.reply(from, kemtul, id)
 					break
 				case prefix + 'liststiker':
@@ -7210,7 +7217,7 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us', '')} pad
 						kumtul += '╠➥'
 						kumtul += `${stiklist[i]}\n`
 					}
-					kumtul += '╚═〘 *U R B A E  B O T* 〙'
+					kumtul += '╚═〘 *Defavolia [Bot]* 〙'
 					await urbae.reply(from, kumtul, id)
 					break
 				case prefix + 'saylist':
@@ -7220,7 +7227,7 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us', '')} pad
 						kimtil += '╠➥'
 						kimtil += `${saylest[i]}\n`
 					}
-					kimtil += '╚═〘 *U R B A E  B O T* 〙'
+					kimtil += '╚═〘 *Defavolia [Bot]* 〙'
 					await urbae.sendText(from, kimtil)
 					break
 				case prefix + 'addsay': {
@@ -7286,27 +7293,35 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us', '')} pad
 						})
 					break
 				case prefix + 'matauang':
-					const matung = `List Currency : btc, usd, eur, gbp, aud, cad, chf, cny, jpy, sgd, nzd, pkr, hkd, krw, mxn, nok, egp, clp, ngn, brl, rub, uah, thb, pln, inr, eth, xmr, dash, doge, ltc, str, xrp`
+					const matung = `List Mata uang : 
+					btc usd eur gbp 
+					aud cad chf cny 
+					jpy sgd nzd pkr 
+					hkd krw mxn nok 
+					egp clp ngn brl 
+					rub uah thb pln 
+					inr eth xmr dash 
+					doge ltc str xrp`
 					urbae.reply(from, matung, id)
 					break
-				case prefix + 'nyenye':
-					if (!isGroupMsg) return urbae.reply(from, 'Fitur ini hanya bisa digunakan didalam Grup!', id)
-					if (args.length = 0) return urbae.reply(from, `kirim ${prefix}nyenye kalimat\ncontoh: ${prefix}nyenye nisa cantik', id`)
-					const teksnya = body.slice(8)
-					const uwoyis = await axios.get(`https://api.i-tech.id/tools/hilih?key=qTOfqt-6mDbIq-8lJHaR-Q09mTR-D6pAtD&kata=${teksnya}`).then(res => {
-						const ihih = `${res.data.result}`
-						urbae.reply(from, ihih, id)
-					})
-					break
-				case prefix + 'convertduit':
-					if (args.length == 0) return urbae.reply(from, `Untuk mengkonversi uang dari negara luar menjadi IDR\nContoh : ${prefix}convertduit usd|2000\n\nDan untuk mengecek mata uang bisa gunakan ${prefix}matauang`, id)
-					const duit1 = arg.split('|')[0]
-					const duit2 = arg.split('|')[1]
-					await axios.get('https://api.terhambar.com/r=' + duit1 + '&bal=' + duit2).then(res => {
-						const duitnya = `Konversi mata uang ${res.data.result.currency} dari ${duit2}\n\nBalance Currency : *${res.data.result.balanceCurrency}*\n\nHasil Dirupiahkan : *${res.data.result.resultConvert}*`
-						urbae.reply(from, duitnya, id)
-					})
-					break
+				// case prefix + 'nyenye':
+				// 	if (!isGroupMsg) return urbae.reply(from, 'Fitur ini hanya bisa digunakan didalam Grup!', id)
+				// 	if (args.length = 0) return urbae.reply(from, `kirim ${prefix}nyenye kalimat\ncontoh: ${prefix}nyenye nisa cantik', id`)
+				// 	const teksnya = body.slice(8)
+				// 	const uwoyis = await axios.get(`https://api.i-tech.id/tools/hilih?key=qTOfqt-6mDbIq-8lJHaR-Q09mTR-D6pAtD&kata=${teksnya}`).then(res => {
+				// 		const ihih = `${res.data.result}`
+				// 		urbae.reply(from, ihih, id)
+				// 	})
+				// 	break
+				// case prefix + 'convertduit':
+				// 	if (args.length == 0) return urbae.reply(from, `Untuk mengkonversi uang dari negara luar menjadi IDR\nContoh : ${prefix}convertduit usd|2000\n\nDan untuk mengecek mata uang bisa gunakan ${prefix}matauang`, id)
+				// 	const duit1 = arg.split('|')[0]
+				// 	const duit2 = arg.split('|')[1]
+				// 	await axios.get('https://api.terhambar.com/r=' + duit1 + '&bal=' + duit2).then(res => {
+				// 		const duitnya = `Konversi mata uang ${res.data.result.currency} dari ${duit2}\n\nBalance Currency : *${res.data.result.balanceCurrency}*\n\nHasil Dirupiahkan : *${res.data.result.resultConvert}*`
+				// 		urbae.reply(from, duitnya, id)
+				// 	})
+				// 	break
 				case prefix + 'santet': //work
 					if (!isGroupMsg) return urbae.reply(from, 'Maaf, perintah ini hanya dapat dipakai didalam grup!', id)
 					if (mentionedJidList.length === 0) return urbae.reply(from, 'Tag member yang mau disantet, contoh : /santet @wahyu | karena dia gay', id)
@@ -7320,10 +7335,10 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us', '')} pad
 					let kya = list[Math.floor(Math.random() * list.length)]
 					urbae.sendFileFromUrl(from, kya, 'Dog.jpeg', 'Doggo sparkles', id)
 					break
-				case prefix + 'wpanime':
-					urbae.reply(from, mess.wait, id)
-					urbae.sendFileFromUrl(from, `https://lindow-api.herokuapp.com/api/wallpaper/mobile?apikey=${lindowapi}`, 'img.jpg', '', id)
-					break
+				// case prefix + 'wpanime':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	urbae.sendFileFromUrl(from, `https://lindow-api.herokuapp.com/api/wallpaper/mobile?apikey=${lindowapi}`, 'img.jpg', '', id)
+				// 	break
 				case prefix + 'aiquote':
 					const aiquote = await axios.get("http://inspirobot.me/api?generate=true")
 					await urbae.sendFileFromUrl(from, aiquote.data, 'quote.jpg', 'FOLLOW NGAB \ :V https://www.instagram.com/_l_.lawliet_/', id)
