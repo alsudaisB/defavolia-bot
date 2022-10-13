@@ -19,7 +19,7 @@ const start = async (urbae = new urbae()) => {
     console.log(color('------------------------------------------------------------------------', 'white'))
     console.log(color(figlet.textSync('Defavolia [Bot]', { font: 'Ghost', horizontalLayout: 'default' })))
     console.log(color('------------------------------------------------------------------------', 'white'))
-    console.log(color('[CREATOR]', 'aqua'), color('Thoriq Azzikra', 'magenta'))
+    console.log(color('[CREATOR]', 'aqua'), color('Dais Fadly', 'magenta'))
     console.log(color('[BOT]', 'aqua'), color('URBAE BOT is now Online!', 'magenta'))
     console.log(color('[VER]', 'aqua'), color('2.11.0', 'magenta'))
     urbae.onStateChanged((state) => {
