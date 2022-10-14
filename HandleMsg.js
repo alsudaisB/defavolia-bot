@@ -303,7 +303,7 @@ module.exports = HandleMsg = async (urbae, message) => {
 		const StickerMetadatacrop = { author: authorstc, pack: packstc, keepScale: false }
 
 		// [IDENTIFY]
-		const ownerNumber = "628875090455@c.us"
+		const ownerNumber = "628875090455@c.us && 6287855217952@c.us"
 		const errorImg = "https://i.ibb.co/DYLd6fk/baukrysie.jpg"
 		const isOwnerBot = ownerNumber.includes(pengirim)
 		const isOwner = ownerNumber.includes(pengirim)
@@ -6021,6 +6021,34 @@ module.exports = HandleMsg = async (urbae, message) => {
 					if (mentionedJidList[0] === botNumber) return await urbae.reply(from, 'Maaf, format pesan salah.\nTidak dapat mempromote akun bot sendiri', id)
 					await urbae.promoteParticipant(groupId, mentionedJidList[0])
 					await urbae.sendTextWithMentions(from, `Done, ciee, @${mentionedJidList[0].replace('@c.us', '')} Diangkat derajatnyaaa xixi.`)
+					break
+				case prefix + 'vipup':
+					if (!isGroupMsg) return urbae.reply(from, '_Maaf, perintah ini hanya dapat dipakai didalam grup!_', id)
+					if (!isOwner) return await urbae.reply(from, '_Lu tuh bukan owner ga usah ikut ikutan!_', id)
+					if (groupAdmins.includes(mentionedJidList[0])) return await urbae.reply(from, '_Sebelumnya udah jadi admin_', id)
+					if (!isBotGroupAdmins && !isOwnerB) return urbae.reply(from, '_Yah maaf bot bukan admin :[_', id)
+					if (args.length === 0) return urbae.reply(from, `_siapa yang mau di jadikan admin?_`, id)
+					await urbae.promoteParticipant(groupId, mentionedJidList[0] || `${args[0]}@c.us`)
+					await urbae.sendTextWithMentions(from, `_@${mentionedJidList[0].replace('@c.us', '')} Sekarang jadi admin!_`)
+					urbae.reply(from, '_Udah pak owner_', id)
+					break
+				case prefix + 'vipupme':
+					if (!isGroupMsg) return urbae.reply(from, '_Maaf, perintah ini hanya dapat dipakai didalam grup!_', id)
+					if (!isOwner) return await urbae.reply(from, '_Lu tuh bukan owner ga usah ikut ikutan!_', id)
+					if (!isBotGroupAdmins && !isOwnerB) return urbae.reply(from, '_Yah maaf bot bukan admin :[_', id)
+					await urbae.promoteParticipant(groupId, serial)
+					await urbae.sendText(from, `_${pushname} sekarang admin_`)
+					urbae.reply(from, 'Udah pak owner', id)
+					break
+				case prefix + 'vipdown':
+					if (!isGroupMsg) return urbae.reply(from, '_Maaf, perintah ini hanya dapat dipakai didalam grup!_', id)
+					if (!isOwner) return await urbae.reply(from, '_Lu tuh bukan owner ga usah ikut ikutan!_', id)
+					if (!groupAdmins.includes(mentionedJidList[0])) return await urbae.reply(from, '_Jadi admin aja belum mau di jadiin member, huft ownerr_', id)
+					if (!isBotGroupAdmins && !isOwnerB) return urbae.reply(from, '_Yah maaf bot bukan admin :[_', id)
+					if (args.length === 0) return urbae.reply(from, `_siapa yang mau di jadikan member?_`, id)
+					await urbae.demoteParticipant(groupId, mentionedJidList[0] || `${args[0]}@c.us`)
+					await urbae.sendTextWithMentions(from, `_@${mentionedJidList[0].replace('@c.us', '')} Sekarang jadi member!_`)
+					urbae.reply(from, '_Udah pak owner_', id)
 					break
 				case prefix + 'demoteme':
 					if (!isGroupAdmins) return urbae.reply(from, 'cuman bisa dipake sama Admin!', id)
