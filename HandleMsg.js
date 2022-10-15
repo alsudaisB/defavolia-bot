@@ -638,7 +638,7 @@ module.exports = HandleMsg = async (urbae, message) => {
 
 
 
-		const menupict = "https://i.ibb.co/fxY3Hbp/Whats-App-Image-2021-11-24-at-15-39-01.jpg"
+		const menupict = "https://telegra.ph/file/8edccb76d885ff1029e73.jpg"
 
 		const apakah = [
 			'Ya',
@@ -853,43 +853,43 @@ module.exports = HandleMsg = async (urbae, message) => {
 				// 	urbae.reply(from, mess.wait, id)
 				// 	urbae.sendFileFromUrl(from, `https://dapuhy-api.herokuapp.com/api/randomimage/blekpink?apikey=${dapuhyapi}`, 'blackpink.jpg', '', id)
 				// 	break
-				case prefix + 'rcitacita':
-					urbae.reply(from, mess.wait, id)
-					await urbae.sendFileFromUrl(from, `https://h4ck3rs404-api.herokuapp.com/api/cita-cita?apikey=${hackapi}`, 'citacita.mp3', '', id)
-					break
-				case prefix + 'ceritahorror':
-				case prefix + 'ceritahoror':
-					urbae.reply(from, mess.wait, id)
-					axios.get(`http://api.lolhuman.xyz/api/ceritahoror?apikey=${lolhuman}`)
-						.then(async (res) => {
-							const becapt = `*Judul:* ${res.data.result.title}\n*Desk:* ${res.data.result.desc}\n*Cerita:* ${res.data.result.story}`
-							await urbae.sendFileFromUrl(from, res.data.result.thumbnail, 'thumb.jpg', becapt, id)
-								.catch(() => {
-									urbae.reply(from, 'Server sedang maintenance atau apikey sudah limit', id)
-								})
-						})
-						.catch(err => {
-							console.log(err)
-							urbae.reply(from, err.message, id)
-						})
-					break
-				case prefix + 'ceritahorror2':
-				case prefix + 'ceritahoror2':
-				case prefix + 'ceritaseram':
-				case prefix + 'ceritahantu':
-					urbae.reply(from, mess.wait, id)
-					axios.get(`https://leyscoders-api.herokuapp.com/api/cerita-horor?apikey=${leysapi}`)
-						.then(async (res) => {
-							const titlehor = res.data.result.title
-							const deschor = res.data.result.desc
-							const storor = res.data.result.story
-							urbae.reply(from, `*Judul:* ${titlehor}\n*Desk:* ${deschor}\n\n*Cerita:* ${storor}`, id)
-								.catch(err => {
-									console.log(err)
-									urbae.reply(from, 'Terjadi kesalahan, silahkan coba ulangi', id)
-								})
-						})
-					break
+				// case prefix + 'rcitacita':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	await urbae.sendFileFromUrl(from, `https://h4ck3rs404-api.herokuapp.com/api/cita-cita?apikey=${hackapi}`, 'citacita.mp3', '', id)
+				// 	break
+				// case prefix + 'ceritahorror':
+				// case prefix + 'ceritahoror':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get(`http://api.lolhuman.xyz/api/ceritahoror?apikey=${lolhuman}`)
+				// 		.then(async (res) => {
+				// 			const becapt = `*Judul:* ${res.data.result.title}\n*Desk:* ${res.data.result.desc}\n*Cerita:* ${res.data.result.story}`
+				// 			await urbae.sendFileFromUrl(from, res.data.result.thumbnail, 'thumb.jpg', becapt, id)
+				// 				.catch(() => {
+				// 					urbae.reply(from, 'Server sedang maintenance atau apikey sudah limit', id)
+				// 				})
+				// 		})
+				// 		.catch(err => {
+				// 			console.log(err)
+				// 			urbae.reply(from, err.message, id)
+				// 		})
+				// 	break
+				// case prefix + 'ceritahorror2':
+				// case prefix + 'ceritahoror2':
+				// case prefix + 'ceritaseram':
+				// case prefix + 'ceritahantu':
+				// 	urbae.reply(from, mess.wait, id)
+				// 	axios.get(`https://leyscoders-api.herokuapp.com/api/cerita-horor?apikey=${leysapi}`)
+				// 		.then(async (res) => {
+				// 			const titlehor = res.data.result.title
+				// 			const deschor = res.data.result.desc
+				// 			const storor = res.data.result.story
+				// 			urbae.reply(from, `*Judul:* ${titlehor}\n*Desk:* ${deschor}\n\n*Cerita:* ${storor}`, id)
+				// 				.catch(err => {
+				// 					console.log(err)
+				// 					urbae.reply(from, 'Terjadi kesalahan, silahkan coba ulangi', id)
+				// 				})
+				// 		})
+				// 	break
 				case prefix + 'runtime':
 					urbae.reply(from, `*Bot has been active for ${cts}*`, id)
 					break
@@ -933,9 +933,9 @@ module.exports = HandleMsg = async (urbae, message) => {
 					const inidonate = menuId.textDonasi()
 					await urbae.sendText(from, inidonate, id, true)
 					break
-				case prefix + 'tod':
-					urbae.reply(from, `Sebelum bermain berjanjilah akan melaksanakan apapun perintah yang diberikan.\n\nSilahkan Pilih:\n➥ ${prefix}truth\n➥ ${prefix}dare`, id)
-					break
+				// case prefix + 'tod':
+				// 	urbae.reply(from, `Sebelum bermain berjanjilah akan melaksanakan apapun perintah yang diberikan.\n\nSilahkan Pilih:\n➥ ${prefix}truth\n➥ ${prefix}dare`, id)
+				// 	break
 				// case prefix + 'rneko':
 				// 	urbae.reply(from, mess.wait, id)
 				// 	axios.get(`https://api.i-tech.id/anim/nsfwneko?key=6QZWVa-fzRgRY-95xAOH-fspd5y-7eJOkQ`).then(res => {
@@ -2818,22 +2818,22 @@ module.exports = HandleMsg = async (urbae, message) => {
 				// 	break
 
 				//Islam Command
-				case prefix + 'listsurah':
-					try {
-						axios.get('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/islam/surah.json')
-							.then((response) => {
-								let hehex = '╔══✪〘 List Surah 〙✪══\n'
-								for (let i = 0; i < response.data.data.length; i++) {
-									hehex += '╠➥ '
-									hehex += response.data.data[i].name.transliteration.id.toLowerCase() + '\n'
-								}
-								hehex += '╚═〘 *A R U G A  B O T* 〙'
-								urbae.reply(from, hehex, id)
-							})
-					} catch (err) {
-						urbae.reply(from, err, id)
-					}
-					break
+				// case prefix + 'listsurah':
+				// 	try {
+				// 		axios.get('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/islam/surah.json')
+				// 			.then((response) => {
+				// 				let hehex = '╔══✪〘 List Surah 〙✪══\n'
+				// 				for (let i = 0; i < response.data.data.length; i++) {
+				// 					hehex += '╠➥ '
+				// 					hehex += response.data.data[i].name.transliteration.id.toLowerCase() + '\n'
+				// 				}
+				// 				hehex += '╚═〘 *A R U G A  B O T* 〙'
+				// 				urbae.reply(from, hehex, id)
+				// 			})
+				// 	} catch (err) {
+				// 		urbae.reply(from, err, id)
+				// 	}
+				// 	break
 				// case prefix + 'infosurah':
 				// 	if (args.length == 0) return urbae.reply(from, `*_${prefix}infosurah <nama surah>_*\nMenampilkan informasi lengkap mengenai surah tertentu. Contoh penggunan: ${prefix}infosurah al-baqarah`, message.id)
 				// 	var responseh = await axios.get('https://raw.githubusercontent.com/urbaeZ/grabbed-results/main/islam/surah.json')
@@ -6043,20 +6043,12 @@ module.exports = HandleMsg = async (urbae, message) => {
 				case prefix + 'vipdown':
 					if (!isGroupMsg) return urbae.reply(from, '_Maaf, perintah ini hanya dapat dipakai didalam grup!_', id)
 					if (!isOwner) return await urbae.reply(from, '_Lu tuh bukan owner ga usah ikut ikutan!_', id)
-					if (!groupAdmins.includes(mentionedJidList[0])) return await urbae.reply(from, '_Jadi admin aja belum mau di jadiin member, huft ownerr_', id)
+					if (!groupAdmins.includes(mentionedJidList[0])) return await urbae.reply(from, '_Emang udah member, huft_', id)
 					if (!isBotGroupAdmins && !isOwnerB) return urbae.reply(from, '_Yah maaf bot bukan admin :[_', id)
 					if (args.length === 0) return urbae.reply(from, `_siapa yang mau di jadikan member?_`, id)
 					await urbae.demoteParticipant(groupId, mentionedJidList[0] || `${args[0]}@c.us`)
 					await urbae.sendTextWithMentions(from, `_@${mentionedJidList[0].replace('@c.us', '')} Sekarang jadi member!_`)
 					urbae.reply(from, '_Udah pak owner_', id)
-					break
-				case prefix + 'demoteme':
-					if (!isGroupAdmins) return urbae.reply(from, 'cuman bisa dipake sama Admin!', id)
-					if (!isBotGroupAdmins) return urbae.reply(from, 'Jadiin admin dulu', id)
-					await urbae.demoteParticipant(groupId, serial)
-					await urbae.sendText(from, `request diterima, ${pushname} ingin jadi babi karna dia kepengen`)
-					await urbae.promoteParticipant(groupId, serial)
-					await urbae.sendText(from, `Prank boiss, jadi admin lagi kok`)
 					break
 				case prefix + 'odemote':
 					var sendis = quotedMsgObj.sender.id
@@ -6065,6 +6057,14 @@ module.exports = HandleMsg = async (urbae, message) => {
 					if (!isBotGroupAdmins) return urbae.reply(from, 'Silahkan tambahkan bot menjadi admin agar bisa mendemote seseorang', id)
 					await urbae.demoteParticipant(groupId, sendis)
 					await urbae.sendText(from, `Donee!, mampus jadi Babi lu kan`)
+					break
+				case prefix + 'demoteme':
+					if (!isGroupAdmins) return urbae.reply(from, 'cuman bisa dipake sama Admin!', id)
+					if (!isBotGroupAdmins) return urbae.reply(from, 'Jadiin admin dulu', id)
+					await urbae.demoteParticipant(groupId, serial)
+					await urbae.sendText(from, `request diterima, ${pushname} ingin jadi babi karna dia kepengen`)
+					await urbae.promoteParticipant(groupId, serial)
+					await urbae.sendText(from, `Prank boiss, jadi admin lagi kok`)
 					break
 				case prefix + 'demote':
 					if (!isGroupMsg) return urbae.reply(from, 'Maaf, perintah ini hanya dapat dipakai didalam grup!', id)
@@ -6562,7 +6562,7 @@ module.exports = HandleMsg = async (urbae, message) => {
 						hehex += `╠➥`
 						hehex += ` @${groupMem[i].id.replace(/@c.us/g, '')}\n`
 					}
-					hehex += '╠\n╚═〘 *U R B A E  B O T* 〙'
+					hehex += '╠\n╚═〘 *Defavolia [Bot]* 〙'
 					await urbae.sendTextWithMentions(from, `Info dari : @${sender.id.replace(/@c.us/g, '')}\n\n` + textInfo + '\n\n' + hehex)
 					break
 				case prefix + 'mutegrup':
@@ -7063,6 +7063,7 @@ module.exports = HandleMsg = async (urbae, message) => {
 *➸ Name : ${groupname}*
 
 Group ini didirikan sejak *${date}* Pukul *${timeh}* oleh @${ownerwoi.replace('@c.us', '')}
+
 
 
 *➸ Members : ${totalMem}*
