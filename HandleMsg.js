@@ -1730,7 +1730,7 @@ module.exports = HandleMsg = async (urbae, message) => {
 					break
 				case prefix + 'join':
 					if (args.length == 0) return urbae.reply(from, `Jika kalian ingin mengundang bot kegroup silahkan invite atau dengan\nketik ${prefix}join [link group]`, id)
-					if (!isPrem && !isOwnerB) return urbae.reply(from, `Chat owner buat joinin`, id)
+					// if (!isPrem && !isOwnerB) return urbae.reply(from, `Chat owner buat joinin`, id)
 					let linkgrup = body.slice(6)
 					let islink = linkgrup.match(/(https:\/\/chat.whatsapp.com)/gi)
 					let chekgrup = await urbae.inviteInfo(linkgrup)
