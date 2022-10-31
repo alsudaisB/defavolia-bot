@@ -204,8 +204,8 @@ const inArray = (needle, haystack) => {
 }
 
 
-const errorurl = 'https://i.ibb.co/PNR9rT3/IMG-20210412-WA0036.jpg'
-const errorurl2 = 'https://i.ibb.co/SfPCmsZ/65307459-647461459071676-8817651150049313976-n.jpg'
+const errorurl = 'https://telegra.ph/file/8edccb76d885ff1029e73.jpg'
+const errorurl2 = 'https://telegra.ph/file/8edccb76d885ff1029e73.jpg'
 
 const isMuted = (chatId) => {
 	if (muted.includes(chatId)) {
@@ -303,8 +303,8 @@ module.exports = HandleMsg = async (urbae, message) => {
 		const StickerMetadatacrop = { author: authorstc, pack: packstc, keepScale: false }
 
 		// [IDENTIFY]
-		const ownerNumber = "628875090455@c.us && 6287855217952@c.us"
-		const errorImg = "https://i.ibb.co/DYLd6fk/baukrysie.jpg"
+		const ownerNumber = "628875090455@c.us"
+		const errorImg = "https://telegra.ph/file/8edccb76d885ff1029e73.jpg"
 		const isOwnerBot = ownerNumber.includes(pengirim)
 		const isOwner = ownerNumber.includes(pengirim)
 		const isOwnerB = ownerNumber.includes(pengirim)
@@ -329,7 +329,7 @@ module.exports = HandleMsg = async (urbae, message) => {
 			const sends = sender.id
 			const ras = await urbae.getProfilePicFromServer(sends)
 			if (ras == undefined) {
-				var pfp = 'https://i.ibb.co/PNR9rT3/IMG-20210412-WA0036.jpg'
+				var pfp = 'https://telegra.ph/file/8edccb76d885ff1029e73.jpg'
 			} else {
 				var pfp = ras
 			}
@@ -7071,13 +7071,14 @@ ${desc}
 _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us', '')} pada *${moment(chat.groupMetadata.descTime * 1000).format('dddd, DD MMMM YYYY')}* pukul ${moment(chat.groupMetadata.descTime * 1000).format('HH:mm:ss')}_`)
 
 					break
-				case prefix + 'grupbot':
-				case prefix + 'gcbot':
-					const ch = `https://chat.whatsapp.com/GB1q8SGBHsNHGW8kkzZd90\n\nSkuyy joinn`
-					await urbae.sendLinkWithAutoPreview(from, ch)
-					break
+				// case prefix + 'grupbot':
+				// case prefix + 'gcbot':
+				// 	const ch = `https://chat.whatsapp.com/GB1q8SGBHsNHGW8kkzZd90\n\nSkuyy joinn`
+				// 	await urbae.sendLinkWithAutoPreview(from, ch)
+				// 	break
 				case prefix + 'discordserver':
-					const serverdiscord = 'https://discord.gg/bvq3gAZh5J\n\nSini join'
+				case prefix + 'dcserver':
+					const serverdiscord = 'https://discord.gg/22D6KJN5qs\n\nSini join'
 					await urbae.sendLinkWithAutoPreview(from, serverdiscord)
 					break
 				case prefix + 'discord':
@@ -7160,7 +7161,7 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us', '')} pad
 						bacotanmu += '╠➥'
 						bacotanmu += ` ${bacul[i]}\n`
 					}
-					bacotanmu += '╚═〘 *U R B A E  B O T* 〙'
+					bacotanmu += '╚═〘 *Defavolia [Bot]* 〙'
 					await urbae.reply(from, bacotanmu, id)
 					break
 				case prefix + 'premlist':
@@ -7486,7 +7487,7 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us', '')} pad
 				case prefix + 'bcgrup':
 					if (!isOwnerB) return urbae.reply(from, `Command ini hanya bisa digunakan oleh Owner Bot`, id)
 					bcgruptxt = body.slice(8)
-					txtbcgrp = `${bcgruptxt}\n\n〘 *U R B A E  B O T* 〙`
+					txtbcgrp = `${bcgruptxt}\n\n〘 *Defavolia [Bot]* 〙`
 					const semuagrup2 = await urbae.getAllGroups();
 					if (quotedMsg && quotedMsg.type == 'image') {
 						const mediaData = await decryptMedia(quotedMsg)
@@ -7523,7 +7524,7 @@ _Desc di update oleh : @${chat.groupMetadata.descOwner.replace('@c.us', '')} pad
 				case prefix + 'bc':
 					if (!isOwnerB) return urbae.reply(from, `Command ini hanya bisa digunakan oleh Owner Bot`, id)
 					bctxt = body.slice(4)
-					txtbc = `〘 *U R B A E  B O T* 〙\n\n${bctxt}`
+					txtbc = `♛Owner Broadcast♛\n\n${bctxt}`
 					const semuagrup = await urbae.getAllChatIds();
 					if (quotedMsg && quotedMsg.type == 'image') {
 						const mediaData = await decryptMedia(quotedMsg)
